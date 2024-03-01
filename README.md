@@ -1,6 +1,5 @@
 # CS102 Project
-
-![Cards being shuffled](https://i.kym-cdn.com/photos/images/newsfeed/000/931/227/eac.gif)
+<img align="center" src="https://i.kym-cdn.com/photos/images/newsfeed/000/931/227/eac.gif" alt="gif" />
 
 ### compile.bat and run.bat batch files
 The compile.bat file compiles all your Java source files and automatically stores them in the classes directory.
@@ -18,7 +17,7 @@ This directory contains any image files used by your application. It will be emp
 ### lib (if using any external libraries)
 This directory contains any jar files that you use for your application.
 
-![Gif of cards being laid on a table](https://i.kym-cdn.com/photos/images/newsfeed/000/930/668/432.gif)
+<img align="center" src="https://i.kym-cdn.com/photos/images/newsfeed/000/930/668/432.gif" alt="gif" />
 
 Good luck and have fun! :)
 
