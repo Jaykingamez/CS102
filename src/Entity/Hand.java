@@ -1,3 +1,4 @@
+package Entity;
 // Hand.java - John K. Estell - 8 May 2003
 // last modified: 23 Febraury 2004
 // Implementation of a abstract hand of playing cards.  
@@ -38,7 +39,7 @@ public abstract class Hand implements Comparable<Hand> {
    * bounds.
    */
    public Card getCard( int index ) {
-      return (Card) hand.get( index );
+      return hand.get( index );
    }
   
   
@@ -53,7 +54,7 @@ public abstract class Hand implements Comparable<Hand> {
       if ( index < 0 )
          return null;
       else
-         return (Card) hand.remove( index );     
+         return hand.remove( index );
    }
 
 
@@ -64,7 +65,7 @@ public abstract class Hand implements Comparable<Hand> {
    * the index is out of bounds.
    */
    public Card removeCard( int index ) {
-      return (Card) hand.remove( index );
+      return hand.remove( index );
    }
 
 
@@ -131,7 +132,7 @@ public abstract class Hand implements Comparable<Hand> {
    */
    @Override
    public int compareTo( Hand otherHandObject ) {
-      Hand otherHand = (Hand) otherHandObject;
+      Hand otherHand = otherHandObject;
       return evaluateHand() - otherHand.evaluateHand();
    }
    

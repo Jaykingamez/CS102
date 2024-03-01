@@ -1,3 +1,4 @@
+package Entity;
 // Deck.java - John K. Estell - 8 May 2003
 // last modified: 23 Febraury 2004
 // Implementation of a deck of playing cards.  Uses the Card class.
