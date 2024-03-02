@@ -127,14 +127,14 @@ public class Card implements Comparable<Card> {
    * Compares two cards for the purposes of sorting.  
    * Cards are ordered first by their suit value, then by their
    * rank value.
-   * @param otherCardObject the other card
+   * @param otherCard the other card
    * @return a negative integer, zero, or a positive integer is this card is
    * less than, equal to, or greater than the referenced card.
    */
    @Override
-   public int compareTo(Card otherCardObject) {
-      int suitDiff = suitValue.compareTo(otherCardObject.suitValue);
-      int rankDiff = rankValue.compareTo(otherCardObject.rankValue);
+   public int compareTo(Card otherCard) {
+      int suitDiff = suitValue.compareTo(otherCard.suitValue);
+      int rankDiff = rankValue.compareTo(otherCard.rankValue);
 
       if (sortRankMajorOrder) {
          return (rankDiff != 0) ? rankDiff : suitDiff;

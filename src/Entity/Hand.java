@@ -1,6 +1,6 @@
 /* Hand.java - John K. Estell - 8 May 2003
- * last modified: 23 Febraury 2004
- * Implementation of a abstract hand of playing cards.
+ * last modified: 23 February 2004
+ * Implementation of an abstract hand of playing cards.
  * Uses the Card class.  Requires subclass for specifying
  * the specifics of what constitutes the evaluation of a hand
  * for the game being implemented.
@@ -53,7 +53,7 @@ public abstract class Hand implements Comparable<Hand> {
 
   /**
    * Removes the card at the specified index from the hand.
-   * @param index poisition of the card to be removed.
+   * @param index position of the card to be removed.
    * @return the card removed from the hand, or the null reference if
    * the index is out of bounds.
    */
@@ -93,7 +93,7 @@ public abstract class Hand implements Comparable<Hand> {
    }
 
   /**
-   * Determines whether or not the hand contains the specified card.
+   * Determines whether the hand contains the specified card.
    * @param card the card being searched for in the hand.
    * @return <code>true</code> if the card is present in the hand.
    */
@@ -112,13 +112,13 @@ public abstract class Hand implements Comparable<Hand> {
 
   /**
    *  Compares two hands.  
-   *  @param otherHandObject the hand being compared.
+   *  @param otherHand the hand being compared.
    *  @return < 0 if this hand is less than the other hand, 0 if the two hands are
-   *  the same, or > 0 if this hand is greater then the other hand.
+   *  the same, or > 0 if this hand is greater than the other hand.
    */
    @Override
-   public int compareTo(Hand otherHandObject) {
-      return evaluateHand() - otherHandObject.evaluateHand();
+   public int compareTo(Hand otherHand) {
+      return evaluateHand() - otherHand.evaluateHand();
    }
 
   /**
