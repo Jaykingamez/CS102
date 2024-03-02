@@ -150,7 +150,7 @@ public class Rank implements Comparable<Rank> {
    */
    @Override
    public int compareTo(Rank otherRank) {
-      if ( aceHigh ){
+      if (aceHigh){
           return VALUES_ACE_HIGH.indexOf(this) - VALUES_ACE_HIGH.indexOf(otherRank);
       }
       else {

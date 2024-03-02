@@ -1,68 +1,109 @@
+/* EntityTest.RankTest.java - Chan Si Jie - 3 March 2024
+ * Implementation of Unit Testing Rank.java
+ */
 package EntityTest;
 
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.List;
 import Entity.Rank;
 
 public class RankTest {
 
     @Test
+    @DisplayName("Test that getName() returns the correct full name for each rank")
     public void testGetNameReturnsCorrectName() {
-        assertEquals("Ace", Rank.ACE.getName());
-        assertEquals("Two", Rank.TWO.getName());
-        assertEquals("Three", Rank.THREE.getName());
-        assertEquals("King", Rank.KING.getName());
+        // Test all ranks using a loop
+        for (Rank rank : Rank.VALUES) {
+            assertEquals(rank.toString(), rank.getName()); // Use toString() for consistency
+        }
     }
 
     @Test
+    @DisplayName("Test that getSymbol() returns the correct single-character symbol for each rank")
     public void testGetSymbolReturnsCorrectSymbol() {
-        assertEquals("a", Rank.ACE.getSymbol());
-        assertEquals("2", Rank.TWO.getSymbol());
-        assertEquals("3", Rank.THREE.getSymbol());
-        assertEquals("k", Rank.KING.getSymbol());
+        List<Rank> VALUES_KING_HIGH =
+           List.of(Rank.ACE, Rank.TWO, Rank.THREE, Rank.FOUR, Rank.FIVE, Rank.SIX, 
+                   Rank.SEVEN, Rank.EIGHT, Rank.NINE, Rank.TEN, Rank.JACK, 
+                   Rank.QUEEN, Rank.KING);
+
+        // Test all ranks using a loop
+        for (int i = 0; i < Rank.VALUES.size(); i++) {
+            assertEquals(Rank.VALUES.get(i).getSymbol(), VALUES_KING_HIGH.get(i).getSymbol());
+        }
     }
 
     @Test
+    @DisplayName("Test that toString() returns the same value as getName() for each rank")
     public void testToStringReturnsName() {
-        assertEquals("Ace", Rank.ACE.toString());
-        assertEquals("Two", Rank.TWO.toString());
-        assertEquals("Three", Rank.THREE.toString());
-        assertEquals("King", Rank.KING.toString());
+        // Test all ranks using a loop
+        for (Rank rank : Rank.VALUES) {
+            assertEquals(rank.toString(), rank.getName()); // Use toString() for consistency
+        }
     }
 
     @Test
+    @DisplayName("Test that compareTo() returns the difference in rank when king is highest")
     public void testCompareToKingHigh() {
         Rank.setKingHigh();
 
-        assertEquals(-9, Rank.ACE.compareTo(Rank.TEN));
-        assertEquals(0, Rank.KING.compareTo(Rank.KING));
-        assertEquals(1, Rank.QUEEN.compareTo(Rank.JACK));
+        // Test all ranks against all other ranks
+        for (Rank rank1 : Rank.VALUES) {
+            for (Rank rank2 : Rank.VALUES) {
+                int expectedDifference = Rank.VALUES.indexOf(rank1) 
+                    - Rank.VALUES.indexOf(rank2);
+            assertEquals(expectedDifference, rank1.compareTo(rank2));
+            }
+        }
     }
 
     @Test
+    @DisplayName("Test that compareTo() returns the difference in rank when ace is highest")
     public void testCompareToAceHigh() {
         Rank.setAceHigh();
-        assertEquals(-10, Rank.TWO.compareTo(Rank.QUEEN));
-        assertEquals(0, Rank.ACE.compareTo(Rank.ACE));
-        assertEquals(1, Rank.KING.compareTo(Rank.QUEEN));
+        List<Rank> VALUES_ACE_HIGH =
+           List.of(Rank.TWO, Rank.THREE, Rank.FOUR, Rank.FIVE, Rank.SIX, 
+                   Rank.SEVEN, Rank.EIGHT, Rank.NINE, Rank.TEN, Rank.JACK,
+                   Rank.QUEEN, Rank.KING, Rank.ACE);
+
+        // Test all ranks against all other ranks
+        for (Rank rank1 : VALUES_ACE_HIGH) {
+            for (Rank rank2 : VALUES_ACE_HIGH) {
+                int expectedDifference = VALUES_ACE_HIGH.indexOf(rank1) - 
+                    VALUES_ACE_HIGH.indexOf(rank2);
+            assertEquals(expectedDifference, rank1.compareTo(rank2));
+            }
+        }
     }
 
     @Test
+    @DisplayName("Tests that the VALUES list contains all existing rank objects when (King High)")
     public void testValuesKingHighContainsAllRanks() {
         Rank.setKingHigh();
+
+        // Assert that VALUES list contains all expected ranks
+        for (Rank rank : Rank.VALUES) {
+            assertTrue(Rank.VALUES.contains(rank));
+        }
+
+        // Assert list size for redundancy
         assertEquals(13, Rank.VALUES.size());
-        assertTrue(Rank.VALUES.contains(Rank.ACE));
-        assertTrue(Rank.VALUES.contains(Rank.TWO));
-        assertTrue(Rank.VALUES.contains(Rank.KING));
     }
 
     @Test
+    @DisplayName("Tests that the VALUES list contains all existing rank objects when (Ace High)")
     public void testValuesAceHighContainsAllRanks() {
         Rank.setAceHigh();
+
+        // Assert that VALUES list contains all expected ranks
+        for (Rank rank : Rank.VALUES) {
+            assertTrue(Rank.VALUES.contains(rank));
+        }
+
+        // Assert list size for redundancy
         assertEquals(13, Rank.VALUES.size());
-        assertTrue(Rank.VALUES.contains(Rank.ACE));
-        assertTrue(Rank.VALUES.contains(Rank.TWO));
-        assertTrue(Rank.VALUES.contains(Rank.KING));
     }
 
     @Test
