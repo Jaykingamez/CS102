@@ -1,0 +1,1 @@
+java -cp "out/test/CS102;out/production/CS102;lib/*;.cd" org.junit.runner.JUnitCore AllTest
