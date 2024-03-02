@@ -1,11 +1,10 @@
+/* Rank.java - John K. Estell - 8 May 2003
+ * last modified: 16 Febraury 2004
+ * Implementation of the "rank" value for a playing card.
+ */
 package Entity;
-// Rank.java - John K. Estell - 8 May 2003
-// last modified: 16 Febraury 2004
-// Implementation of the "rank" value for a playing card.
-
 
 import java.util.*;
-
 
 /**
  *  Specification of the rank values for a standard deck of cards.
@@ -18,89 +17,84 @@ import java.util.*;
  *  containing a subset of the standard ranks, e.g. pinochle.
  */
 public class Rank implements Comparable<Rank> {
-   private String name;
-   private String symbol;
+   private final String name;
+   private final String symbol;
    private static boolean aceHigh = false;
     
    /** 
     * The rank ace. 
     */
-   public final static Rank ACE = new Rank( "Ace", "a" );
+   public final static Rank ACE = new Rank("Ace", "a");
    /** 
     * The rank two. 
     */
-   public final static Rank TWO = new Rank( "Two", "2" );
+   public final static Rank TWO = new Rank("Two", "2");
    /** 
     * The rank three. 
     */
-   public final static Rank THREE = new Rank( "Three", "3" );
+   public final static Rank THREE = new Rank("Three", "3");
    /** 
     * The rank four. 
     */
-   public final static Rank FOUR = new Rank( "Four", "4" );
+   public final static Rank FOUR = new Rank("Four", "4");
    /**
     * The rank five.
     */
-   public final static Rank FIVE = new Rank( "Five", "5" );
+   public final static Rank FIVE = new Rank("Five", "5");
    /**
     * The rank six.
     */
-   public final static Rank SIX = new Rank( "Six", "6" );
+   public final static Rank SIX = new Rank("Six", "6");
    /** 
     * The rank seven.
     */
-   public final static Rank SEVEN = new Rank( "Seven", "7" );
+   public final static Rank SEVEN = new Rank("Seven", "7");
    /**
     * The rank eight.
     */
-   public final static Rank EIGHT = new Rank( "Eight", "8" );
+   public final static Rank EIGHT = new Rank("Eight", "8");
    /**
     * The rank nine.
     */
-   public final static Rank NINE = new Rank( "Nine", "9" );
+   public final static Rank NINE = new Rank("Nine", "9");
    /**
     * The rank ten.
     */
-   public final static Rank TEN = new Rank( "Ten", "t" );
+   public final static Rank TEN = new Rank("Ten", "t");
    /**
     * The rank jack.
     */
-   public final static Rank JACK = new Rank( "Jack", "j" );
+   public final static Rank JACK = new Rank("Jack", "j");
    /**
     * The rank queen.
     */
-   public final static Rank QUEEN = new Rank( "Queen", "q" );
+   public final static Rank QUEEN = new Rank("Queen", "q");
    /**
     * The rank king.
     */
-   public final static Rank KING = new Rank( "King", "k" );
-    
-   
+   public final static Rank KING = new Rank("King", "k");
+
    private final static List<Rank> VALUES_KING_HIGH =
-      Collections.unmodifiableList( 
-         Arrays.asList( new Rank[] { ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN,
-                                     EIGHT, NINE, TEN, JACK, QUEEN, KING      } ) );
+           List.of(ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN,
+                   EIGHT, NINE, TEN, JACK, QUEEN, KING);
    
    private final static List<Rank> VALUES_ACE_HIGH =
-      Collections.unmodifiableList( 
-         Arrays.asList( new Rank[] { TWO, THREE, FOUR, FIVE, SIX, SEVEN,
-                                     EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE } ) );
+           List.of(TWO, THREE, FOUR, FIVE, SIX, SEVEN,
+                   EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE);
                                      
   /**
    * List of all rank values.  Used primarily for the purpose of iteration.
    */
    public final static List<Rank> VALUES =
-      Collections.unmodifiableList( VALUES_KING_HIGH );
-   
-   
+          VALUES_KING_HIGH;
+
    // Constructor - declared private as only the predefined values should
    // be used by the client.
-   private Rank( String nameValue, String symbolValue ) {
+   private Rank(String nameValue, String symbolValue) {
       name = nameValue;
       symbol = symbolValue;
    }
-    
-    
+
   /**
    *  Sets the king to be the card having highest rank.  The ace is
    *  reduced to the lowest rank.
@@ -108,8 +102,7 @@ public class Rank implements Comparable<Rank> {
    public static void setKingHigh() {
       aceHigh = false;
    }
-    
-    
+
   /**
    *  Sets the ace to be the card having highest rank.  The two becomes
    *  the lowest rank.
@@ -117,8 +110,7 @@ public class Rank implements Comparable<Rank> {
    public static void setAceHigh() {
       aceHigh = true;
    }
-    
-    
+
   /**
    *  Returns a description of this rank.
    *  @return the name of this rank.
@@ -126,8 +118,7 @@ public class Rank implements Comparable<Rank> {
    public String getName() {
       return name;
    }
-    
-    
+
   /**
    *  Returns a description of this rank.
    *  @return the name of this rank.
@@ -135,8 +126,7 @@ public class Rank implements Comparable<Rank> {
    public String toString() {
       return name;
    }
-    
-    
+
   /**
    *  The symbol associated with this rank.  Returns the symbol, which
    *  usually constitutes a single character, in the form of a string.
@@ -146,12 +136,11 @@ public class Rank implements Comparable<Rank> {
    public String getSymbol() {
       return symbol;
    }
-    
-    
+
   /** 
    *  Compares the ranks.  Result is dependent on the whether the ace
    *  or the king is considered to be the high rank.
-   *  @param otherRankObject the other rank.
+   *  @param otherRank the other rank.
    *  @return the arithmetic difference between the compared ranks
    *  based on their ordering in the listing of values.  This result
    *  may differ depending on whether the king or the ace is considered
@@ -160,12 +149,12 @@ public class Rank implements Comparable<Rank> {
    *  rank is higher than the other rank.
    */
    @Override
-   public int compareTo( Rank otherRankObject ) {
-      Rank otherRank = otherRankObject;
-      if ( aceHigh )
-         return VALUES_ACE_HIGH.indexOf( this ) - VALUES_ACE_HIGH.indexOf( otherRank );
-      else
-         return VALUES_KING_HIGH.indexOf( this ) - VALUES_KING_HIGH.indexOf( otherRank );
+   public int compareTo(Rank otherRank) {
+      if ( aceHigh ){
+          return VALUES_ACE_HIGH.indexOf(this) - VALUES_ACE_HIGH.indexOf(otherRank);
+      }
+      else {
+          return VALUES_KING_HIGH.indexOf(this) - VALUES_KING_HIGH.indexOf(otherRank);
+      }
    }
-    
 }                                                                 
