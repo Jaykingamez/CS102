@@ -1,7 +1,7 @@
-import org.junit.jupiter.api.Test;
+package EntityTest;
 
+import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
 import Entity.Rank;
 
 public class RankTest {
@@ -42,7 +42,6 @@ public class RankTest {
     @Test
     public void testCompareToAceHigh() {
         Rank.setAceHigh();
-
         assertEquals(-1, Rank.TWO.compareTo(Rank.QUEEN));
         assertEquals(0, Rank.ACE.compareTo(Rank.ACE));
         assertEquals(1, Rank.KING.compareTo(Rank.QUEEN));
