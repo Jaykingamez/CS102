@@ -34,7 +34,7 @@ public class RankTest {
     public void testCompareToKingHigh() {
         Rank.setKingHigh();
 
-        assertEquals(-1, Rank.ACE.compareTo(Rank.TEN));
+        assertEquals(-9, Rank.ACE.compareTo(Rank.TEN));
         assertEquals(0, Rank.KING.compareTo(Rank.KING));
         assertEquals(1, Rank.QUEEN.compareTo(Rank.JACK));
     }
@@ -42,7 +42,7 @@ public class RankTest {
     @Test
     public void testCompareToAceHigh() {
         Rank.setAceHigh();
-        assertEquals(-1, Rank.TWO.compareTo(Rank.QUEEN));
+        assertEquals(-10, Rank.TWO.compareTo(Rank.QUEEN));
         assertEquals(0, Rank.ACE.compareTo(Rank.ACE));
         assertEquals(1, Rank.KING.compareTo(Rank.QUEEN));
     }
