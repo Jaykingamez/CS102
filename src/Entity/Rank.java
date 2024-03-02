@@ -1,5 +1,5 @@
 /* Rank.java - John K. Estell - 8 May 2003
- * last modified: 16 Febraury 2004
+ * last modified: 16 February 2004
  * Implementation of the "rank" value for a playing card.
  */
 package Entity;
@@ -96,7 +96,7 @@ public class Rank implements Comparable<Rank> {
    }
 
   /**
-   *  Sets the king to be the card having highest rank.  The ace is
+   *  Sets the king to be the card having the highest rank.  The ace is
    *  reduced to the lowest rank.
    */
    public static void setKingHigh() {
@@ -104,7 +104,7 @@ public class Rank implements Comparable<Rank> {
    }
 
   /**
-   *  Sets the ace to be the card having highest rank.  The two becomes
+   *  Sets the ace to be the card having the highest rank.  The two becomes
    *  the lowest rank.
    */
    public static void setAceHigh() {
@@ -138,7 +138,7 @@ public class Rank implements Comparable<Rank> {
    }
 
   /** 
-   *  Compares the ranks.  Result is dependent on the whether the ace
+   *  Compares the ranks.  Result is dependent on whether the ace
    *  or the king is considered to be the high rank.
    *  @param otherRank the other rank.
    *  @return the arithmetic difference between the compared ranks
