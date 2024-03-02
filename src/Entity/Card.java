@@ -1,11 +1,11 @@
+/* Card.java - John K. Estell - 8 May 2003
+ * last modified: 23 Febraury 2004
+ * Implementation of a playing card.  Uses classes Rank and Suit for
+ * expressing the card value.
+ */
 package Entity;
-// Card.java - John K. Estell - 8 May 2003
-// last modified: 23 Febraury 2004
-// Implementation of a playing card.  Uses classes Rank and Suit for
-// expressing the card value.
 
 import javax.swing.*;
-
 
 /**
  * Representation of a single playing card. A card consists of a suit value
@@ -24,20 +24,18 @@ public class Card implements Comparable<Card> {
    private ImageIcon cardImage;
    private static boolean sortRankMajorOrder = true;
 
-
   /**
    * Creates a new playing card.
    * @param suit the suit value of this card.
    * @param rank the rank value of this card.
    * @param cardFace the face image of this card.
    */
-   public Card( Suit suit, Rank rank, ImageIcon cardFace ) {
+   public Card(Suit suit, Rank rank, ImageIcon cardFace) {
       cardImage = cardFace;
       suitValue = suit;
       rankValue = rank;
    }
-    
-    
+
   /**
    * Generates the filename associated with the card.  <code>getFilename</code> assumes that all of the standard card images
    * are stored in individual files using filenames in the form of:
@@ -55,10 +53,9 @@ public class Card implements Comparable<Card> {
    * @param rank the rank value of the card.
    * @return a string containing the filename of the card.
    */
-   public static String getFilename( Suit suit, Rank rank ) {
+   public static String getFilename(Suit suit, Rank rank) {
       return rank.getSymbol() + suit.getSymbol() + ".gif";
    }
-
 
   /**
    * Returns the suit of the card.
@@ -68,7 +65,6 @@ public class Card implements Comparable<Card> {
       return suitValue;
    }
 
-
   /**
    * Returns the rank of the card.
    * @return a Rank constant representing the rank value of the card.
@@ -76,7 +72,6 @@ public class Card implements Comparable<Card> {
    public Rank getRank() {
       return rankValue;
    }
-
 
   /**
    * Returns the graphic image of the card.
@@ -86,7 +81,6 @@ public class Card implements Comparable<Card> {
       return cardImage;
    }
 
-
   /**
    * Returns a description of this card.
    * @return the name of the card.
@@ -94,8 +88,7 @@ public class Card implements Comparable<Card> {
    public String toString() {
       return rankValue.toString() + " of " + suitValue.toString();
    }
-  
-  
+
   /**
    * Returns a description of the rank of this card.
    * @return the rank value of the card as a string.
@@ -103,7 +96,6 @@ public class Card implements Comparable<Card> {
    public String rankToString() {
       return rankValue.toString();
    }
-
 
   /**
    * Returns a description of the suit of this card.
@@ -113,7 +105,6 @@ public class Card implements Comparable<Card> {
       return suitValue.toString();
    }
 
-
   /**
    * Specifies that cards are to be sorted in rank-major order.  Cards are ordered
    * first by their rank value; cards of the same rank are then ordered by their
@@ -122,8 +113,7 @@ public class Card implements Comparable<Card> {
    public static void setRankMajorSort() {
       sortRankMajorOrder = true;
    }
-   
-   
+
   /**
    * Specifies that cards are to be sorted in suit-major order.  Cards are ordered
    * first by their suit value; cards of the same suit are then ordered by their
@@ -132,8 +122,7 @@ public class Card implements Comparable<Card> {
    public static void setSuitMajorSort() {
       sortRankMajorOrder = false;
    }
-   
-   
+
   /**
    * Compares two cards for the purposes of sorting.  
    * Cards are ordered first by their suit value, then by their
@@ -143,25 +132,17 @@ public class Card implements Comparable<Card> {
    * less than, equal to, or greater than the referenced card.
    */
    @Override
-   public int compareTo( Card otherCardObject ) {
-      Card otherCard = (Card) otherCardObject;
-      int suitDiff = suitValue.compareTo( otherCard.suitValue );
-      int rankDiff = rankValue.compareTo( otherCard.rankValue );
-      
-      if ( sortRankMajorOrder ) {
-         if ( rankDiff != 0 )
-            return rankDiff;
-         else
-            return suitDiff;
+   public int compareTo(Card otherCardObject) {
+      int suitDiff = suitValue.compareTo(otherCardObject.suitValue);
+      int rankDiff = rankValue.compareTo(otherCardObject.rankValue);
+
+      if (sortRankMajorOrder) {
+         return (rankDiff != 0) ? rankDiff : suitDiff;
       }
       else {
-         if ( suitDiff != 0 )
-            return suitDiff;
-         else
-            return rankDiff;
+         return (suitDiff != 0) ? suitDiff : rankDiff;
       }
    }
-
 
   /**
    * Compares two cards to determine if they have the same value.
@@ -171,11 +152,7 @@ public class Card implements Comparable<Card> {
    * @return <code>true</code> if the two cards have the same rank and suit
    * values, <code>false</code> if they do not.
    */
-   public boolean isSameAs( Card card ) {
-      if ( ( rankValue != card.rankValue ) || ( suitValue != card.suitValue ) )
-         return false;
-      else
-         return true;
+   public boolean isSameAs(Card card) {
+      return !((rankValue != card.rankValue) || (suitValue != card.suitValue));
    }
-
 }
