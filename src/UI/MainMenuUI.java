@@ -4,9 +4,18 @@ import java.awt.*;        // Using AWT layouts
 import javax.swing.*;     // Using Swing components and containers
 
 public class MainMenuUI {
-    public static void main(String[] args) {
-        
-        JPanel leftPanel = new JPanel();
+    JPanel leftPanel = new JPanel();
+    JPanel rightPanel = new JPanel();
+    GridLayout gridLayout = new GridLayout(4, 1);
+    JPanel bluePanel = new JPanel();
+    JButton start = new JButton();
+    JButton profile = new JButton();
+    JButton exit = new JButton();
+    JFrame frame = new JFrame();
+
+    // Pass in player class so that UI can process player information
+    public MainMenuUI(){
+        // Setup left panel (Yeow Leong)
         leftPanel.setBounds(0, 0, 250, 500);
         ImageIcon icon = new ImageIcon("images/yllee.jpg");
         Image image = icon.getImage(); // transform it 
@@ -14,8 +23,8 @@ public class MainMenuUI {
         icon = new ImageIcon(newimg);  // assign to a new ImageIcon instance
         JLabel label = new JLabel(icon);
         leftPanel.add(label);
-
-        JPanel rightPanel = new JPanel();
+        
+        // Setup right panel (Lay Foo)
         rightPanel.setBounds(750, 0, 250, 500);
         icon = new ImageIcon("images/lfthiang.png");
         image = icon.getImage(); // transform it 
@@ -23,11 +32,8 @@ public class MainMenuUI {
         icon = new ImageIcon(newimg);  // assign to a new ImageIcon instance
         label = new JLabel(icon);
         rightPanel.add(label);
-
-
-
-        GridLayout gridLayout = new GridLayout(4, 1);
-        JPanel bluePanel = new JPanel();
+        
+        //setup Centre Panel (Title and Buttons)
         bluePanel.setBackground(Color.white);
         bluePanel.setBounds(250, 0, 500, 500);
         bluePanel.setLayout(gridLayout);
@@ -37,25 +43,28 @@ public class MainMenuUI {
         label.setText("Texas Holdem: Revenge of the Yeow Leong");
         bluePanel.add(label);
 
-        JButton start = new JButton();
+        // Start game
         start.setPreferredSize(new Dimension(150, 50));
         start.setText("START");
         start.addActionListener(e -> {
-                new DisplayUI();  // Let the constructor do the job
+            frame.dispose();
+            new DisplayUI();
         });
         bluePanel.add(start);
 
-        JButton profile = new JButton();
+        // Player Account
         profile.setPreferredSize(new Dimension(150, 50));
         profile.setText("PROFILE");
         bluePanel.add(profile);
 
-        JButton exit = new JButton();
+        // Quit game
         exit.setPreferredSize(new Dimension(150, 50));
         exit.setText("EXIT");
+        exit.addActionListener(e -> {
+            frame.dispose();
+        });
         bluePanel.add(exit);
 
-        JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
         frame.setSize(1000, 500);
@@ -63,6 +72,11 @@ public class MainMenuUI {
         frame.add(bluePanel);
         frame.add(leftPanel);
         frame.add(rightPanel);
+    }
+    public static void main(String[] args) {
+        
+        
+       
 
     }
     
