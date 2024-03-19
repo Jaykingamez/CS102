@@ -1,0 +1,1 @@
+javac -d classes -cp lib/*;src src/Test.java
