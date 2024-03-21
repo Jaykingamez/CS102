@@ -1,9 +1,9 @@
-package cardgame.stuff;
+package Entity.Storage;
 import java.io.*;
 import java.io.File;
 
 public class DataArchive {
-
+//kamiyachang.2023
 
 
     public int gamesPlayed;
