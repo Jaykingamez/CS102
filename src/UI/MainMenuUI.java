@@ -7,7 +7,10 @@ package UI;
 import java.awt.*;        // Using AWT layouts
 import javax.swing.*;     // Using Swing components and containers
 
-public class MainMenuUI {
+import Controller.*;
+
+
+public class MainMenuUI extends JFrame {
     // Contains Yeow Leong's face
     JPanel leftPanel = new JPanel();
     // Contains Lay Foo's face
@@ -27,8 +30,9 @@ public class MainMenuUI {
     // Contains title screen
     JLabel titleLabel = new JLabel();
 
+
     // Pass in player class so that UI can process player information
-    public MainMenuUI(){
+    public MainMenuUI(MainMenuController mainMenuController){
         // Setup left panel (Yeow Leong)
         leftPanel.setBounds(0, 0, 250, 500);
 
@@ -73,7 +77,7 @@ public class MainMenuUI {
             // kill the screen and go to the main game
             // need to pass it something that stores game information
             frame.dispose();
-            new DisplayUI();
+            mainMenuController.startGame();
         });
         centrePanel.add(start);
 
@@ -81,8 +85,11 @@ public class MainMenuUI {
         profile.setPreferredSize(new Dimension(150, 50));
         profile.setText("PROFILE");
         profile.addActionListener(e -> {
+            // Save and Load player details if needed
             String name = JOptionPane.showInputDialog("What is your name?");
+            mainMenuController.createPlayer(name, null, null);
             titleLabel.setText("Hello " + name + " It's me, your best friend Dr Li Yuchen :)");
+            // pass player details back to GameManager
         });
         centrePanel.add(profile);
 
@@ -103,4 +110,6 @@ public class MainMenuUI {
         frame.add(leftPanel);
         frame.add(rightPanel);
     }
+
+
 }

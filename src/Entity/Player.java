@@ -1,8 +1,6 @@
-package cardgame.stuff;
+package Entity;
 import java.util.io.*;
 import java.util.*;
-
-import javax.management.relation.Role;
 
 import java.io.File;
 

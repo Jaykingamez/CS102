@@ -1,4 +1,4 @@
-package cardgame.stuff;
+package Entity;
 
 import javax.swing.ImageIcon;
 
@@ -81,14 +81,6 @@ public class Card {
         }
 
         return new ImageIcon(filename);
-    }
-
-    private String getFilename(int theValue, int theSuit){
-        
-    }
-
-    public ImageIcon getCardImage(){
-
     }
  
     public int getSuit() {
