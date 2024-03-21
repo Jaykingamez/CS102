@@ -1,40 +1,58 @@
-import java.util.Scanner;
+import java.util.*;
 
-public class Action {
-    Pot thisPot;
-    Player thisPlayer;
+public class Pot {
+    
+    private int totalpot;
+    private int betToContinue;
+    private Map<Player,Integer> playerBets;
 
-
-    public Action(String input, Game thisGame, Player thisPlayer){
-        this.thisPot = thisGame.getPot();
-        this.thisPlayer = thisPlayer;
-
-        if(input == "Call"){
-            call();
+    // to initiaze new pot at the start of the game
+    public Pot(List<Player> players){
+        // if we not doing big bind and small bind then everyone at the start of the game can place $10
+        //into the pot
+        this.playerBets = new HashMap<>();
+        for(int i = 0; i < players.size(); i++){
+            playerBets.put(players.get(i), 10);
         }
-        if(input == "Raise"){
-            raise();
+
+        this.totalpot = 0;
+
+        this.betToContinue = 10;
+
+    }
+
+    public void endTurn(){
+        int total = 0; 
+        for(Player p : playerBets.keySet()){
+            total += playerBets.get(p);
         }
-        if(input == "Fold"){
-            fold();
+
+        this.totalpot += total;
+
+        //code for going through the HashMap and deteucting the players
+        // turnBets(Values in the HashMap) from their Bank
+        //KIV 
+
+        //all player bets becomes 0
+        for(Player p : playerBets.keySet()){
+            playerBets.put(p, 0);
         }
+
+        //the highest bet for that turn revert to 0
+        this.betToContinue = 0;
+
     }
 
-    public void call(){
-        thisPot.updateBetToContinue(thisPlayer);
+    //used for raising the bet
+    public void updateBetToContinue(int money, Player p){
+        this.betToContinue += money;
+        playerBets.put(p, betToContinue);
     }
 
-    public void raise(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Input amount to raise: ");
-        int raiseAmt = sc.nextInt();
-        
-        thisPot.updateBetToContinue(raiseAmt, thisPlayer);
+    //used for calling
+    public void updateBetToContinue(Player p){
+        playerBets.put(p, betToContinue);
     }
 
-    public void fold(){
-        //create setter in Player
-        thisPlayer.setActive() = false; 
-    }
-
+    
 }
