@@ -28,16 +28,17 @@ public class Role {
         if(randomNumber == 1){
             roleName = "King";
             System.out.println("ROLE: King");
-            System.out.println("description: At the begining of each turn flip over a card from the deck and if you guess correct you win the game!");
+            System.out.println("description: At the beginning of each turn, flip over a card from the deck and make a guess: if you guess it correctly you win the game!");
         }
         if(randomNumber == 2){
             roleName = "Jester";
             System.out.println("ROLE: Jester");
-            System.out.println("description: At the begining of each turn draw a card from the deck and if you all of your cards add upp to below 10 you win the game!!");
-        }
+            System.out.println("description: At the beginning of each turn, draw a card from the deck and if all of your cards add up to less than 10 you win the game!");
+    
         if(randomNumber == 0){
             roleName = "Citizen";
             System.out.println("ROLE: Citizen");
+            System.out.println("description: Aim for the best hand and bet wisely to win!"); //added a short line for the normie
         }
 
         
@@ -50,3 +51,5 @@ public class Role {
     
 
 }
+    /*edited by miya 3.22.24
+    */
