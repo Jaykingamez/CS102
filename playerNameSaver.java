@@ -7,6 +7,11 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+/*
+Denxi 3.21.24 Push
+
+*/
+
 public class playerNameSaver {
         public static void main(String[] args) {
     
@@ -61,3 +66,15 @@ public class playerNameSaver {
     }
 }
 }
+
+/*
+Comments 3.22.24 
+1. When there's an error reading the file/the file doesn't exist, it's automatically created. I think you could add an additional message that lets the user know that 
+a player file has automatically been made, or to just not print out the error message at all since it's not really an issue
+2. Lines 26 onward look good! Would it make sense to use the current message e.g "player name john has been added to player_names.txt" as a debug line instead? It'll be for verifying that the 
+right name and intended file have been used, but for the game it might be better to say "Player John added!" 
+3. I notice most of these methods are static methods, which is okay, but it means it every time we call it we would have to type playerNameSaver.writePlayerName, for example. i think we can discuss
+this with the rest of the team so we can standardise it better, because im not really sure whats the best idea either
+4. Did you mean "playerExists"? 
+
+*/
