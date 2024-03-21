@@ -1,4 +1,4 @@
-package cardgame.stuff;
+package Entity.Texas;
 
 import java.util.Collections;
 import java.util.List;
