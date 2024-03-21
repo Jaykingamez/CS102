@@ -1,4 +1,4 @@
-package cardgame.stuff;
+package Entity;
 
 import java.util.ArrayList;
 import java.util.Collections;
