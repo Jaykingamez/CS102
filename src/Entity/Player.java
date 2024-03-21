@@ -39,6 +39,11 @@ public class Player {
         
     }
 
+    public setActive(boolean active){
+        this.active = active;
+    }
+
+
     // public Player(boolean newPlayer) {
     //     Scanner sc = new Scanner(System.in);
     //     System.out.println("Enter the username of the new player");
