@@ -1,7 +1,7 @@
 package Entity.Computer;
 import java.util.ArrayList;
 import java.util.List;
-
+//kamiyachang.2023
 public class SimpleComputerPlayer {
     private List<Card> hand;
     private Wealth money;
