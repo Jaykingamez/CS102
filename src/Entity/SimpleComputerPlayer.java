@@ -1,4 +1,4 @@
-package cardgame.stuff;
+package Entity.Computer;
 import java.util.ArrayList;
 import java.util.List;
 
