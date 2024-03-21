@@ -1,4 +1,5 @@
-package cardgame.stuff;
+package Entity.Utility;
+//kamiyachang.2023
 
 import java.io.BufferedWriter;
 import java.io.File;
