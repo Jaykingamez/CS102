@@ -21,7 +21,7 @@ public class Pot {
 
     }
 
-    public void endTurn(){
+    public void endTurnPot(){
         int total = 0; 
         for(Player p : playerBets.keySet()){
             total += playerBets.get(p);
