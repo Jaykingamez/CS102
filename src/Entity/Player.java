@@ -13,15 +13,16 @@ public class Player {
     private boolean active;
     private Hand pHand;
     private Role pRole;
+    private Wealth money;
     
     
-    public Player(String name, Hand pHand, Role pRole, ImageIcon image) {
+    public Player(String name, Hand pHand, Role pRole, Wealth money) {
         this.name = name;
         this.active = true;
         //this.winCondition = winCondition;
         this.pHand = pHand;
         this.pRole = pRole;
-        this.image = image;
+        this.money = money;
     }
 
     public Hand getpHand(){
