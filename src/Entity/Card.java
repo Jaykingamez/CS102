@@ -92,6 +92,10 @@ public class Card {
         return value;
     }
 
+    public ImageIcon getCardImage(){
+        return cardImage;
+    }
+
     public String getSuitAsString() {
         switch ( suit ) {
         case SPADES:   return "Spades";
