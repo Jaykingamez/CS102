@@ -1,6 +1,7 @@
-/* EntityTest.RankTest.java - Chan Si Jie - 3 March 2024
- * Implementation of Unit Testing Rank.java
- */
+/*
+ * Name    : Chan Si Jie
+ * Email ID: sijie.chan.2023
+*/
 package EntityTest;
 
 import org.junit.Test;

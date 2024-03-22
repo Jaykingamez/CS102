@@ -1,4 +1,7 @@
-package cardgame.stuff;
+package Entity;
+
+import javax.swing.ImageIcon;
+
 public class Card {
 
     public final static int SPADES = 0;   
@@ -18,10 +21,11 @@ public class Card {
                      
     private final int value;
 
+    private final ImageIcon cardImage;
+
  
     public Card() {
-        suit = JOKER;
-        value = 1;
+        this(1, JOKER);
     }
 
  
@@ -33,8 +37,51 @@ public class Card {
             throw new IllegalArgumentException("Illegal playing card value");
         value = theValue;
         suit = theSuit;
+        cardImage = findCardImage(theValue, theSuit);
     }
 
+    private ImageIcon findCardImage(int theValue, int theSuit){
+        String filename = "images/";
+        // if joker card return
+        if (theValue == 1 && theSuit == JOKER){
+            filename += "j.gif";
+            return new ImageIcon(filename);
+        }
+        switch (theValue){
+            case 1:
+                filename += 'a';
+                break;
+            case 10:
+                filename += 't';
+                break;
+            case 11:
+                filename += 'j';
+                break;
+            case 12:
+                filename += 'q';
+                break;
+            case 13:
+                filename += 'k';
+                break;
+            default:
+                filename += theValue;
+
+        }
+
+        switch (theSuit){
+            case CLUBS:
+                filename += 'c';
+                break;
+            case DIAMONDS:
+                filename += 'd';
+            case HEARTS:
+                filename += 'h';
+            case SPADES:
+                filename += 's';
+        }
+
+        return new ImageIcon(filename);
+    }
  
     public int getSuit() {
         return suit;

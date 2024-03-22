@@ -1,6 +1,7 @@
-/* EntityTest.DeckTest.java - Chan Si Jie - 3 March 2024
- * Implementation of Unit Testing Deck.java
- */
+/*
+ * Name    : Chan Si Jie
+ * Email ID: sijie.chan.2023
+*/
 package EntityTest;
 
 import org.junit.Test;

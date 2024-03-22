@@ -1,3 +1,7 @@
+/*
+ * Name    : Chan Si Jie
+ * Email ID: sijie.chan.2023
+*/
 import EntityTest.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

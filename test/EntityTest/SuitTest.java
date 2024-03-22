@@ -1,6 +1,7 @@
-/* EntityTest.SuitTest.java - Chan Si Jie - 2 March 2024
- * Implementation of Unit Testing Suit.java
- */
+/*
+ * Name    : Chan Si Jie
+ * Email ID: sijie.chan.2023
+*/
 package EntityTest;
 
 import org.junit.jupiter.api.DisplayName;

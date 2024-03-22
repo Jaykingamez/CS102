@@ -1,8 +1,6 @@
-package cardgame.stuff;
+package Entity;
 import java.util.io.*;
 import java.util.*;
-
-import javax.management.relation.Role;
 
 import java.io.File;
 
@@ -40,6 +38,11 @@ public class Player {
     public boolean equals(Player another){
         
     }
+
+    public setActive(boolean active){
+        this.active = active;
+    }
+
 
     // public Player(boolean newPlayer) {
     //     Scanner sc = new Scanner(System.in);

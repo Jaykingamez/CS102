@@ -3,7 +3,7 @@ Jia Lin
 Last edit: 21/03/2024
 */
 
-
+package Entity;
 import java.util.*;
 
 public class Role {

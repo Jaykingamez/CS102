@@ -23,12 +23,12 @@ public class FileHandle {
     } 
   } 
 
-  public void clearFile(String fileName) {
+  // public void clearFile(String fileName) {
 
-    S
-    new File(fileName).();
 
-  }
+  //   new File(fileName).();
+
+  // }
 
   public void delAll(){
 
