@@ -1,8 +1,11 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Player {
     private String playerName;
     private int value; // Player's current balance
-    private int currentChips = 200;
-    private int currentBet;
 
     public Player(int initialValue) {
         this.value = initialValue;
@@ -22,23 +25,6 @@ public class Player {
     public int getValue() {
         return this.value;
     }
-
-    public String getName(){
-        return this.playerName;
-    }
-
-    public void setCurrentChips(int chips) {
-        this.currentChips = chips;
-    }
-
-    public int getCurrentChips() {
-        return this.currentChips;
-    }
-
-    public int getCurrentBet() {
-        return currentBet;
-    }
-
 }
 
 
