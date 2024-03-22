@@ -290,13 +290,13 @@ public class totalCombi implements Comparable<totalCombi>{
         return pairs;
     }
 
-    // to check if there is 5 consequetive cards
+    // to check if there is 5 consequetive cards\
+    // idk if this is correct T_T
     private boolean hasConsecutive(){
-
         for (int i = 0; i <= allCards.size() - 5; i++) {
             boolean isConsecutive = true;
-            for (int j = 0; j < 5 - 1; j++) {
-                if (allCards.get(i + j + 1).getValue() != allCards.get(i).getValue() + j + 1) {
+            for (int j = 0; j < 5; j++) {
+                if (allCards.get(i + j).getValue() != allCards.get(i).getValue() + j) {
                     isConsecutive = false;
                     break;
                 }
