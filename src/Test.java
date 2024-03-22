@@ -1,4 +1,4 @@
-import UI.DisplayUI;
+import UI.GameUI;
 import UI.MainMenuUI;
 
 public class Test {
