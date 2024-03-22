@@ -4,19 +4,22 @@ Last updated: 22/03/2024
 */
 package GameManager;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+import Entity.Player;
+import Entity.Deck;
+import Entity.Pot;
 
 public class PokerGame {
-    Deck deck = new Deck(false);
+    Deck deck;
     Player[] players; //reference to players to save data after game
-    ArrayList<PokerPlayer> gamers = new ArrayList<>(); //players game data
     Scanner scan = new Scanner(System.in);
-    int pot = 0;
-    int initialBet = 5;             // game's initial bet every round
+    Pot pot;
+    int initialBet = 10;             // game's initial bet every round
     int roundBet = initialBet;     // round's current bet, updated after someone raises
     private int firstPlayerIndex = 0; // first player at start of a new round
     int currentIndex = firstPlayerIndex; //current player's index
-    PokerPlayer currentPlayer = gamers.get(currentIndex);
+    Player currentPlayer;
     String oneAction = "check";     // current available action for inputting 1
     String[] phase = {"preFlop", "Flop", "Turn", "River", "Showdown"}; //poker game phases
     int currentPhase = 0;    //poker game phase index
@@ -28,32 +31,35 @@ public class PokerGame {
     }
 
     public void startGame() {
-        for (Player player : players) {
-            gamers.add(new PokerPlayer("yeow", 200)); //player.getname(), game's initial chip in
-        }
+        pot = new Pot(Arrays.asList(players));
         startRound();
     }
 
     public void startRound() {
-        deck = new Deck(false);
+        deck = new Deck();
         deck.shuffle();
 
-        for (PokerPlayer player: gamers) {
-            player.hand.addCard(deck.dealCard());
-            player.hand.addCard(deck.dealCard());
+        
 
-            if (player.getCurrentChips() < initialBet) {
-                player.currentBet = player.currentChips;
+        for (Player player: players) {
+            player.getpHand().addCard(deck.dealCard());
+            player.getpHand().addCard(deck.dealCard());
+        
+
+            if (pot.getPlayerBets().get(player) < pot.getBetToContinue()) {
+                pot.updateBetToContinue(player);
+                //TODO from here
                 player.setCurrentChips(0);
                 player.allIn = true;       //if player has less than initial bet, basically force them to all in at start
             }
             else {
                 player.currentBet = initialBet;
                 player.setCurrentChips(player.getCurrentChips() - initialBet);
+
             }
         }
 
-        currentPlayer = gamers.get(firstPlayerIndex);
+        currentPlayer = players[firstPlayerIndex];
         currentIndex = firstPlayerIndex;
         roundBet = initialBet;
         startTurn();
@@ -63,7 +69,7 @@ public class PokerGame {
         // replace scanning and printing with actual UI
         //TODO: handle every player has played thru currentPlayer.playedTurn
 
-        if (currentPlayer.allIn == true && currentPlayer.finishedRound == false;) {
+        if (currentPlayer.allIn == true && currentPlayer.finishedRound == false) {
             if (currentPlayer.lastStandAcknowledge == false) {      //for if player is all-in from initial bet
                 System.out.println(currentPlayer.getName() + "\'s turn.");
                 System.out.println(currentPlayer.getName() + "\'s cards: ");

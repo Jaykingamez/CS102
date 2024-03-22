@@ -56,5 +56,16 @@ public class Pot {
         playerBets.put(p, betToContinue);
     }
 
+    public int getBetToContinue() {
+        return this.betToContinue;
+    }
+
+    public Map<Player,Integer> getPlayerBets() {
+        return this.playerBets;
+    }
+
+    public void setTotalPot(int newTotal) {
+        this.totalpot = newTotal;
+    }
     
 }

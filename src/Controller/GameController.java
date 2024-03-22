@@ -8,6 +8,7 @@ import java.util.List;
 
 import UI.GameUI;
 import UI.MainMenuUI;
+import GameManager.GameManager;
 
 public class GameController {
     private GameUI gameUI = null;
