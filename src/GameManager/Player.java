@@ -1,25 +1,44 @@
-package cardgame.stuff;
-import java.util.io.*;
-import java.io.File;
-
 public class Player {
-    private static String name;
-    private int[] chipInventory;
-    
-    public Player() {
-    
-    this.name = name;
-    this.chipInventory = chipInventory;
-    
+    private String playerName;
+    private int value; // Player's current balance
+    private int currentChips = 200;
+    private int currentBet;
 
+    public Player(int initialValue) {
+        this.value = initialValue;
     }
 
-    public Player(boolean newPlayer) {
+    // Method to deduct money from player's balance
+    public void deductBalance(int amount) {
+        this.value -= amount;
+    }
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the username of the new player");
-        
+    // Method to add money to player's balance
+    public void addBalance(int amount) {
+        this.value += amount;
+    }
 
+    // Getter method for player's balance
+    public int getValue() {
+        return this.value;
+    }
+
+    public String getName(){
+        return this.playerName;
+    }
+
+    public void setCurrentChips(int chips) {
+        this.currentChips = chips;
+    }
+
+    public int getCurrentChips() {
+        return this.currentChips;
+    }
+
+    public int getCurrentBet() {
+        return currentBet;
     }
 
 }
+
+
