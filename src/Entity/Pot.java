@@ -51,7 +51,7 @@ public class Pot {
         playerBets.put(p, betToContinue);
     }
 
-    //used for calling
+    //used for calling in the action class
     public void updateBetToContinue(Player p){
         playerBets.put(p, betToContinue);
     }
