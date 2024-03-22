@@ -1,22 +1,30 @@
 package Entity;
 import java.util.io.*;
+
+import javax.swing.ImageIcon;
+
 import java.util.*;
 
 import java.io.File;
 
 public class Player {
     private String name;
+    private ImageIcon image;
     private boolean active;
     private Hand pHand;
     private Role pRole;
+    private Wealth money;
     
     
-    public Player(String name, Hand pHand, Role pRole) {
+    public Player(String name, Hand pHand, Role pRole, 
+        Wealth money, ImageIcon image) {
         this.name = name;
         this.active = true;
-        this.winCondition = winCondition;
+        //this.winCondition = winCondition;
         this.pHand = pHand;
         this.pRole = pRole;
+        this.money = money;
+        this.image = image;
     }
 
     public Hand getpHand(){
@@ -35,11 +43,15 @@ public class Player {
         return pRole;
     }
 
-    public boolean equals(Player another){
-        
+    public ImageIcon getImage(){
+        return image;
     }
 
-    public setActive(boolean active){
+    public boolean equals(Player another){
+        return true;
+    }
+
+    public void setActive(boolean active){
         this.active = active;
     }
 

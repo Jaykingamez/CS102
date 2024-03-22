@@ -31,7 +31,9 @@ public class Pot {
 
         //code for going through the HashMap and deteucting the players
         // turnBets(Values in the HashMap) from their Bank
-        //KIV 
+        for(Player p : playerBets.keySet){
+            p.setMoney() = 0;
+        }
 
         //all player bets becomes 0
         for(Player p : playerBets.keySet()){
@@ -49,7 +51,7 @@ public class Pot {
         playerBets.put(p, betToContinue);
     }
 
-    //used for calling
+    //used for calling in the action class
     public void updateBetToContinue(Player p){
         playerBets.put(p, betToContinue);
     }

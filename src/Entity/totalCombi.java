@@ -1,6 +1,6 @@
 /*
  * Jia Lin 
- * Last change: 20/03/2024
+ * Last change: 23/03/2024
  */
 
 import test.Card;
@@ -110,7 +110,7 @@ public class totalCombi implements Comparable<totalCombi>{
 
         //checking for straight flush
         Map <Integer, Integer> suitMap = this.numSameSuit();
-        if(this.hasConsecutive() && suitMap.containsValue(5)){
+        if(this.hasConsecutive(ValuefrequencyMap) && suitMap.containsValue(5)){
             return 8;
         }
 
@@ -130,7 +130,7 @@ public class totalCombi implements Comparable<totalCombi>{
         }
 
         //checking for straight
-        if(this.hasConsecutive()){
+        if(this.hasConsecutive(ValuefrequencyMap)){
             return 4;
         }
 
@@ -175,7 +175,13 @@ public class totalCombi implements Comparable<totalCombi>{
 
         // Count the frequency of each element in the array (frequency)
         for (int num : cardRanks) {
-            ValuefrequencyMap.put(num, ValuefrequencyMap.getOrDefault(num, 0) + 1);
+            // to make ace the highest value
+            if(num == 1){
+                ValuefrequencyMap.put(14, ValuefrequencyMap.getOrDefault(num, 0) + 1);
+            }
+            else{
+                ValuefrequencyMap.put(num, ValuefrequencyMap.getOrDefault(num, 0) + 1);
+            }
         }
 
         return ValuefrequencyMap;
@@ -284,13 +290,38 @@ public class totalCombi implements Comparable<totalCombi>{
         return pairs;
     }
 
-    // to check if there is 5 consequetive cards
+    // to check if there is 5 consequetive cards\
+    // idk if this is correct T_T
     private boolean hasConsecutive(){
+        List<Integer> handValues = new ArrayList<>();
+        for(int value : Map.keySet()){
+            handValues.add(value);
+        }
 
-        for (int i = 0; i <= allCards.size() - 5; i++) {
+        int[] valueArr = new int[handValues.size()];
+
+        for(int i = 0; i < handValues.size(); i++){
+            valueArr[i] = handValues.get(i);
+        }
+
+        //bubble sort
+        int n = valueArr.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (valueArr[j] > valueArr[j + 1]) {
+                    // Swap arr[j] and arr[j+1]
+                    int temp = valueArr[j];
+                    valueArr[j] = valueArr[j + 1];
+                    valueArr[j + 1] = temp;
+                }
+            }
+        }
+
+        // check if 5 consecutives
+        for (int i = 0; i <= valueArr.length - 5; i++) {
             boolean isConsecutive = true;
             for (int j = 0; j < 5 - 1; j++) {
-                if (allCards.get(i + j + 1).getValue() != allCards.get(i).getValue() + j + 1) {
+                if (valueArr[i + j + 1] != valueArr[i] + j + 1) {
                     isConsecutive = false;
                     break;
                 }

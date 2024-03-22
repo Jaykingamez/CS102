@@ -1,17 +1,49 @@
 /*
-Kong Khai
-Last updated: 22/03/2024
+ * Name    : Chan Si Jie
+ * Email ID: sijie.chan.2023
 */
 package Controller;
 
-import Entity.*;
+import java.util.List;
+
+import UI.GameUI;
+import UI.MainMenuUI;
 
 public class GameController {
-    private GameDAO gameDAO;
+    private GameUI gameUI = null;
+    private GameManager gameManager = null;
 
-    public GameController() {
-        gameDAO = new GameDAO();
+    public GameController(GameManager gameManager){
+        this.gameManager = gameManager;
+        gameUI = new GameUI(this);
     }
 
-    //fill in what to access in poker game
+    public void updatePlayerInfo(){
+        gameUI.updatePlayerInfo(gameManager.getPlayer());
+    }
+
+    public void updateTableCards(){
+        gameUI.updateTableCards(gameManager.getTableCards());
+    }
+
+    public void updateHandCards(){
+        gameUI.updateHandCards(gameManager.getPlayer().getpHand());
+    }
+
+    public void updateRole(){
+        gameUI.updateRole(gameManager.getPlayer());
+    }
+
+    public void updatePassiveAction(){
+        gameUI.updatePassiveAction(gameManager.showFold(), gameManager.showCheck());
+    }
+
+    public void updateActiveAction(){
+        gameUI.updateActiveAction(gameManager.showRaise(), gameManager.showCall());
+    }
+
+
+
+    
+
 }
