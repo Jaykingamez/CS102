@@ -176,7 +176,7 @@ public class totalCombi implements Comparable<totalCombi>{
         // Count the frequency of each element in the array (frequency)
         for (int num : cardRanks) {
             // to make ace the highest value
-            if(num = 1){
+            if(num == 1){
                 ValuefrequencyMap.put(14, ValuefrequencyMap.getOrDefault(num, 0) + 1);
             }
             else{
