@@ -8,6 +8,7 @@ import java.util.*;
 
 public class Role {
     private String roleName;
+    private String roleDescription;
 
     public Role(){
         // Create an instance of the Random class
@@ -27,24 +28,33 @@ public class Role {
 
         if(randomNumber == 1){
             roleName = "King";
+            roleDescription = "At the begining of each turn flip over a card from the deck and if you guess correct you win the game!";
             System.out.println("ROLE: King");
+            
             System.out.println("description: At the begining of each turn flip over a card from the deck and if you guess correct you win the game!");
         }
         if(randomNumber == 2){
             roleName = "Jester";
+            roleDescription = "At the begining of each turn draw a card from the deck and if you all of your cards add upp to below 10 you win the game!!";
             System.out.println("ROLE: Jester");
             System.out.println("description: At the begining of each turn draw a card from the deck and if you all of your cards add upp to below 10 you win the game!!");
         }
         if(randomNumber == 0){
             roleName = "Citizen";
+            roleDescription = "Survive";
             System.out.println("ROLE: Citizen");
+            System.out.println("description: Survive");
         }
 
         
     }
 
     public String getRoleName(){
-        return this.roleName;
+        return roleName;
+    }
+
+    public String getRoleDescription(){
+        return roleDescription;
     }
 
     
