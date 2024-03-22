@@ -1,3 +1,7 @@
+/*
+Kong Khai
+Last updated: 22/03/2024
+*/
 package GameManager;
 
 public class PokerPlayer {

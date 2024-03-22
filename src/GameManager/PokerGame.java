@@ -1,3 +1,7 @@
+/*
+Kong Khai
+Last updated: 22/03/2024
+*/
 package GameManager;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -59,7 +63,7 @@ public class PokerGame {
         // replace scanning and printing with actual UI
         //TODO: handle every player has played thru currentPlayer.playedTurn
 
-        if (currentPlayer.allIn == true) {
+        if (currentPlayer.allIn == true && currentPlayer.finishedRound == false;) {
             if (currentPlayer.lastStandAcknowledge == false) {      //for if player is all-in from initial bet
                 System.out.println(currentPlayer.getName() + "\'s turn.");
                 System.out.println(currentPlayer.getName() + "\'s cards: ");
@@ -119,14 +123,12 @@ public class PokerGame {
                 }
             } else if (input == 1) {
                 if (oneAction.equals("all in")) {
-                    pot += currentPlayer.currentChips;
                     currentPlayer.currentBet = currentPlayer.currentChips;
                     currentPlayer.currentChips = 0;
 
                     currentPlayer.finishedRound = true;
                     currentPlayer.allIn = true;
                 } else if (oneAction.substring(0, 4).equals("call")) {
-                    pot += roundBet - currentPlayer.currentBet;
                     currentPlayer.currentChips -= roundBet - currentPlayer.currentBet;
                     currentPlayer.currentBet = roundBet;
                 }
@@ -137,7 +139,7 @@ public class PokerGame {
                 System.out.println("input raise amount");
                 int raise = scan.nextInt();
                 roundBet = raise;
-                pot += raise;
+                currentPlayer.currentBet += raise;
                 currentPlayer.currentChips -= raise;
                 for (PokerPlayer player : gamers) {
                     if (currentPlayer.finishedRound == false) { //reset input for players that are still in the round
