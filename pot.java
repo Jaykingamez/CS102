@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class pot {
+public class Pot {
     private int totalAmount;
     private List<playermaybe> contributors;
 
-    public pot() {
+    public Pot() {
         totalAmount = 0;
         contributors = new ArrayList<>();
     }
