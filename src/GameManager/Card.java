@@ -1,4 +1,4 @@
-package cardgame.stuff;
+package GameManager;
 public class Card {
 
     public final static int SPADES = 0;   
