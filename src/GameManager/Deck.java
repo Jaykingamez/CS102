@@ -1,5 +1,5 @@
 
- package cardgame.stuff;
+ package GameManager;
  
  public class Deck {
 
