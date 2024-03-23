@@ -1,3 +1,5 @@
+package GameManager;
+
 public class Player {
     private String playerName;
     private int value; // Player's current balance
