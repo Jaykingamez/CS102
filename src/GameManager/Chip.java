@@ -1,4 +1,7 @@
-package cardgame.stuff;
+package GameManager;
+/* 
+Please modify this from the old file i sent- its nowhere near complete
+*/
 import java.util.ArrayList;
 
 public class Chip {
