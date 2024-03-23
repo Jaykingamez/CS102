@@ -1,4 +1,4 @@
-package cardgame.stuff;
+package GameManager;
 import java.util.io.*;
 
 
