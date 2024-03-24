@@ -43,6 +43,7 @@ public class PokerGame {
     Card[] flop;
     Card turn;
     Card river;
+    
 
     GameController gameController = null;
 
@@ -384,7 +385,7 @@ public class PokerGame {
                 currentPlayer.setPlayed(true); //in the case of raised all-in
                 for (Player player : players) {         //&& player not folded
                     if (currentPlayer.getMoney() != 0 && currentPlayer.getFolded() == false) { //reset input for players that are still in the round
-                        currentPlayer.setPlayed(false);
+                        currentPlayer.setPlayed(false); //miya: 25.3, could we use active instead to check if theyve folded
                     }
                 }
             }
@@ -468,7 +469,7 @@ public class PokerGame {
         }
 
         // possible to have error?
-        System.out.println("");
+        System.out.println();
         int winAmt = pot.getTotalPot() / winners.size();
         for(Player p : winners){
             p.addAmount(winAmt);
@@ -479,6 +480,7 @@ public class PokerGame {
     }
 
     public void endRound(Player... winner) {
+        //Sry qn M, how will the winner hashmap be passed into this?
         pot.distributePot(winner);
 
         for (Player player: players) {
@@ -491,7 +493,12 @@ public class PokerGame {
         //handle win conditions
         if (bankrupted == true) { //or win condition met
             postGame();
-        } else {
+        } else if () {}
+        /*for the win conditions is it referring to the individual player? If everyone's folded but one? or 
+        the role specific win conditions? can we make a wonRound attribute?
+                   */
+        
+            else {
             //reset stuff to prep for new round
             //clear river flop turn display here
             startRound();
@@ -503,7 +510,7 @@ public class PokerGame {
         //handle post game stuff - new game with same ppl or leave, saving      
         System.out.println("Game Over!");
         for (Player player : players) {
-            System.out.println(player.getName() + "- " + player.getMoney() + " chips");
+            System.out.println(player.getName() + "- " + player.getMoney() + " dollars");
         }
     }
 
