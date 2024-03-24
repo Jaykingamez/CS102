@@ -27,7 +27,9 @@ public class Pot {
     public Map<Player, Integer> getPlayersBets(){
         return this.playerBets;
     }
+/*m: getPlayersBets and getPlayerBets is different right.. maybe change name because it's so cofnusing
 
+    */
     public int getBetToContinue(){
         return this.betToContinue;
     }
