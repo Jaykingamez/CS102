@@ -1,4 +1,4 @@
-package Entity.Texas;
+package Entity;
 
 import java.util.Collections;
 import java.util.List;
