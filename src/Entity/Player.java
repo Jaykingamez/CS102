@@ -67,6 +67,14 @@ public class Player {
     public void setFolded(boolean fold) {
         this.folded = fold;
     }
+
+    public boolean getActive(){
+        return active;
+    }
+
+    public void setActive(boolean active){
+        this.active = active;
+    }
     
 
     // public Player(boolean newPlayer) {
