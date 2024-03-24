@@ -26,7 +26,7 @@ public class MainMenuController {
     // Save and load player files, if does not exist, create new player
     public void createPlayer(String name, Hand pHand, Role pRole){
         // somehow pass in player info????
-        new Player(name, pHand, pRole, 0, null);
+        new Player(name, pHand, null);
         PlayerNameSaver.saveName(name);
     }
 }
