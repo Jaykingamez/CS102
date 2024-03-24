@@ -1,5 +1,5 @@
 // Jia lin Last edit 24/03/2024
-
+package Entity;
 import java.util.*;
 
 public class Pot {
