@@ -81,14 +81,6 @@ public class Hand {//abstract class Hand implements Comparable<Hand> {
    }
 
   /**
-   * Sorts the card in the hand.
-   * Sort is performed according to the order specified in the {@link Card} class.
-   */
-   // public void sort() {
-   //    Collections.sort(hand);
-   // }
-
-  /**
    * Checks to see if the hand is empty.
    * @return <code>true</code> is the hand is empty.
    */
@@ -114,23 +106,6 @@ public class Hand {//abstract class Hand implements Comparable<Hand> {
       return hand.indexOf(card);
    }
 
-  /**
-   *  Compares two hands.  
-   *  @param otherHand the hand being compared.
-   *  @return < 0 if this hand is less than the other hand, 0 if the two hands are
-   *  the same, or > 0 if this hand is greater than the other hand.
-   */
-//    @Override
-//    public int compareTo(Hand otherHand) {
-//       return evaluateHand() - otherHand.evaluateHand();
-//    }
-
-//   /**
-//    *  Evaluates the hand.  Must be defined in the subclass that implements the hand
-//    *  for the game being written by the client programmer.
-//    *  @return an integer corresponding to the rating of the hand.
-//    */
-//    public abstract int evaluateHand();
 
    /**
     * Returns a description of the hand.
