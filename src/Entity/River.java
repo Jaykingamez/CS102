@@ -8,8 +8,6 @@ Are u ok with putting this under the package Entity.Game?
 */
 import java.util.*;
 
-import test.Card;
-
 public class River {
     private ArrayList<Card> river;
 
