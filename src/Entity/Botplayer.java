@@ -1,7 +1,9 @@
-public class BotPlayer extends Player{
+package Entity;
+
+public class BotPlayer extends Player {
     
     public BotPlayer(String name, Hand pHand, Role pRole){
-        super(name, pHand, pRole);
+        super(name, pHand, pRole, 0, null);
     }
 
     public Hand getpHand(){

@@ -1,11 +1,6 @@
 package Entity;
-import java.util.io.*;
 
 import javax.swing.ImageIcon;
-
-import java.util.*;
-
-import java.io.File;
 
 public class Player {
     private String name;
