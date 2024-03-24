@@ -21,10 +21,10 @@ public class GameManager {
     }
 
     public static void main(String[] args) {
-        Player player = new Player("Player 1", new Hand(), null, 500, null);
-        Player bot1 = new Player("Bot 1", new Hand(), null, 500, null);
-        Player bot2 = new Player("Bot 2", new Hand(), null, 500, null);
-        Player bot3 = new Player("Bot 3", new Hand(), null, 500, null);
+        Player player = new Player("Player 1", new Hand(), null);
+        Player bot1 = new Player("Bot 1", new Hand(), null);
+        Player bot2 = new Player("Bot 2", new Hand(), null);
+        Player bot3 = new Player("Bot 3", new Hand(), null);
         Player[] players = new Player[]{player, bot1, bot2, bot3};
         GameManager manager = new GameManager(players);
         /*MainMenuController mainMenuController = new MainMenuController(manager);
