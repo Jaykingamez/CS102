@@ -25,6 +25,10 @@ public class River {
         river.add(c);
     }
 
+    
+    
+//WHy not change this to just river.clear() 
+    
     public void endRiver(){
         river = new ArrayList<>();
     }
