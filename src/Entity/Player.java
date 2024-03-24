@@ -49,6 +49,10 @@ public class Player {
         return money;
     }
 
+    public void setMoney(int money){
+        this.money = money;
+    }
+
     public void setActive(boolean active){
         this.active = active;
     }
