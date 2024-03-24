@@ -84,9 +84,9 @@ public abstract class Hand implements Comparable<Hand> {
    * Sorts the card in the hand.
    * Sort is performed according to the order specified in the {@link Card} class.
    */
-   public void sort() {
-      Collections.sort(hand);
-   }
+   // public void sort() {
+   //    Collections.sort(hand);
+   // }
 
   /**
    * Checks to see if the hand is empty.
