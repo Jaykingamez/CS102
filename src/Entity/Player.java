@@ -1,6 +1,6 @@
 package Entity;
 
-import javax.management.relation.Role;
+import javax.swing.ImageIcon;
 
 public class Player {
     private String name;
@@ -44,8 +44,8 @@ public class Player {
         return this.money;
     }
 
-    public boolean equals(Player another){
-        
+    public void setAmount(int money){
+        this.money = money;
     }
 
     public void deductAmount(int bet){
