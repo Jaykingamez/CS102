@@ -302,6 +302,34 @@ public class totalCombi implements Comparable<totalCombi> {
         }
 
         // bubble sort
+        /*
+    m- can consider using collections.sort instead?
+    Also it seems ace is generlaly considerred a HIGH and our current implementation only uses it as a low card...
+    Collections.sort(handValues);
+
+        int consecutiveCount = 0;
+        for (int i = 0; i < handValues.size() - 1; i++) {
+            if (handValues.get(i + 1) - handValues.get(i) == 1) {
+                consecutiveCount++;
+                if (consecutiveCount == 4) {
+                    return true; // Found a straight
+                }
+            } else if (handValues.get(i + 1) != handValues.get(i)) {
+                consecutiveCount = 0; // Reset count if not consecutive or a pair
+            }
+        }
+        // Special case: check Ace as 14 and 1
+        if (handValues.contains(1) && handValues.contains(13)) {
+            if (handValues.contains(2) || handValues.contains(12)) {
+                return true; // Ace can form a straight with 2 and 3, or with King and Queen
+            }
+        }
+        return false; // No straight found
+    }
+        
+
+
+        */
         int n = valueArr.length;
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
