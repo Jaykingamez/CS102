@@ -13,17 +13,16 @@ public class Player {
     private boolean active;
     private Hand pHand;
     private Role pRole;
-    private Wealth money;
+    private int money;
     
     
-    public Player(String name, Hand pHand, Role pRole, 
-        Wealth money, ImageIcon image) {
+    public Player(String name, Hand pHand, Role pRole, int money, ImageIcon image) {
         this.name = name;
         this.active = true;
         //this.winCondition = winCondition;
         this.pHand = pHand;
-        this.pRole = pRole;
-        this.money = money;
+        this.pRole = pRole; 
+        this.money = 500; // set a constant?
         this.image = image;
     }
 
@@ -49,6 +48,10 @@ public class Player {
 
     public boolean equals(Player another){
         return true;
+    }
+
+    public int getMoney(){
+        return money;
     }
 
     public void setActive(boolean active){

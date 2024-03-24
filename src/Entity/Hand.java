@@ -21,6 +21,10 @@ public abstract class Hand implements Comparable<Hand> {
     
    private final ArrayList<Card> hand = new ArrayList<>();
 
+   public List<Card> getHand(){
+      return hand;
+   }
+
   /**
    * Adds a card to this hand.
    * @param card card to be added to the current hand.
@@ -150,4 +154,5 @@ public abstract class Hand implements Comparable<Hand> {
         hand.set(location, replacementCard);
         return true;
     }
+
 }
