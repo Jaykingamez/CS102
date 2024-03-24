@@ -4,13 +4,17 @@
 */
 package UI;
 
-import java.awt.*;        // Using AWT layouts
+import java.awt.Color;
+import java.awt.Dimension;
+//import java.awt.*;        // Using AWT layouts
+import java.util.*;
 
 import javax.swing.*;     // Using Swing components and containers
 
 import Controller.GameController;
 import Entity.Card;
 import Entity.Player;
+import Entity.Pot;
 
 public class GameUI{
     // Shows player info
@@ -161,9 +165,9 @@ public class GameUI{
         frame.add(activeActionPanel);
     }
 
-    public void updatePlayerInfo(Player player){
+    public void updatePlayerInfo(Player player, Pot pot){
         String playerString = String.format("Player info %s%nMoney: %d%nBet: %d ",
-        player.getName(), player.getCurrentChips(), player.getCurrentBet());
+        player.getName(), player.getMoney(), pot.getPlayerBets().get(player));
         playerInfoText.setText(playerString);
         playerPictureLabel.setIcon(player.getImage());
     }
