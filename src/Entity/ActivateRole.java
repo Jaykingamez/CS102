@@ -5,8 +5,6 @@ Last updated: 21/03/2024
 
 import java.util.*;
 
-import test.Card;
-
 public class ActivateRole {
 
 
@@ -54,7 +52,7 @@ public class ActivateRole {
         if((p.getPRole().getRoleName()) == "Jester"){
             Card newCard = currentDeck.dealCard();
             int sum = 0;
-            ArrayList<Card> currentHand = p.getpHand().getHand();
+            List<Card> currentHand = p.getpHand().getHand();
             for(int i = 0; i < 2; i++){
                 sum += (currentHand.get(i)).getValue();
             }
