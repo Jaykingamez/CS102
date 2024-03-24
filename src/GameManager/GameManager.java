@@ -6,28 +6,35 @@ package GameManager;
 
 import java.util.*;
 
-import Controller.GameController;
-import Controller.MainMenuController;
+//import Controller.GameController;
+//import Controller.MainMenuController;
 import Entity.*;
 
 public class GameManager {
     private PokerGame game;
     private Player[] players;
-    private GameController ctrl;
+    //private GameController ctrl;
 
     public GameManager(Player[] players) {
         this.players = players;
+        game = new PokerGame(players);
     }
 
-    public void startGame(){
-        Player player = new Player("Tester", null, null, 0, null);
-        Player bot1 = new BotPlayer("Bot 1", null, null);
-        Player bot2 = new BotPlayer("Bot 2", null, null);
-        Player bot3 = new BotPlayer("Bot 3", null, null);
+    public static void main(String[] args) {
+        Player player = new Player("Player 1", new Hand(), null, 500, null);
+        Player bot1 = new Player("Bot 1", new Hand(), null, 500, null);
+        Player bot2 = new Player("Bot 2", new Hand(), null, 500, null);
+        Player bot3 = new Player("Bot 3", new Hand(), null, 500, null);
         Player[] players = new Player[]{player, bot1, bot2, bot3};
         GameManager manager = new GameManager(players);
-        ctrl = new GameController(manager);
-        game = new PokerGame(players, ctrl);
+        /*MainMenuController mainMenuController = new MainMenuController(manager);
+        GameController ctrl = new GameController(manager);*/
+        manager.gameStarted();
+    }
+
+
+
+    public void gameStarted() {
         game.startGame();
     }
 
@@ -39,9 +46,9 @@ public class GameManager {
         return game.getPot();
     }
 
-    public GameController getGameController(){
+    /*public GameController getGameController(){
         return ctrl;
-    }
+    }*/
 
     public List<Card> getTableCards() {
         return null;

@@ -17,7 +17,7 @@ import java.util.*;
  * @author John K. Estell
  * @version 1.0
  */
-public abstract class Hand implements Comparable<Hand> {
+public class Hand {//abstract class Hand implements Comparable<Hand> {
     
    private final ArrayList<Card> hand = new ArrayList<>();
 
@@ -120,17 +120,17 @@ public abstract class Hand implements Comparable<Hand> {
    *  @return < 0 if this hand is less than the other hand, 0 if the two hands are
    *  the same, or > 0 if this hand is greater than the other hand.
    */
-   @Override
-   public int compareTo(Hand otherHand) {
-      return evaluateHand() - otherHand.evaluateHand();
-   }
+//    @Override
+//    public int compareTo(Hand otherHand) {
+//       return evaluateHand() - otherHand.evaluateHand();
+//    }
 
-  /**
-   *  Evaluates the hand.  Must be defined in the subclass that implements the hand
-   *  for the game being written by the client programmer.
-   *  @return an integer corresponding to the rating of the hand.
-   */
-   public abstract int evaluateHand();
+//   /**
+//    *  Evaluates the hand.  Must be defined in the subclass that implements the hand
+//    *  for the game being written by the client programmer.
+//    *  @return an integer corresponding to the rating of the hand.
+//    */
+//    public abstract int evaluateHand();
 
    /**
     * Returns a description of the hand.

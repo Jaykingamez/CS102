@@ -6,6 +6,9 @@ public class Player {
     private String name;
     private int money;
     private boolean active;
+    private ImageIcon image;
+    private boolean playedTurn;
+    private boolean folded;
     private Hand pHand;
     private Role pRole;
     
@@ -13,6 +16,9 @@ public class Player {
     public Player(String name, Hand pHand, Role pRole) {
         this.name = name;
         this.active = true;
+        this.playedTurn = false; //player fold, call or check or all-in = true, raise = all non-folded, non-all-in players false
+        this.folded = false; //player fold or not, reset at start of round
+        //this.winCondition = winCondition;
         this.pHand = pHand;
         this.pRole = pRole;
         this.money = 10000;
@@ -26,8 +32,8 @@ public class Player {
         return this.name;
     }
 
-    public boolean getActive(){
-        return this.active;
+    public boolean getPlayed(){
+        return this.playedTurn;
     }
 
     public Role getPRole(){
@@ -42,13 +48,26 @@ public class Player {
         
     }
 
-    public void detuctAmount(int bet){
+    public void deductAmount(int bet){
         this.money -= bet;
     }
 
     public void addAmount(int pot){
         this.money += pot;
     }
+
+    public void setPlayed(boolean active){
+        this.playedTurn = active;
+    }
+
+    public boolean getFolded() {
+        return this.folded;
+    }
+
+    public void setFolded(boolean fold) {
+        this.folded = fold;
+    }
+    
 
     // public Player(boolean newPlayer) {
     //     Scanner sc = new Scanner(System.in);
