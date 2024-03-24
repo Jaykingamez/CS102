@@ -14,10 +14,7 @@ import java.util.Random;
 import java.util.Collections;
 
 import Controller.GameController;
-import Entity.Player;
-import Entity.Deck;
-import Entity.Pot;
-import Entity.Card;
+import Entity.*;
 
 public class PokerGame {
     Deck deck;
@@ -37,7 +34,6 @@ public class PokerGame {
     String displayCards = "";
     Card[] flop;
     Card turn;
-    Card river;
 
     GameController gameController = null;
 
@@ -134,98 +130,7 @@ public class PokerGame {
         return randomBet;
     }
 
-
-
-    //JL added 24/03/2024
-    //using the total combi class to gauge how much the AI will bet
-    public String botPlayerMoves(BotPlayer p, Pot pot){
-        totalCombi gauge = new totalCombi(p, this.river);
-        Map<Integer ,Integer> freqmap = gauge.numSameValue();
-        int playerBets = pot.getBetToContinue();
-
-        // Create a random number generator
-        Random random = new Random();
-
-        // if bot gets flush or more
-        if(gauge.getTier(freqmap) >= 5){
-            
-            if(playerBets == 0){
-                // AI raises or checks
-                double bias = 0.7; // 70% chance of landing raise
-                // Generate a random number between 0 and 1
-                double randomNumber = random.nextDouble();
-                String result = (randomNumber < bias) ? "raise" : "check";
-                
-                return result;
-            }else{
-                //AI calls or raise
-                double bias = 0.8; // 80% chance of landing call
-                
-                // Generate a random number between 0 and 1
-                double randomNumber = random.nextDouble();
-                String result = (randomNumber < bias) ? "call" : "raise";
-                
-                return result;
-            }
-            
-        }else if(gauge.getTier(freqmap) >= 1){
-            if(playerBets == 0){
-                // AI checks or raises
-                double bias = 0.4; // 40% chance of landing raise
-
-                // Generate a random number between 0 and 1
-                double randomNumber = random.nextDouble();
-                String result = (randomNumber < bias) ? "raise" : "check";
-                
-                return result;
-            }else{
-                // AI folds or call
-                double bias = 0.6; // 60% chance of landing call
-
-                // Generate a random number between 0 and 1
-                double randomNumber = random.nextDouble();
-                String result = (randomNumber < bias) ? "call" : "fold";
-                
-                return result;
-            }
-        
-        }else{
-            if(playerBets == 0){
-                // AI checks or raises
-                // AI raises or calls
-                double bias = 0.5; // 50% chance of landing fold
-                
-                // Generate a random number between 0 and 1
-                double randomNumber = random.nextDouble();
-                
-                // Simulate coin flip based on bias
-                String result = (randomNumber < bias) ? "fold" : "check";
-                
-                return result;
-            }else{
-                // AI folds or call
-                double bias = 0.5; // 50% chance of landing call
-
-                // Generate a random number between 0 and 1
-                double randomNumber = random.nextDouble();
-                String result = (randomNumber < bias) ? "call" : "fold";
-                
-                return result;
-            }
-        }
-    }
-
-
-    //JL added 24/03/2024
-    //only need to call this is bot raises
-    public int botPlayerRaise(BotPlayer p, Pot pot){
-        Random random = new Random();
-        int randomBet = random.nextInt(301) + 50;
-        return randomBet;
-    }
-
-
-    public PokerGame(Player[] players) {//, GameController gameController) {    // construct game with set of players
+    public PokerGame(Player[] players, GameController gameController) {//, ) {    // construct game with set of players
         this.players = players;
         this.gameController = gameController;
     }
@@ -247,13 +152,13 @@ public class PokerGame {
             player.getpHand().addCard(deck.dealCard());
         
 
-            if (player.getMoney() < (pot.getBetToContinue() - pot.getPlayerBets().get(player))) {
-                pot.updateBetToContinuePoor(player, player.getMoney());
-                player.setMoney(player.getMoney() - player.getMoney());
-                // player.deductBalance(player.getMoney()); //player balance = 0 from initial bet
+            if (player.getAmount() < (pot.getBetToContinue() - pot.getPlayerBets().get(player))) {
+                pot.updateBetToContinuePoor(player, player.getAmount());
+                player.setMoney(player.getAmount() - player.getAmount());
+                // player.deductBalance(player.getAmount()); //player balance = 0 from initial bet
             }
             else {
-                player.setMoney(player.getMoney() - (pot.getBetToContinue() - pot.getPlayerBets().get(player)));
+                player.setMoney(player.getAmount() - (pot.getBetToContinue() - pot.getPlayerBets().get(player)));
                 pot.updateBetToContinue(player);
                 // player.deductBalance();
             }
@@ -285,10 +190,10 @@ public class PokerGame {
 
         System.out.println("Pot: " + pot.getTotalPot());
         System.out.println("Current Phase: " + phase[currentPhase]);
-        System.out.println(currentPlayer.getName() + "\'s chips: " + currentPlayer.getMoney());
+        System.out.println(currentPlayer.getName() + "\'s chips: " + currentPlayer.getAmount());
         System.out.println(currentPlayer.getName() + "\'s current bet: " + currentBet);
 
-        if (currentBet == currentPlayer.getMoney() || (currentPlayer.getMoney() == 0 && currentPlayer.getPlayed() == true)) {
+        if (currentBet == currentPlayer.getAmount() || (currentPlayer.getAmount() == 0 && currentPlayer.getPlayed() == true)) {
             //if (currentPlayer.lastStandAcknowledge == false) {      //for if player is all-in from initial bet
                 System.out.println(currentPlayer.getName() + "\'s turn.");
                 System.out.println(currentPlayer.getName() + "\'s cards: ");
@@ -327,7 +232,7 @@ public class PokerGame {
 
             if (currentBet == pot.getBetToContinue()) { // no one has raised yet
                 oneAction = "check";
-            } else if (currentPlayer.getMoney() <= pot.getBetToContinue() - currentBet){   // if cannot afford to call/raise
+            } else if (currentPlayer.getAmount() <= pot.getBetToContinue() - currentBet){   // if cannot afford to call/raise
                 oneAction = "all in";
             } else {
                 oneAction = "call (" + (pot.getBetToContinue() - currentBet) + " chips)";
@@ -358,13 +263,13 @@ public class PokerGame {
                 }
             } else if (input == 1) {
                 if (oneAction.equals("all in")) {
-                    pot.updateBetToContinuePoor(currentPlayer, currentPlayer.getMoney());
-                    //currentPlayer.setMoney(currentPlayer.getMoney() - currentPlayer.getMoney());
+                    pot.updateBetToContinuePoor(currentPlayer, currentPlayer.getAmount());
+                    //currentPlayer.setMoney(currentPlayer.getAmount() - currentPlayer.getAmount());
 
                     
                 } else if (oneAction.substring(0, 4).equals("call")) {
                     pot.updateBetToContinue(currentPlayer);
-                    //currentPlayer.setMoney(currentPlayer.getMoney() - (pot.getBetToContinue() - currentBet));
+                    //currentPlayer.setMoney(currentPlayer.getAmount() - (pot.getBetToContinue() - currentBet));
                 }
 
                 currentPlayer.setPlayed(true);
@@ -373,11 +278,11 @@ public class PokerGame {
                 System.out.println("input raise amount (excluding call amt)");
                 int raise = scan.nextInt();
                 //raise -= pot.getBetToContinue();
-                //currentPlayer.setMoney(currentPlayer.getMoney() - (raise + pot.getPlayerBets().get(currentPlayer)));
+                //currentPlayer.setMoney(currentPlayer.getAmount() - (raise + pot.getPlayerBets().get(currentPlayer)));
                 pot.updateBetToContinue(raise, currentPlayer);
                 currentPlayer.setPlayed(true); //in the case of raised all-in
                 for (Player player : players) {         //&& player not folded
-                    if (currentPlayer.getMoney() != 0 && currentPlayer.getFolded() == false) { //reset input for players that are still in the round
+                    if (currentPlayer.getAmount() != 0 && currentPlayer.getFolded() == false) { //reset input for players that are still in the round
                         currentPlayer.setPlayed(false);
                     }
                 }
@@ -403,7 +308,7 @@ public class PokerGame {
                 return;
             } else {
                 for (Player player: players) {
-                    if (currentPlayer.getMoney() != 0 && currentPlayer.getFolded() == false) {
+                    if (currentPlayer.getAmount() != 0 && currentPlayer.getFolded() == false) {
                         player.setPlayed(false);
                     }
                 }
@@ -476,7 +381,7 @@ public class PokerGame {
 
         for (Player player: players) {
             player.getpHand().discardHand();;
-            if (player.getMoney() == 0) {
+            if (player.getAmount() == 0) {
                 bankrupted = true;
             }
         }
@@ -496,7 +401,7 @@ public class PokerGame {
         //handle post game stuff - new game with same ppl or leave, saving      
         System.out.println("Game Over!");
         for (Player player : players) {
-            System.out.println(player.getName() + "- " + player.getMoney() + " chips");
+            System.out.println(player.getName() + "- " + player.getAmount() + " chips");
         }
     }
 
