@@ -2,7 +2,7 @@
 Jia Lin
 Last updated: 21/03/2024
 */
-package Entity;
+package Entity.Game;
 import java.util.*;
 
 public class ActivateRole {
