@@ -47,7 +47,7 @@ public class Pot {
         //code for going through the HashMap and deteucting the players
         // turnBets(Values in the HashMap) from their Bank
         for(Player p : playerBets.keySet()){
-            p.setMoney(0);
+            p.setAmount(0);
         }
 
         //all player bets becomes 0
@@ -84,7 +84,7 @@ public class Pot {
      public void distributePot(Player... winners) {
         int amountPerWinner = totalpot / winners.length;
         for (Player winner : winners) {
-            winner.setMoney(winner.getMoney() + amountPerWinner);
+            winner.setAmount(winner.getAmount() + amountPerWinner);
         }
         totalpot = 0; // Reset pot
         betToContinue = 10;
