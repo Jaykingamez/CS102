@@ -11,7 +11,7 @@ public class totalCombi implements Comparable<totalCombi> {
     private ArrayList<Card> allCards;
     private Player player;
 
-    public totalCombi(Player p, int n, River r) {
+    public totalCombi(Player p, River r) {
         ArrayList<Card> totalCards = new ArrayList<>();
         Hand cards = p.getpHand();
         for (int i = 0; i < cards.getCardCount(); i++) {
