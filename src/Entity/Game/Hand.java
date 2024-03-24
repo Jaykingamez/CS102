@@ -5,7 +5,7 @@
  * the specifics of what constitutes the evaluation of a hand
  * for the game being implemented.
  */
-package Entity;
+package Entity.Game;
 
 import java.util.*;
 
