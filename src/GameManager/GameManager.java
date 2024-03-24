@@ -24,7 +24,7 @@ public class GameManager {
         Player bot1 = new BotPlayer("Bot 1", null, null);
         Player bot2 = new BotPlayer("Bot 2", null, null);
         Player bot3 = new BotPlayer("Bot 3", null, null);
-        Player[] players = new Player[]{tester, bot1, bot2, bot3};
+        Player[] players = new Player[]{player, bot1, bot2, bot3};
         GameManager manager = new GameManager(players);
         MainMenuController mainMenuController = new MainMenuController(manager);
         //GameController ctrl = new GameController(manager);
