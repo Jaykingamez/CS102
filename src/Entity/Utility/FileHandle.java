@@ -9,7 +9,16 @@ import java.util.Arrays;
 
 public class FileHandle {
 
+    /*
+    Making a class that makes and handles any exceptions from writing and making a new player svae fle
+    */
 
+public void newSaveFile() {
+
+    fileDelete("player_names.txt");
+    File myObj = new File("src\\Entity\\Utility\\player_names.txt");
+    
+}
 
     
   public void fileDelete (String fileName) { 
