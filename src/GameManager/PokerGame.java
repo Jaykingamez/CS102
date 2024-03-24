@@ -9,6 +9,7 @@ import java.util.Scanner;
 import Entity.Player;
 import Entity.Deck;
 import Entity.Pot;
+import Entity.Card;
 
 public class PokerGame {
     Deck deck;
@@ -25,6 +26,9 @@ public class PokerGame {
     int numOfFolds = 0;     //number of players folded
     boolean bankrupted = false; //tracks if player has lost all chips n therefore cannot play anymore
     String displayCards = "";
+    Card[] flop;
+    Card turn;
+    Card river;
 
     public Pot getPot(){
         return pot;
@@ -47,6 +51,8 @@ public class PokerGame {
         
 
         for (Player player: players) {
+            player.setFolded(false);
+            player.setPlayed(false);
             player.getpHand().addCard(deck.dealCard());
             player.getpHand().addCard(deck.dealCard());
         
@@ -69,6 +75,9 @@ public class PokerGame {
         displayCards = "";
         bankrupted = false;
         currentPlayer = players[currentIndex];
+        flop = new Card[3];
+        turn = null;
+        river = null;
         //currentIndex = firstPlayerIndex;
         startTurn();
     }
@@ -76,8 +85,9 @@ public class PokerGame {
     public void startTurn() {
         // replace scanning and printing with actual UI
         //TODO: handle every player has played thru currentPlayer.playedTurn
+        clearTerminal();
 
-        if (currentPlayer.getMoney() == 0 && currentPlayer.getActive() == true) {
+        if (currentPlayer.getMoney() == 0 && currentPlayer.getPlayed() == false) { //player is all-in
             //if (currentPlayer.lastStandAcknowledge == false) {      //for if player is all-in from initial bet
                 System.out.println(currentPlayer.getName() + "\'s turn.");
                 System.out.println(currentPlayer.getName() + "\'s cards: ");
@@ -89,12 +99,26 @@ public class PokerGame {
                 //currentPlayer.lastStandAcknowledge = true;
             //}
 
-            currentPlayer.setActive(false);
-        } else if (currentPlayer.getActive()== true) {
+            currentPlayer.setPlayed(true);
+        } else if (currentPlayer.getPlayed() == false) { //player has to take an action
+            if (currentPhase != 0) {
+                System.out.print("Community Cards: ");
+                if (currentPhase > 0) { //flop and after
+                    System.out.print(flop[0] + ", " + flop[1] + ", " + flop[2]);
+                }
+                if (currentPhase > 1) { //turn and after
+                    System.out.print(", " + turn);
+                }
+                if (currentPhase > 2) { //river and after
+                    System.out.print(", " + river);
+                }
+            }
             System.out.println(currentPlayer.getName() + "\'s turn.");
             System.out.println(currentPlayer.getName() + "\'s cards: ");
             System.out.println(currentPlayer.getpHand().getCard(0));  //prints cards in hand
             System.out.println(currentPlayer.getpHand().getCard(1));
+
+            System.out.println("Press enter to continue");
             scan.nextLine();
 
             // input handling, can replace with UI later
@@ -118,14 +142,13 @@ public class PokerGame {
 
             int input = scan.nextInt();
             if (input == 0) {
-                //need folded state for player
-                currentPlayer.setActive(false);
+                currentPlayer.setFolded(true);
                 numOfFolds++;
 
-                if (numOfFolds == players.length - 1) { //eMoneyne but 1 person folded, end the round
+                if (numOfFolds == players.length - 1) { //everyone but 1 person folded, end the round
                     int index = 0;
                     for (int i = 0; i < players.length; i++) {
-                        if (players[i].getActive()== true) {
+                        if (players[i].getFolded() == false) {
                             index = i;
                             break;
                         }
@@ -136,34 +159,36 @@ public class PokerGame {
                 }
             } else if (input == 1) {
                 if (oneAction.equals("all in")) {
-                    pot.updateBetToContinue(currentPlayer);
-                    currentPlayer.setMoney(0);
+                    pot.updateBetToContinuePoor(currentPlayer, currentPlayer.getMoney());
+                    currentPlayer.setMoney(currentPlayer.getMoney() - currentPlayer.getMoney());
 
                     
                 } else if (oneAction.substring(0, 4).equals("call")) {
                     pot.updateBetToContinue(currentPlayer);
-                    currentPlayer.setMoney(pot.getBetToContinue() - currentBet);
+                    currentPlayer.setMoney(currentPlayer.getMoney() - (pot.getBetToContinue() - currentBet));
                 }
 
-                currentPlayer.setActive(false);
+                currentPlayer.setPlayed(true);;
 
             } else if (input == 2) {
-                System.out.println("input raise amount");
+                System.out.println("input raise amount (excluding call amt)");
                 int raise = scan.nextInt();
                 //raise -= pot.getBetToContinue();
-                currentPlayer.setMoney(raise - pot.getPlayerBets().get(currentPlayer));
+                currentPlayer.setMoney(currentPlayer.getMoney() - (raise + pot.getPlayerBets().get(currentPlayer)));
                 pot.updateBetToContinue(raise, currentPlayer);
+                currentPlayer.setPlayed(true); //in the case of raised all-in
                 for (Player player : players) {         //&& player not folded
-                    if (currentPlayer.getMoney() != 0) { //reset input for players that are still in the round
-                        currentPlayer.setActive(true);
+                    if (currentPlayer.getMoney() != 0 && currentPlayer.getFolded() == false) { //reset input for players that are still in the round
+                        currentPlayer.setPlayed(false);
                     }
                 }
             }
 
             boolean allPlayed = true;
             for (Player player: players) {
-                if (player.getActive()== true) {
+                if (player.getPlayed() == false) {
                     allPlayed = false;
+                    break;
                 }
             }
 
@@ -176,10 +201,13 @@ public class PokerGame {
 
                 currentPlayer = players[currentIndex];
                 startTurn();
+                return;
             } else {
                 nextPhase();
+                return;
             }
         }
+        startTurn();
     }
 
     public void nextPhase() {
@@ -187,9 +215,13 @@ public class PokerGame {
 
         currentPhase++;
         if (phase[currentPhase].equals("Flop")) {
-            //display flop here
-        } else if (phase[currentPhase].equals("Turn") || phase[currentPhase].equals("River")) {
-            //display turn/river both draw 1 card from deck
+            flop[0] = deck.dealCard();
+            flop[1] = deck.dealCard();
+            flop[2] = deck.dealCard();
+        } else if (phase[currentPhase].equals("Turn")) {
+            turn = deck.dealCard();
+        } else if (phase[currentPhase].equals("River")) {
+            river = deck.dealCard();
         }
 
         if (phase[currentPhase].equals("Showdown")) {
@@ -201,6 +233,8 @@ public class PokerGame {
 
     public void showDown() {
         // handle showdown here, compare hand values with flop river and turn
+        clearTerminal();
+        System.out.println("Showdown Time!");
     }
 
     public void endRound(Player... winner) {
@@ -230,5 +264,9 @@ public class PokerGame {
         for (Player player : players) {
             System.out.println(player.getName() + "- " + player.getMoney() + " chips");
         }
+    }
+
+    public void clearTerminal() {
+        System.out.print("\033\143");
     }
 }

@@ -70,17 +70,15 @@ public class Pot {
         this.totalpot = newTotal;
     }
 
+    public void updateBetToContinuePoor(Player p, int remainingMoney) {
+        playerBets.put(p, remainingMoney);
+    }
+
      // Method to distribute the pot to the winners
      public void distributePot(Player... winners) {
         int amountPerWinner = totalpot / winners.length;
         for (Player winner : winners) {
             winner.setMoney(winner.getMoney() + amountPerWinner);
-        }
-        totalpot = 0; // Reset pot
-        betToContinue = 10;
-
-        for(Player p : playerBets.keySet()){
-            playerBets.put(p, 10);
         }
     }
     

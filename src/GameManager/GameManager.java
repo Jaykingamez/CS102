@@ -20,15 +20,15 @@ public class GameManager {
     }
 
     public static void main(String[] args) {
-        Player player = new Player("Tester", null, null, 0, null);
-        Player bot1 = new BotPlayer("Bot 1", null, null);
-        Player bot2 = new BotPlayer("Bot 2", null, null);
-        Player bot3 = new BotPlayer("Bot 3", null, null);
+        Player player = new Player("Player 1", null, null, 500, null)
+        Player bot1 = new Player("Bot 1", null, null, 500, null);
+        Player bot2 = new Player("Bot 2", null, null, 500, null);
+        Player bot3 = new Player("Bot 3", null, null, 500, null);
         Player[] players = new Player[]{player, bot1, bot2, bot3};
         GameManager manager = new GameManager(players);
         MainMenuController mainMenuController = new MainMenuController(manager);
-        //GameController ctrl = new GameController(manager);
-        //manager.gameStarted(ctrl);
+        GameController ctrl = new GameController(manager);
+        manager.gameStarted(ctrl);
     }
 
 
