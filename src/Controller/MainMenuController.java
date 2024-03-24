@@ -17,10 +17,10 @@ public class MainMenuController {
         this.gameManager = gameManager;
     }
 
-    public GameController startGame(){
+    public void startGame(){
         //GameController gameController = new GameController();
         //gameManager.gameStarted(gameController);
-        return null;
+        gameManager.startGame();
     }
 
     // Save and load player files, if does not exist, create new player
