@@ -3,7 +3,7 @@ package Entity;
 public class BotPlayer extends Player {
     
     public BotPlayer(String name, Hand pHand, Role pRole){
-        super(name, pHand, pRole, 0, null);
+        super(name, pHand, pRole);
     }
 
     public Hand getpHand(){
@@ -22,3 +22,4 @@ public class BotPlayer extends Player {
         return super.getPRole();
     }
 }
+
