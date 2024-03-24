@@ -1,24 +1,21 @@
 package Entity;
 
-import javax.swing.ImageIcon;
+import javax.management.relation.Role;
 
 public class Player {
     private String name;
-    private ImageIcon image;
+    private int money;
     private boolean active;
     private Hand pHand;
     private Role pRole;
-    private int money;
     
     
-    public Player(String name, Hand pHand, Role pRole, int money, ImageIcon image) {
+    public Player(String name, Hand pHand, Role pRole) {
         this.name = name;
         this.active = true;
-        //this.winCondition = winCondition;
         this.pHand = pHand;
-        this.pRole = pRole; 
-        this.money = 500; // set a constant?
-        this.image = image;
+        this.pRole = pRole;
+        this.money = 10000;
     }
 
     public Hand getpHand(){
@@ -37,26 +34,21 @@ public class Player {
         return pRole;
     }
 
-    public ImageIcon getImage(){
-        return image;
+    public int getAmount(){
+        return this.money;
     }
 
     public boolean equals(Player another){
-        return true;
+        
     }
 
-    public int getMoney(){
-        return money;
+    public void detuctAmount(int bet){
+        this.money -= bet;
     }
 
-    public void setMoney(int money){
-        this.money = money;
+    public void addAmount(int pot){
+        this.money += pot;
     }
-
-    public void setActive(boolean active){
-        this.active = active;
-    }
-
 
     // public Player(boolean newPlayer) {
     //     Scanner sc = new Scanner(System.in);
