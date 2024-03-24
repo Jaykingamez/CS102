@@ -1,4 +1,4 @@
-package Entity;
+package Entity.Utility;
 
 public class BotPlayer extends Player {
     
