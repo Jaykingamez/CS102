@@ -56,8 +56,8 @@ public class GameUI{
         //  "Yeow Leong", 500, 100);
         // JTextArea playerInfoText = new JTextArea(playerString);
 
-        gameController.updatePlayerInfo();
-        gameController.updateTableCards();
+        // gameController.updatePlayerInfo();
+        // gameController.updateTableCards();
 
         // JLabel label = new JLabel(icon);
         
