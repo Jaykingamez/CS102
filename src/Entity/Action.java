@@ -1,4 +1,4 @@
-package Entity;
+package Entity.Game;
 import java.util.Scanner;
 
 import GameManager.GameManager;
