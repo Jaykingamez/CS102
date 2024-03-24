@@ -1,4 +1,4 @@
-package Entity;
+package Entity.Game;
 
 import javax.swing.ImageIcon;
 
