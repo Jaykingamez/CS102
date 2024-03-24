@@ -273,6 +273,7 @@ public class PokerGame {
         flop = new Card[3];
         turn = null;
         river = null;
+        System.out.println("DEBUG LINE: ROUND SUCCESSFULLY STARTED");
         //currentIndex = firstPlayerIndex;
         startTurn();
     }
@@ -467,12 +468,13 @@ public class PokerGame {
         }
 
         // possible to have error?
+        System.out.println("");
         int winAmt = pot.getTotalPot() / winners.size();
         for(Player p : winners){
             p.addAmount(winAmt);
         }
 
-        clearTerminal();
+        clearTerminal(); 
         System.out.println("Showdown Time!");
     }
 
@@ -507,7 +509,9 @@ public class PokerGame {
 
     public void clearTerminal() {
         System.out.print("\033\143");
-        //System.out.print("\n\n\n\n\n");
+        //
+        System.out.print("\n\n\n\n\n"); 
+        
     }
 
     public void enterContinue(Scanner scanner) {
@@ -515,6 +519,9 @@ public class PokerGame {
         try {
             System.in.read();
             scanner.nextLine();
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            e.printStackTrace(); //added debugging line
+            
+        }
     }
 }
