@@ -14,10 +14,15 @@ import java.util.Random;
 import java.util.Collections;
 
 import Controller.GameController;
-import Entity.Player;
-import Entity.Deck;
-import Entity.Pot;
-import Entity.Card;
+import Entity.Game.Player;
+import Entity.Game.Deck;
+import Entity.Game.Pot;
+import Entity.Game.Card;
+//I didnt remove these yet because its to test whether the package factoring fcked things up
+// import Entity.Player;
+// import Entity.Deck;
+// import Entity.Pot;
+// import Entity.Card;
 
 public class PokerGame {
     Deck deck;
