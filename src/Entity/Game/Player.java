@@ -1,4 +1,4 @@
-package Entity;
+package Entity.Game;
 
 import javax.swing.ImageIcon;
 
@@ -75,13 +75,7 @@ public class Player {
     public void setActive(boolean active){
         this.active = active;
     }
-    
 
-    // public Player(boolean newPlayer) {
-    //     Scanner sc = new Scanner(System.in);
-    //     System.out.println("Enter the username of the new player");
-
-    // }
 
 
 
