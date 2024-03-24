@@ -6,6 +6,7 @@ Last edit: 21/03/2024
 /*
 Are u ok with putting this under the package Entity.Game?
 */
+package Entity;
 import java.util.*;
 
 public class River {
