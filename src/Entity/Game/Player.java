@@ -18,7 +18,6 @@ public class Player {
         this.active = true;
         this.playedTurn = false; //player fold, call or check or all-in = true, raise = all non-folded, non-all-in players false
         this.folded = false; //player fold or not, reset at start of round
-        //this.winCondition = winCondition;
         this.pHand = pHand;
         this.pRole = pRole;
         this.money = 10000;
