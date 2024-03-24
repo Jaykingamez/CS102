@@ -1,11 +1,17 @@
 /*
 Kong Khai
 Last updated: 22/03/2024
+Jia Lin
+Last updated: 24/03/2024
 */
 package GameManager;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Scanner;
+import java.util.Map;
+import java.util.Random;
+import java.util.Collections;
 
 import Controller.GameController;
 import Entity.Player;
@@ -17,6 +23,7 @@ public class PokerGame {
     Player[] players; //reference to players to saMoneyta after game
     Scanner scan = new Scanner(System.in);
     Pot pot;
+    River river; //JL added 24/03/2024
     int initialBet = 10;             // game's initial bet eMoneyround
     //private int firstPlayerIndex = 0; // first player at start of a new round
     int currentIndex = 0; //current player's index
@@ -33,6 +40,96 @@ public class PokerGame {
     public Pot getPot(){
         return pot;
     }
+
+
+    //JL added 24/03/2024
+    //using the total combi class to gauge how much the AI will bet
+    public String botPlayerMoves(BotPlayer p, Pot pot){
+        totalCombi gauge = new totalCombi(p, this.river);
+        Map<Integer ,Integer> freqmap = gauge.numSameValue();
+        int playerBets = pot.getBetToContinue();
+
+        // Create a random number generator
+        Random random = new Random();
+
+        // if bot gets flush or more
+        if(gauge.getTier(freqmap) >= 5){
+            
+            if(playerBets == 0){
+                // AI raises or checks
+                double bias = 0.7; // 70% chance of landing raise
+                // Generate a random number between 0 and 1
+                double randomNumber = random.nextDouble();
+                String result = (randomNumber < bias) ? "raise" : "check";
+                
+                return result;
+            }else{
+                //AI calls or raise
+                double bias = 0.8; // 80% chance of landing call
+                
+                // Generate a random number between 0 and 1
+                double randomNumber = random.nextDouble();
+                String result = (randomNumber < bias) ? "call" : "raise";
+                
+                return result;
+            }
+            
+        }else if(gauge.getTier(freqmap) >= 1){
+            if(playerBets == 0){
+                // AI checks or raises
+                double bias = 0.4; // 40% chance of landing raise
+
+                // Generate a random number between 0 and 1
+                double randomNumber = random.nextDouble();
+                String result = (randomNumber < bias) ? "raise" : "check";
+                
+                return result;
+            }else{
+                // AI folds or call
+                double bias = 0.6; // 60% chance of landing call
+
+                // Generate a random number between 0 and 1
+                double randomNumber = random.nextDouble();
+                String result = (randomNumber < bias) ? "call" : "fold";
+                
+                return result;
+            }
+        
+        }else{
+            if(playerBets == 0){
+                // AI checks or raises
+                // AI raises or calls
+                double bias = 0.5; // 50% chance of landing fold
+                
+                // Generate a random number between 0 and 1
+                double randomNumber = random.nextDouble();
+                
+                // Simulate coin flip based on bias
+                String result = (randomNumber < bias) ? "fold" : "check";
+                
+                return result;
+            }else{
+                // AI folds or call
+                double bias = 0.5; // 50% chance of landing call
+
+                // Generate a random number between 0 and 1
+                double randomNumber = random.nextDouble();
+                String result = (randomNumber < bias) ? "call" : "fold";
+                
+                return result;
+            }
+        }
+    }
+
+
+    //JL added 24/03/2024
+    //only need to call this is bot raises
+    public int botPlayerRaise(BotPlayer p, Pot pot){
+        Random random = new Random();
+        int randomBet = random.nextInt(301) + 50;
+        return randomBet;
+    }
+
 
     public PokerGame(Player[] players, GameController gameController) {    // construct game with set of players
         this.players = players;
@@ -207,8 +304,31 @@ public class PokerGame {
         }
     }
 
+    // JL added 24/03/2024
+    // overlap with end round pls change accordingly
     public void showDown() {
         // handle showdown here, compare hand values with flop river and turn
+        ArrayList<totalCombi> combinations = new ArrayList<>();
+        for(Player p : players){
+            combinations.add(new totalCombi(p, river));
+        }
+        Collections.sort(combinations);
+
+        ArrayList<Player> winners = new ArrayList<>();
+        winners.add(combinations.get(combinations.size() - 1).getPlayer());
+
+        for(int i = 0; i < combinations.size() - 1; i++){
+            if(combinations.get(i).compareTo(combinations.get(combinations.size() - 1)) == 0){
+                winners.add(combinations.get(i).getPlayer());
+            }
+        }
+
+        // possible to have error?
+        int winAmt = pot.getTotalPot() / winners.size();
+        for(Player p : winners){
+            p.addAmount(winAmt);
+        }
+
     }
 
     public void endRound(Player... winner) {
