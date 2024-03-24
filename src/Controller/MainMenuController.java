@@ -18,8 +18,9 @@ public class MainMenuController {
     }
 
     public GameController startGame(){
-        GameController gameController = new GameController();
-        gameManager.gameStarted(gameController);
+        //GameController gameController = new GameController();
+        //gameManager.gameStarted(gameController);
+        return null;
     }
 
     // Save and load player files, if does not exist, create new player
