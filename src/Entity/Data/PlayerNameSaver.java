@@ -1,4 +1,4 @@
-package Entity;
+package Entity.Data;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
