@@ -3,7 +3,9 @@ Jia Lin
 Last edit: 21/03/2024
 */
 
-
+/*
+Are u ok with putting this under the package Entity.Game?
+*/
 import java.util.*;
 
 import test.Card;
