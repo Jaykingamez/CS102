@@ -13,7 +13,7 @@ public class GameController {
 
     public GameController(GameManager gameManager){
         this.gameManager = gameManager;
-        gameUI = new GameUI(this);
+        this.gameUI = new GameUI(this);
     }
 
     public void updatePlayerInfo(){

@@ -13,10 +13,10 @@ import Entity.*;
 public class GameManager {
     private PokerGame game;
     private Player[] players;
+    private GameController ctrl;
 
     public GameManager(Player[] players) {
         this.players = players;
-        game = new PokerGame(players);
     }
 
     public static void main(String[] args) {
@@ -43,6 +43,10 @@ public class GameManager {
 
     public Pot getPot(){
         return game.getPot();
+    }
+
+    public GameController getGameController(){
+        return ctrl;
     }
 
     public List<Card> getTableCards() {

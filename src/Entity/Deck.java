@@ -28,8 +28,15 @@ public class Deck {
    */
    public Deck() {
       deck = new ArrayList<>();
+      int[] suits = {Card.SPADES, Card.HEARTS, Card.DIAMONDS, Card.CLUBS};
+      for (int suit : suits) {
+         for (int value = 1; value <= 13; value++) {
+            deck.add(new Card(value, suit));
+         }
+      }
       index = 0;
-   }
+    }
+      
 
   /**
    * Adds a card to the deck.

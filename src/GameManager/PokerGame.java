@@ -6,6 +6,8 @@ package GameManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import Controller.GameController;
 import Entity.Player;
 import Entity.Deck;
 import Entity.Pot;
@@ -30,12 +32,15 @@ public class PokerGame {
     Card turn;
     Card river;
 
+    GameController gameController = null;
+
     public Pot getPot(){
         return pot;
     }
 
-    public PokerGame(Player[] players) {    // construct game with set of players
+    public PokerGame(Player[] players, GameController gameController) {    // construct game with set of players
         this.players = players;
+        this.gameController = gameController;
     }
 
     public void startGame() {
@@ -47,8 +52,6 @@ public class PokerGame {
         pot = new Pot(Arrays.asList(players));
         deck = new Deck();
         deck.shuffle();
-
-        
 
         for (Player player: players) {
             player.setFolded(false);
@@ -87,7 +90,12 @@ public class PokerGame {
         //TODO: handle every player has played thru currentPlayer.playedTurn
         clearTerminal();
 
-        if (currentPlayer.getMoney() == 0 && currentPlayer.getPlayed() == false) { //player is all-in
+        if (currentPlayer == players[0]){
+            gameController.updatePlayerInfo();
+            gameController.updateRole();
+        }
+
+        if (currentPlayer.getMoney() == 0 && currentPlayer.getPlayed() == true) {
             //if (currentPlayer.lastStandAcknowledge == false) {      //for if player is all-in from initial bet
                 System.out.println(currentPlayer.getName() + "\'s turn.");
                 System.out.println(currentPlayer.getName() + "\'s cards: ");
