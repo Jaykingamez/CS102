@@ -4,10 +4,11 @@ Last updated: 21/03/2024
 */
 package Entity.Game;
 import java.util.*;
+import java.io.*;
 
 public class ActivateRole {
 
-
+//I thinkt he next int read might throw an exception if a non number is input so im adding an exception
     // place this at the start of each turn after dealing the first card
     public ActivateRole(Deck currentDeck, Player p){
         //rules of the King is that they draw a card at the begining of the turn and try to guess it if the guess it correctly they win the game
@@ -19,8 +20,12 @@ public class ActivateRole {
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Guess suit: ");
                 System.out.println("0. spades\n1. heart\n2. diamond\n3. clubs");
+                try {
                 suitGuess = sc.nextInt();
-    
+                } catch (InputMismatchException e) {
+                System.out.println("Enter a number between 0 and 3.");
+                suitGuess = sc.nextInt();
+                }
                 if (suitGuess < 0 || suitGuess > 3) {
                     System.out.println("Invalid input! Please enter 0, 1, 2, or 3.");
                 }
@@ -43,6 +48,8 @@ public class ActivateRole {
 
             Card newCard = currentDeck.dealCard();
             if(newCard.getSuit() == suitGuess && newCard.getValue() == rankGuess){
+               
+                
                 //code for game to end with player being the winner
             }
         }
