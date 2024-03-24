@@ -2,7 +2,7 @@ package Entity;
 
 import javax.swing.ImageIcon;
 
-public class Card {
+public class Card implements Comparable<Card> {
 
     public final static int SPADES = 0;   
     public final static int HEARTS = 1; 
@@ -15,12 +15,9 @@ public class Card {
     public final static int QUEEN = 12;   
     public final static int KING = 13;
 
- 
-    private final int suit; 
 
-                     
+    private final int suit;                      
     private final int value;
-
     private final ImageIcon cardImage;
 
  
@@ -138,6 +135,25 @@ public class Card {
         }
         else
             return getValueAsString() + " of " + getSuitAsString();
+    }
+
+    @Override
+    public int compareTo(Card otherCard) {
+        // First, compare the suits
+        if (this.suit < otherCard.suit) {
+            return -1;
+        } else if (this.suit > otherCard.suit) {
+            return 1;
+        } else {
+            // Suits are the same, now compare the values
+            if (this.value < otherCard.value) {
+                return -1;
+            } else if (this.value > otherCard.value) {
+                return 1;
+            } else {
+                return 0; // The cards are the same
+            }
+        }
     }
 
 

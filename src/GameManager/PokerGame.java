@@ -6,6 +6,8 @@ package GameManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import Controller.GameController;
 import Entity.Player;
 import Entity.Deck;
 import Entity.Pot;
@@ -26,12 +28,15 @@ public class PokerGame {
     boolean bankrupted = false; //tracks if player has lost all chips n therefore cannot play anymore
     String displayCards = "";
 
+    GameController gameController = null;
+
     public Pot getPot(){
         return pot;
     }
 
-    public PokerGame(Player[] players) {    // construct game with set of players
+    public PokerGame(Player[] players, GameController gameController) {    // construct game with set of players
         this.players = players;
+        this.gameController = gameController;
     }
 
     public void startGame() {
@@ -43,8 +48,6 @@ public class PokerGame {
         pot = new Pot(Arrays.asList(players));
         deck = new Deck();
         deck.shuffle();
-
-        
 
         for (Player player: players) {
             player.getpHand().addCard(deck.dealCard());
@@ -76,6 +79,11 @@ public class PokerGame {
     public void startTurn() {
         // replace scanning and printing with actual UI
         //TODO: handle every player has played thru currentPlayer.playedTurn
+
+        if (currentPlayer == players[0]){
+            gameController.updatePlayerInfo();
+            gameController.updateRole();
+        }
 
         if (currentPlayer.getMoney() == 0 && currentPlayer.getActive() == true) {
             //if (currentPlayer.lastStandAcknowledge == false) {      //for if player is all-in from initial bet
