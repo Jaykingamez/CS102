@@ -47,7 +47,7 @@ public class ActivateRole {
             }
         }
 
-        //rules of jester: draw a card at the beggining of the turn and if all 3 cards add up to less than 10
+        //rules of jester: draw a card at the beginning of the turn and if all 3 cards add up to less than 10
         //they win the game
         if((p.getPRole().getRoleName()) == "Jester"){
             Card newCard = currentDeck.dealCard();
@@ -57,6 +57,8 @@ public class ActivateRole {
                 sum += (currentHand.get(i)).getValue();
             }
             if(newCard.getValue() + sum < 10){
+
+                //trigger sequence not here yet right
                 //code for game to end with player being the winner
             }
         }
