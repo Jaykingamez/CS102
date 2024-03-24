@@ -6,8 +6,8 @@ package GameManager;
 
 import java.util.*;
 
-import Controller.GameController;
-import Controller.MainMenuController;
+//import Controller.GameController;
+//import Controller.MainMenuController;
 import Entity.*;
 
 public class GameManager {
@@ -20,20 +20,20 @@ public class GameManager {
     }
 
     public static void main(String[] args) {
-        Player player = new Player("Player 1", null, null, 500, null)
-        Player bot1 = new Player("Bot 1", null, null, 500, null);
-        Player bot2 = new Player("Bot 2", null, null, 500, null);
-        Player bot3 = new Player("Bot 3", null, null, 500, null);
+        Player player = new Player("Player 1", new Hand(), null, 500, null);
+        Player bot1 = new Player("Bot 1", new Hand(), null, 500, null);
+        Player bot2 = new Player("Bot 2", new Hand(), null, 500, null);
+        Player bot3 = new Player("Bot 3", new Hand(), null, 500, null);
         Player[] players = new Player[]{player, bot1, bot2, bot3};
         GameManager manager = new GameManager(players);
-        MainMenuController mainMenuController = new MainMenuController(manager);
-        GameController ctrl = new GameController(manager);
-        manager.gameStarted(ctrl);
+        /*MainMenuController mainMenuController = new MainMenuController(manager);
+        GameController ctrl = new GameController(manager);*/
+        manager.gameStarted();
     }
 
 
 
-    public void gameStarted(GameController ctrl) {
+    public void gameStarted() {
         game.startGame();
     }
 
