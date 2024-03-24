@@ -1,4 +1,4 @@
-package Entity.Computer;
+package Entity;
 import java.util.ArrayList;
 import java.util.List;
 //kamiyachang.2023
