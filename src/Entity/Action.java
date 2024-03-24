@@ -1,11 +1,14 @@
+package Entity;
 import java.util.Scanner;
+
+import GameManager.GameManager;
 
 public class Action {
     Pot thisPot;
     Player thisPlayer;
 
 
-    public Action(String input, Game thisGame, Player thisPlayer){
+    public Action(String input, GameManager thisGame, Player thisPlayer){
         this.thisPot = thisGame.getPot();
         this.thisPlayer = thisPlayer;
 
@@ -34,7 +37,7 @@ public class Action {
 
     public void fold(){
         //create setter in Player
-        thisPlayer.setActive() = false; 
+        thisPlayer.setActive(false); 
     }
 
 }
