@@ -25,6 +25,10 @@ public class PokerGame {
     int numOfFolds = 0;     //number of players folded
     boolean bankrupted = false; //tracks if player has lost all chips n therefore cannot play anymore
 
+    public Pot getPot(){
+        return pot;
+    }
+
     public PokerGame(Player[] players) {    // construct game with set of players
         this.players = players;
     }
