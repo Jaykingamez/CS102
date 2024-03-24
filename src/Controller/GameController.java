@@ -4,10 +4,7 @@
 */
 package Controller;
 
-import java.util.List;
-
 import UI.GameUI;
-import UI.MainMenuUI;
 import GameManager.GameManager;
 
 public class GameController {
@@ -20,7 +17,7 @@ public class GameController {
     }
 
     public void updatePlayerInfo(){
-        gameUI.updatePlayerInfo(gameManager.getPlayer());
+        gameUI.updatePlayerInfo(gameManager.getPlayer(), gameManager.getPot());
     }
 
     public void updateTableCards(){
@@ -28,7 +25,7 @@ public class GameController {
     }
 
     public void updateHandCards(){
-        gameUI.updateHandCards(gameManager.getPlayer().getpHand());
+        gameUI.updateHandCards(gameManager.getPlayer().getpHand().getHand());
     }
 
     public void updateRole(){

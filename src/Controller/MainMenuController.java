@@ -5,6 +5,7 @@
 package Controller;
 
 import Entity.*;
+import GameManager.GameManager;
 import UI.MainMenuUI;
 
 public class MainMenuController {
