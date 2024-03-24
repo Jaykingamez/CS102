@@ -1,6 +1,6 @@
 /*
  * Jia Lin 
- * Last change: 23/03/2024
+ * Last change: 24/03/2024
  */
 
 import test.Card;
@@ -27,8 +27,13 @@ public class totalCombi implements Comparable<totalCombi> {
         this.player = p;
     }
 
+
     public ArrayList<Card> getAllCards() {
         return this.allCards;
+    }
+
+    public Player getPlayer(){
+        return this.player;
     }
 
     public int compareTo(totalCombi anotherPlayer) {
@@ -101,7 +106,7 @@ public class totalCombi implements Comparable<totalCombi> {
     }
 
     // to get which combination the player got
-    private int getTier(Map<Integer, Integer> ValuefrequencyMap) {
+    public int getTier(Map<Integer, Integer> ValuefrequencyMap) {
         // checking for royal flush
         if (this.hasRoyalSequence() == true && this.numSameSuit().containsValue(5)) {
             return 9;
@@ -259,7 +264,7 @@ public class totalCombi implements Comparable<totalCombi> {
     }
 
     // check if there is 4 of a kind
-    private boolean isFourOfAKind(Map<Integer, Integer> map) {
+    public boolean isFourOfAKind(Map<Integer, Integer> map) {
         if (map.containsValue(4)) {
             return true;
         }
@@ -267,7 +272,7 @@ public class totalCombi implements Comparable<totalCombi> {
     }
 
     // check if there is three of a kind
-    private boolean isThreeOfAKind(Map<Integer, Integer> map) {
+    public boolean isThreeOfAKind(Map<Integer, Integer> map) {
         if (map.containsValue(3)) {
             return true;
         }
@@ -275,7 +280,7 @@ public class totalCombi implements Comparable<totalCombi> {
     }
 
     // returns number of pairs
-    private int numPair(Map<Integer, Integer> map) {
+    public int numPair(Map<Integer, Integer> map) {
         int pairs = 0;
         if (map.containsValue(2)) {
             pairs++;
@@ -285,7 +290,7 @@ public class totalCombi implements Comparable<totalCombi> {
 
     // to check if there is 5 consequetive cards\
     // idk if this is correct T_T
-    private boolean hasConsecutive(Map<Integer, Integer> map) {
+    public boolean hasConsecutive(Map<Integer, Integer> map) {
         List<Integer> handValues = new ArrayList<>();
         for (int value : map.keySet()) {
             handValues.add(value);
@@ -327,7 +332,7 @@ public class totalCombi implements Comparable<totalCombi> {
     }
 
     // to check for sequence that is royal flush
-    private boolean hasRoyalSequence() {
+    public boolean hasRoyalSequence() {
         int[] royalFlush = { 1, 11, 12, 13, 10 };
         if (allCards.size() < 5) {
             return false;
