@@ -42,6 +42,7 @@ public class ActivateRole {
                 System.out.println("Guess numerical card number: ");
                 System.out.println("Note: Ace = 14, King = 13, Queen = 12, Jack = 11 and the rest of the cards are their own values respectively");
                 rankGuess = sc1.nextInt();
+                //Ace should be possible to interpret as ONE as well. 
     
                 if (suitGuess < 1 || suitGuess > 4) {
                     System.out.println("Invalid input! Please enter 1, 2, 3, or 4.");
@@ -57,6 +58,7 @@ public class ActivateRole {
         }
 
         //rules of jester: draw a card at the beginning of the turn and if all 3 cards add up to less than 10
+        //Im thinking about implementing a cheat code soemhat for the jester to demonstrate each of the hands? Because if not itll be hard to test whether e verhything works for each hand
         //they win the game
         if((p.getPRole().getRoleName()) == "Jester"){
             Card newCard = currentDeck.dealCard();
