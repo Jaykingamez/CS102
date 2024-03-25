@@ -7,7 +7,6 @@ Last edit: 21/03/2024
 Are u ok with putting this under the package Entity.Game?
 */
 package Entity.Game;
-import GameManager.GameManager;
 import java.util.*;
 
 public class River {
