@@ -4,6 +4,7 @@ Last edit: 21/03/2024
 */
 
 package Entity.Game;
+import GameManager.GameManager;
 import java.util.*;
 
 public class Role {
