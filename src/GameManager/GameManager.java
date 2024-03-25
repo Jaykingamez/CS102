@@ -8,7 +8,7 @@ import java.util.*;
 
 //import Controller.GameController;
 //import Controller.MainMenuController;
-import Entity.*;
+import Entity.Game.*;
 
 public class GameManager {
     private PokerGame game;
