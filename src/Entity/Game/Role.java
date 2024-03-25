@@ -2,6 +2,11 @@
 Jia Lin
 Last edit: 21/03/2024
 */
+/*
+Kamiya 
+Last edit: 25/3/2024
+Added roleforcer for debugging.
+*/
 
 package Entity.Game;
 import java.util.*;
@@ -57,6 +62,33 @@ public class Role {
         return "" + roleDescription;
     }
 
+    public void forceRole(int roleNum){
     
+        if(roleNum == 1){
+            roleName = "King";
+            roleDescription = "At the beginning of each turn flip over a card from the deck and if you guess correct you win the game!";
+            System.out.println("ROLE: King");
+            
+            System.out.println("Description:" + roleDescription);
+        }
+        if(roleNum == 2){
+            roleName = "Jester";
+            roleDescription = "At the beginning of each turn draw a card from the deck and if you all of your cards add upp to below 10 you win the game!!";
+            System.out.println("ROLE: Jester");
+            System.out.println("Description:" + roleDescription);
+        }
+        if(roleNum == 0){
+            roleName = "Citizen";
+            roleDescription = "Survive";
+            System.out.println("ROLE: Citizen");
+            System.out.println("description:" + roleDescription);
+        }
+
+     
+        
+
+        //for implementing a role ona  particular dummy hand.
+        //input 1 to force king, 2 for jester, 0 for citizen 
+    }
 
 }
