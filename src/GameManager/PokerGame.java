@@ -228,12 +228,35 @@ public class PokerGame {
             enterContinue(scan);
             currentPlayer.setPlayed(true);
             currentIndex++;
-                if (currentIndex == players.length) { //equals num of players
-                    currentIndex = 0;
-                }
+            if (currentIndex == players.length) { //equals num of players
+                currentIndex = 0;
+            }
 
-                currentPlayer = players[currentIndex];
-            startTurn();
+            currentPlayer = players[currentIndex];
+            int numOfAlls = 0;
+            for (Player player : players) {
+                if (player.getAmount() == currentBet) {
+                    numOfAlls++;
+                }
+            }
+            if (numOfAlls == 4) {
+                if (currentPhase < 1) {
+                    flop[0] = deck.dealCard();
+                    flop[1] = deck.dealCard();
+                    flop[2] = deck.dealCard();
+                }
+                if (currentPhase < 2) {
+                    turn = deck.dealCard();
+                }
+                if (currentPhase < 3) {
+                    riverPhase = deck.dealCard();
+                }
+                System.out.println("Community Cards: " 
+                + flop[0] + ", " + flop[1] + ", " + flop[2] + ", " + turn + ", " + riverPhase);
+                showDown();
+            } else {
+                startTurn();
+            }
         } else if (currentPlayer.getFolded() == true) {
             System.out.println("Folded, press enter to continue");
             enterContinue(scan);
