@@ -14,7 +14,7 @@ public class ActivateRole {
 
 //I thinkt he next int read might throw an exception if a non number is input so im adding an exception
     // place this at the start of each turn after dealing the first card
-    public ActivateRole(Deck currentDeck, Player p){
+    public static boolean Result(Deck currentDeck, Player p){
         //rules of the King is that they draw a card at the begining of the turn and try to guess it if the guess it correctly they win the game
         if((p.getPRole().getRoleName()) == "King"){
 
@@ -53,9 +53,7 @@ public class ActivateRole {
 
             Card newCard = currentDeck.dealCard();
             if(newCard.getSuit() == suitGuess && newCard.getValue() == rankGuess){
-               
-                
-                //code for game to end with player being the winner
+                return true;
             }
         }
 
@@ -70,11 +68,11 @@ public class ActivateRole {
                 sum += (currentHand.get(i)).getValue();
             }
             if(newCard.getValue() + sum < 10){
-
-                //trigger sequence not here yet right
-                //code for game to end with player being the winner
+                return true;
             }
         }
+
+        return false;
     }
 }
 
