@@ -1,6 +1,10 @@
 /* Hand.java - John K. Estell - 8 May 2003
  * last modified: 23 February 2004
  */
+/*
+Miya 
+Last edit: 25/3/2024
+*/
 package Entity.Game;
 import java.util.*;
 
