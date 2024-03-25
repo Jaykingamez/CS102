@@ -6,14 +6,11 @@ package GameManager;
 
 import java.util.*;
 
-//import Controller.GameController;
-//import Controller.MainMenuController;
 import Entity.Game.*;
 
 public class GameManager {
     private PokerGame game;
     private Player[] players;
-    //private GameController ctrl;
 
     public GameManager(Player[] players) {
         this.players = players;
@@ -27,8 +24,6 @@ public class GameManager {
         Player bot3 = new Player("Player 4", new Hand(), null);
         Player[] players = new Player[]{player, bot1, bot2, bot3};
         GameManager manager = new GameManager(players);
-        /*MainMenuController mainMenuController = new MainMenuController(manager);
-        GameController ctrl = new GameController(manager);*/
         manager.gameStarted();
     }
 
@@ -45,10 +40,6 @@ public class GameManager {
     public Pot getPot(){
         return game.getPot();
     }
-
-    /*public GameController getGameController(){
-        return ctrl;
-    }*/
 
     public List<Card> getTableCards() {
         return null;
