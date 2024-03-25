@@ -455,7 +455,9 @@ public class PokerGame {
         // handle showdown here, compare hand values with flop river and turn
         ArrayList<totalCombi> combinations = new ArrayList<>();
         for(Player p : players){
-            combinations.add(new totalCombi(p, river));
+            if(players.getactive() == true){
+                combinations.add(new totalCombi(p, river));
+            }
         }
         Collections.sort(combinations);
 
