@@ -2,7 +2,9 @@
  * last modified: 23 February 2004
  */
 package Entity.Game;
-
+import Entity.Utility.*;
+import Entity.Data.*;
+import GameManager.GameManager;
 import java.util.*;
 
 /**
