@@ -1,9 +1,5 @@
 /* Hand.java - John K. Estell - 8 May 2003
  * last modified: 23 February 2004
- * Implementation of an abstract hand of playing cards.
- * Uses the Card class.  Requires subclass for specifying
- * the specifics of what constitutes the evaluation of a hand
- * for the game being implemented.
  */
 package Entity.Game;
 
@@ -11,13 +7,10 @@ import java.util.*;
 
 /**
  * Represents the basic functionality of a hand of cards.
- * Extensions of this class will provide the
- * definition of what constitutes a hand for that game and how hands are compared
- * to one another by overriding the <code>compareTo</code> method.
  * @author John K. Estell
  * @version 1.0
  */
-public class Hand {//abstract class Hand implements Comparable<Hand> {
+public class Hand {
     
    private final ArrayList<Card> hand = new ArrayList<>();
 
