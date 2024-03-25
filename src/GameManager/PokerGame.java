@@ -382,10 +382,12 @@ public class PokerGame {
         }
 
         // possible to have error?
-        System.out.println();
+        /*System.out.println();
         int winAmt = pot.getTotalPot() / winners.size();
         for(Player p : winners){
-            p.addAmount(winAmt);
+            p.addAmount(winAmt);*/
+
+        endRound(winners);
         }
 
         clearTerminal(); 
