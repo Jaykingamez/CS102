@@ -2,6 +2,15 @@
  * Jia Lin 
  * Last change: 24/03/2024
  */
+
+/*
+miya: maybe we can implement the test hands directly in here. 
+
+Test 1: Jester 
+Test 2: King + Dummy player
+Test 3: Winning hand for ROyal flush, Straight Flush, Straight, Full House.. etc
+
+*/
 package Entity.Game;
 
 import java.util.*;
