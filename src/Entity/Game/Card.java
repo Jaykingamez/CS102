@@ -1,5 +1,9 @@
 package Entity.Game;
 
+import Entity.Utility.*;
+import Entity.Data.*;
+import GameManager.GameManager;
+
 import javax.swing.ImageIcon;
 
 public class Card implements Comparable<Card> {
