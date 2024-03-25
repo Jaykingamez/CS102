@@ -39,6 +39,7 @@ public class Deck {
          }
       }
       index = 0;
+      deck.shuffle(); //Shuffles deck immediately after creation.
     }
    /* Creates a deck with no Jokers. 
 
@@ -75,7 +76,6 @@ public class Deck {
    * are no cards left in the deck.
    */
    public Card dealCard() {
-      deck.shuffle(); //added shuffle method such that it's dealt with internally withink the deck class
        return (index >= deck.size()) ? null : deck.get(index++);
    }
 
