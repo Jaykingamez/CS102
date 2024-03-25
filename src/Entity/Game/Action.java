@@ -1,7 +1,7 @@
 package Entity.Game;
 import java.util.Scanner;
 import Entity.Utility.*;
-import Entity.Storage.*;
+import Entity.Data.*;
 import GameManager.GameManager;
 
 public class Action {
