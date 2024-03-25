@@ -1,6 +1,6 @@
 /*
- * Name    : Chan Si Jie
- * Email ID: sijie.chan.2023
+Chan Si Jie
+Last updated: 19/03/2024
 */
 package UI;
 
@@ -12,9 +12,7 @@ import java.util.*;
 import javax.swing.*;     // Using Swing components and containers
 
 import Controller.GameController;
-import Entity.Card;
-import Entity.Player;
-import Entity.Pot;
+import Entity.Game.*;
 
 public class GameUI{
     // Shows player info

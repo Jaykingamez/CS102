@@ -1,6 +1,6 @@
 /*
- * Name    : Chan Si Jie
- * Email ID: sijie.chan.2023
+Chan Si Jie
+Last updated: 21/03/2024
 */
 package UI;
 

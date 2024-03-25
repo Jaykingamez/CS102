@@ -27,7 +27,6 @@ public class DataArchive {
             str1 = "existing";
             //load existing data
         } else {
-            
             startNewGame();
         }
 
