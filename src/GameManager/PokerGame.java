@@ -43,7 +43,7 @@ public class PokerGame {
 
     //JL added 24/03/2024
     //using the total combi class to gauge how much the AI will bet
-    public String botPlayerMoves(BotPlayer p, Pot pot){
+    public int botPlayerMoves(BotPlayer p, Pot pot){
         totalCombi gauge = new totalCombi(p, this.river);
         Map<Integer ,Integer> freqmap = gauge.numSameValue();
         int playerBets = pot.getBetToContinue();
@@ -59,7 +59,7 @@ public class PokerGame {
                 double bias = 0.7; // 70% chance of landing raise
                 // Generate a random number between 0 and 1
                 double randomNumber = random.nextDouble();
-                String result = (randomNumber < bias) ? "raise" : "check";
+                int result = (randomNumber < bias) ? 2 : 1;
                 
                 return result;
             }else{
@@ -68,7 +68,7 @@ public class PokerGame {
                 
                 // Generate a random number between 0 and 1
                 double randomNumber = random.nextDouble();
-                String result = (randomNumber < bias) ? "call" : "raise";
+                int result = (randomNumber < bias) ? 1 : 2;
                 
                 return result;
             }
@@ -80,7 +80,7 @@ public class PokerGame {
 
                 // Generate a random number between 0 and 1
                 double randomNumber = random.nextDouble();
-                String result = (randomNumber < bias) ? "raise" : "check";
+                int result = (randomNumber < bias) ? 2 : 1;
                 
                 return result;
             }else{
@@ -89,7 +89,7 @@ public class PokerGame {
 
                 // Generate a random number between 0 and 1
                 double randomNumber = random.nextDouble();
-                String result = (randomNumber < bias) ? "call" : "fold";
+                int result = (randomNumber < bias) ? 1 : 0;
                 
                 return result;
             }
@@ -104,7 +104,7 @@ public class PokerGame {
                 double randomNumber = random.nextDouble();
                 
                 // Simulate coin flip based on bias
-                String result = (randomNumber < bias) ? "fold" : "check";
+                int result = (randomNumber < bias) ? 0 : 1;
                 
                 return result;
             }else{
@@ -113,7 +113,7 @@ public class PokerGame {
 
                 // Generate a random number between 0 and 1
                 double randomNumber = random.nextDouble();
-                String result = (randomNumber < bias) ? "call" : "fold";
+                int result = (randomNumber < bias) ? 1 : 0;
                 
                 return result;
             }
@@ -194,6 +194,13 @@ public class PokerGame {
         //TODO: handle every player has played thru currentPlayer.playedTurn
         clearTerminal();
 
+        //JL added - 25/03/2024
+        for(Player p : players){
+            if(ActivateRole.Result(deck, p)){
+                endRound(p);
+                return;
+            }
+        }
         /*if (currentPlayer == players[0]){
             gameController.updatePlayerInfo();
             gameController.updateRole();
