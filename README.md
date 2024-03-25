@@ -3,21 +3,21 @@
     <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/931/227/eac.gif" alt="gif" />
 </p>
 
-### compile.bat and run.bat batch files
-The compile.bat file compiles all your Java source files and automatically stores them in the classes directory.
-The run.bat runs your application.
+A simple Poker Game based on Texas Holdem with a twist—where every player has unique roles and special abilities. May the best player emerge victorious!
 
-### src  
-This directory contains all your Java source files. 
+# How to use
+To run the application, you’ll need Java JDK 21. If you haven’t already, you can install it [here.](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html) Follow these steps:
+1. **Compile Source Files**: Execute compile.bat to compile all the Java source files. The compiled class files will be automatically stored in the classes directory.
+2. **Start the Game**: Run run.bat to launch your application. 
 
-### classes
-This directory should be left empty during submission. After compile.bat runs, the class files will be stored here automatically.
+# Project Structure
 
-### images
-This directory contains any image files used by your application. It will be empty if you build a console application.
-
-### lib (if using any external libraries)
-This directory contains any jar files that you use for your application.
+- **src**: Contains all the Java source files.
+- **classes**: After running compile.bat, this directory holds the compiled class files.
+- **images**: If your application uses any image files, they should be placed here (though it’ll be empty for a console application).
+- **lib** (if using external libraries): Store any jar files you’re using for your project.
+- **compile.bat** Compiles all Java source files and stores in classes directory.
+- **run.bat** Runs Java application
 
 <p align="center">
     <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/930/668/432.gif" alt="gif" />
