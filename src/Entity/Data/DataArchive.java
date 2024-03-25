@@ -1,4 +1,4 @@
-package Entity.Storage;
+package Entity.Data;
 import Entity.Game.*; 
 import Entity.Utility.*;
 import java.io.*;
