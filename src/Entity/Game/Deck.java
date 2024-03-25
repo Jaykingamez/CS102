@@ -36,6 +36,9 @@ public class Deck {
       }
       index = 0;
     }
+   /* Creates a deck with no Jokers. 
+
+*/
       
 
   /**
