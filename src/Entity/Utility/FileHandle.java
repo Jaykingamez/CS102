@@ -1,6 +1,7 @@
 package Entity.Utility;
-//kamiyachang.2023
-
+/*
+Miya + Denxi
+*/
 import java.io.File;
 
 public class FileHandle {
