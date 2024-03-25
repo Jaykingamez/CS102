@@ -1,3 +1,7 @@
+/*
+Jialin
+Last edit: 25/3/2024
+*/
 package Entity.Game;
 
 import javax.swing.ImageIcon;
