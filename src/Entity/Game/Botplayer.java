@@ -1,4 +1,7 @@
 package Entity.Game;
+import Entity.Utility.*;
+import Entity.Data.*;
+import GameManager.GameManager;
 
 public class BotPlayer extends Player {
     
