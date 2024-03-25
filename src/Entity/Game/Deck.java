@@ -39,7 +39,7 @@ public class Deck {
          }
       }
       index = 0;
-      deck.shuffle(); //Shuffles deck immediately after creation.
+      shuffle(); //Shuffles deck immediately after creation.
     }
    /* Creates a deck with no Jokers. 
 

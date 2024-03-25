@@ -43,7 +43,7 @@ public class Pot {
         //code for going through the HashMap and deteucting the players
         // turnBets(Values in the HashMap) from their Bank
         for(Player p : playerBets.keySet()){
-            p.setAmount(0);
+            p.setAmount(p.getAmount() - playerBets.get(p));
         }
 
         //all player bets becomes 0
@@ -65,6 +65,11 @@ public class Pot {
     //used for calling
     public void updateBetToContinue(Player p){
         playerBets.put(p, betToContinue);
+    }
+
+    //used for calling but all in
+    public void updateBetToContinuePoor(int money, Player p){
+        playerBets.put(p, money);
     }
 
 

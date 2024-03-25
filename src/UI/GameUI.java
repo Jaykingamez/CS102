@@ -163,12 +163,12 @@ public class GameUI{
         frame.add(activeActionPanel);
     }
 
-    public void updatePlayerInfo(Player player, Pot pot){
+   /* public void updatePlayerInfo(Player player, Pot pot){
         String playerString = String.format("Player info %s%nMoney: %d%nBet: %d ",
         player.getName(), player.getMoney(), pot.getPlayerBets().get(player));
         playerInfoText.setText(playerString);
         playerPictureLabel.setIcon(player.getImage());
-    }
+    }*/
 
     public void updateTableCards(List<Card> cards){
         tablePanel.removeAll();

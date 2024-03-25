@@ -22,7 +22,7 @@ public class totalCombi implements Comparable<totalCombi> {
     public totalCombi(Player p, River r) {
         ArrayList<Card> totalCards = new ArrayList<>();
         Hand cards = p.getpHand();
-        for (int i = 0; i < cards.getCardCount(); i++) {
+        for (int i = 0; i < cards.getNumberOfCards(); i++) {
             totalCards.add(cards.getCard(i));
         }
         ArrayList<Card> river = r.getRiver();

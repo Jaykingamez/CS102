@@ -8,7 +8,7 @@ import UI.GameUI;
 import GameManager.GameManager;
 
 public class GameController {
-    private GameUI gameUI = null;
+   /* private GameUI gameUI = null;
     private GameManager gameManager = null;
 
     public GameController(GameManager gameManager){
@@ -41,7 +41,7 @@ public class GameController {
     }
 
 
-
+*/
     
 
 }
