@@ -1,8 +1,5 @@
 // Jia lin Last edit 24/03/2024
 package Entity.Game;
-import Entity.Utility.*;
-import Entity.Data.*;
-import GameManager.GameManager; 
 import java.util.*;
 
 public class Pot {
@@ -27,12 +24,6 @@ public class Pot {
 
     }
 
-    public Map<Player, Integer> getPlayerBets(){
-        return this.playerBets;
-    }
-/*m: getPlayersBets and getPlayerBets is different right.. maybe change name because it's so cofnusing
-
-    */
     public int getBetToContinue(){
         return this.betToContinue;
     }
