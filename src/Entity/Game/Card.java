@@ -1,10 +1,10 @@
 /*
 Miya 
 Last edit: 25/3/2024
+Si Jie
+Last edit: 26/3/2024
 */
 package Entity.Game;
-
-import javax.swing.ImageIcon;
 
 public class Card implements Comparable<Card> {
 
@@ -22,14 +22,12 @@ public class Card implements Comparable<Card> {
 
     private final int suit;                      
     private final int value;
-    private final ImageIcon cardImage;
 
  
     public Card() {
         this(1, JOKER);
     }
 
- 
     public Card(int theValue, int theSuit) {
         if (theSuit != SPADES && theSuit != HEARTS && theSuit != DIAMONDS && 
                 theSuit != CLUBS && theSuit != JOKER)
@@ -38,52 +36,8 @@ public class Card implements Comparable<Card> {
             throw new IllegalArgumentException("Illegal playing card value");
         value = theValue;
         suit = theSuit;
-        cardImage = findCardImage(theValue, theSuit);
     }
 
-    private ImageIcon findCardImage(int theValue, int theSuit){
-        String filename = "images/";
-        // if joker card return
-        if (theValue == 1 && theSuit == JOKER){
-            filename += "j.gif";
-            return new ImageIcon(filename);
-        }
-        switch (theValue){
-            case 1:
-                filename += 'a';
-                break;
-            case 10:
-                filename += 't';
-                break;
-            case 11:
-                filename += 'j';
-                break;
-            case 12:
-                filename += 'q';
-                break;
-            case 13:
-                filename += 'k';
-                break;
-            default:
-                filename += theValue;
-
-        }
-
-        switch (theSuit){
-            case CLUBS:
-                filename += 'c';
-                break;
-            case DIAMONDS:
-                filename += 'd';
-            case HEARTS:
-                filename += 'h';
-            case SPADES:
-                filename += 's';
-        }
-
-        return new ImageIcon(filename);
-    }
- 
     public int getSuit() {
         return suit;
     }
@@ -91,10 +45,6 @@ public class Card implements Comparable<Card> {
 
     public int getValue() {
         return value;
-    }
-
-    public ImageIcon getCardImage(){
-        return cardImage;
     }
 
     public String getSuitAsString() {
