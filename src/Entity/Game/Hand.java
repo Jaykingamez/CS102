@@ -1,23 +1,18 @@
 /* Hand.java - John K. Estell - 8 May 2003
  * last modified: 23 February 2004
- * Implementation of an abstract hand of playing cards.
- * Uses the Card class.  Requires subclass for specifying
- * the specifics of what constitutes the evaluation of a hand
- * for the game being implemented.
  */
-package Entity;
-
+package Entity.Game;
+import Entity.Utility.*;
+import Entity.Data.*;
+import GameManager.GameManager;
 import java.util.*;
 
 /**
  * Represents the basic functionality of a hand of cards.
- * Extensions of this class will provide the
- * definition of what constitutes a hand for that game and how hands are compared
- * to one another by overriding the <code>compareTo</code> method.
  * @author John K. Estell
  * @version 1.0
  */
-public class Hand {//abstract class Hand implements Comparable<Hand> {
+public class Hand {
     
    private final ArrayList<Card> hand = new ArrayList<>();
 
@@ -81,14 +76,6 @@ public class Hand {//abstract class Hand implements Comparable<Hand> {
    }
 
   /**
-   * Sorts the card in the hand.
-   * Sort is performed according to the order specified in the {@link Card} class.
-   */
-   // public void sort() {
-   //    Collections.sort(hand);
-   // }
-
-  /**
    * Checks to see if the hand is empty.
    * @return <code>true</code> is the hand is empty.
    */
@@ -114,23 +101,6 @@ public class Hand {//abstract class Hand implements Comparable<Hand> {
       return hand.indexOf(card);
    }
 
-  /**
-   *  Compares two hands.  
-   *  @param otherHand the hand being compared.
-   *  @return < 0 if this hand is less than the other hand, 0 if the two hands are
-   *  the same, or > 0 if this hand is greater than the other hand.
-   */
-//    @Override
-//    public int compareTo(Hand otherHand) {
-//       return evaluateHand() - otherHand.evaluateHand();
-//    }
-
-//   /**
-//    *  Evaluates the hand.  Must be defined in the subclass that implements the hand
-//    *  for the game being written by the client programmer.
-//    *  @return an integer corresponding to the rating of the hand.
-//    */
-//    public abstract int evaluateHand();
 
    /**
     * Returns a description of the hand.

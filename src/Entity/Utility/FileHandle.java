@@ -7,9 +7,18 @@ import java.io.FileWriter;
 import java.lang.Exception.*;
 import java.util.Arrays;
 
-  // Import the File class
-
 public class FileHandle {
+
+    /*
+    Making a class that makes and handles any exceptions from writing and making a new player svae fle
+    */
+
+public void newSaveFile() {
+
+    fileDelete("player_names.txt");
+    File myObj = new File("src\\Entity\\Utility\\player_names.txt");
+    
+}
 
     
   public void fileDelete (String fileName) { 
@@ -22,19 +31,5 @@ public class FileHandle {
       System.out.println("Failed to delete the file.");
     } 
   } 
-
-  // public void clearFile(String fileName) {
-
-
-  //   new File(fileName).();
-
-  // }
-
-  public void delAll(){
-
-    Arrays.asList(new File("data").listFiles()).stream().forEach(File::delete);
-    BufferedWriter bw = new BufferedWriter(new FileWriter("data"+decisionList.get(i)+"_"+i+".txt"));
-  }
-
 
 }

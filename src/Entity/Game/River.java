@@ -6,7 +6,8 @@ Last edit: 21/03/2024
 /*
 Are u ok with putting this under the package Entity.Game?
 */
-package Entity;
+package Entity.Game;
+import GameManager.GameManager;
 import java.util.*;
 
 public class River {
@@ -25,6 +26,10 @@ public class River {
         river.add(c);
     }
 
+    
+    
+//WHy not change this to just river.clear() 
+    
     public void endRiver(){
         river = new ArrayList<>();
     }

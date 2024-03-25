@@ -1,4 +1,6 @@
 package Entity.Storage;
+import Entity.Game.*; 
+import Entity.Utility.*;
 import java.io.*;
 import java.util.*;
 
@@ -45,16 +47,18 @@ public class DataArchive {
                 """);
 
         Scanner sc = new Scanner(System.in);
-        char confirm = sc.nextChar();
-        boolean deleteRecords = (confirm == 'y' | confirm == 'Y') ? true : false ;
+        char confirm = sc.next().charAt(0);
+        boolean deleteRecords = (confirm == 'y' || confirm == 'Y') ? true : false ;
         if (deleteRecords) {
             delAll();
             
         }
-
+        
+        sc.close();
+        
         return;
 
-        sc.close();
+        
         
     }
 

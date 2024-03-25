@@ -1,6 +1,7 @@
-package Entity;
+package Entity.Game;
 import java.util.Scanner;
-
+import Entity.Utility.*;
+import Entity.Data.*;
 import GameManager.GameManager;
 
 public class Action {
@@ -39,5 +40,11 @@ public class Action {
         //create setter in Player
         thisPlayer.setActive(false); 
     }
+
+    // public void playAgain(String input) {
+    // /*
+        
+    //     */
+    // }
 
 }

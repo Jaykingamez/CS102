@@ -3,7 +3,8 @@ Jia Lin
 Last edit: 21/03/2024
 */
 
-package Entity;
+package Entity.Game;
+import GameManager.GameManager;
 import java.util.*;
 
 public class Role {
@@ -28,33 +29,33 @@ public class Role {
 
         if(randomNumber == 1){
             roleName = "King";
-            roleDescription = "At the begining of each turn flip over a card from the deck and if you guess correct you win the game!";
+            roleDescription = "At the beginning of each turn flip over a card from the deck and if you guess correct you win the game!";
             System.out.println("ROLE: King");
             
-            System.out.println("description: At the begining of each turn flip over a card from the deck and if you guess correct you win the game!");
+            System.out.println("Description:" + roleDescription);
         }
         if(randomNumber == 2){
             roleName = "Jester";
-            roleDescription = "At the begining of each turn draw a card from the deck and if you all of your cards add upp to below 10 you win the game!!";
+            roleDescription = "At the beginning of each turn draw a card from the deck and if you all of your cards add upp to below 10 you win the game!!";
             System.out.println("ROLE: Jester");
-            System.out.println("description: At the begining of each turn draw a card from the deck and if you all of your cards add upp to below 10 you win the game!!");
+            System.out.println("Description:" + roleDescription);
         }
         if(randomNumber == 0){
             roleName = "Citizen";
             roleDescription = "Survive";
             System.out.println("ROLE: Citizen");
-            System.out.println("description: Survive");
+            System.out.println("description:" + roleDescription);
         }
 
         
     }
 
     public String getRoleName(){
-        return roleName;
+        return "" + roleName;
     }
 
     public String getRoleDescription(){
-        return roleDescription;
+        return "" + roleDescription;
     }
 
     

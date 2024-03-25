@@ -14,7 +14,15 @@ import java.util.Random;
 import java.util.Collections;
 
 import Controller.GameController;
-import Entity.*;
+import Entity.Game.Player;
+import Entity.Game.Deck;
+import Entity.Game.Pot;
+import Entity.Game.Card;
+//I didnt remove these yet because its to test whether the package factoring fcked things up
+// import Entity.Player;
+// import Entity.Deck;
+// import Entity.Pot;
+// import Entity.Card;
 
 public class PokerGame {
     Deck deck;
@@ -31,9 +39,12 @@ public class PokerGame {
     int currentPhase = 0;    //poker game phase index
     int numOfFolds = 0;     //number of players folded
     boolean bankrupted = false; //tracks if player has lost all chips n therefore cannot play anymore
+    // Note: 3.25 from miya: we arent using chips, please put comments in terms of cash only and not chips
     String displayCards = "";
     Card[] flop;
     Card turn;
+    Card river;
+    
 
     GameController gameController = null;
 
@@ -173,6 +184,7 @@ public class PokerGame {
         flop = new Card[3];
         turn = null;
         river = null;
+        System.out.println("DEBUG LINE: ROUND SUCCESSFULLY STARTED");
         //currentIndex = firstPlayerIndex;
         startTurn();
     }
@@ -282,8 +294,8 @@ public class PokerGame {
                 pot.updateBetToContinue(raise, currentPlayer);
                 currentPlayer.setPlayed(true); //in the case of raised all-in
                 for (Player player : players) {         //&& player not folded
-                    if (currentPlayer.getAmount() != 0 && currentPlayer.getFolded() == false) { //reset input for players that are still in the round
-                        currentPlayer.setPlayed(false);
+                    if (currentPlayer.getMoney() != 0 && currentPlayer.getFolded() == false) { //reset input for players that are still in the round
+                        currentPlayer.setPlayed(false); //miya: 25.3, could we use active instead to check if theyve folded
                     }
                 }
             }
@@ -353,7 +365,9 @@ public class PokerGame {
         // handle showdown here, compare hand values with flop river and turn
         ArrayList<totalCombi> combinations = new ArrayList<>();
         for(Player p : players){
-            combinations.add(new totalCombi(p, river));
+            if(players.getactive() == true){
+                combinations.add(new totalCombi(p, river));
+            }
         }
         Collections.sort(combinations);
 
@@ -367,16 +381,18 @@ public class PokerGame {
         }
 
         // possible to have error?
+        System.out.println();
         int winAmt = pot.getTotalPot() / winners.size();
         for(Player p : winners){
             p.addAmount(winAmt);
         }
 
-        clearTerminal();
+        clearTerminal(); 
         System.out.println("Showdown Time!");
     }
 
     public void endRound(Player... winner) {
+        //Sry qn M, how will the winner hashmap be passed into this?
         pot.distributePot(winner);
 
         for (Player player: players) {
@@ -387,9 +403,15 @@ public class PokerGame {
         }
 
         //handle win conditions
-        if (bankrupted == true) { //or win condition met
+        if (bankrupted) { //or win condition met
             postGame();
-        } else {
+        } else if () {}
+        /*for the win conditions is it referring to the individual player? If everyone's folded but one? or 
+        the role specific win conditions? can we make a wonRound attribute?
+        3.25 Miya: changed if bankrupted == true to if bankrupted. no need to have an equality statement 
+                   */
+        
+            else {
             //reset stuff to prep for new round
             //clear river flop turn display here
             startRound();
@@ -401,13 +423,15 @@ public class PokerGame {
         //handle post game stuff - new game with same ppl or leave, saving      
         System.out.println("Game Over!");
         for (Player player : players) {
-            System.out.println(player.getName() + "- " + player.getAmount() + " chips");
+            System.out.println(player.getName() + "- " + player.getMoney() + " dollars");
         }
     }
 
     public void clearTerminal() {
         System.out.print("\033\143");
-        //System.out.print("\n\n\n\n\n");
+        //
+        System.out.print("\n\n\n\n\n"); 
+        
     }
 
     public void enterContinue(Scanner scanner) {
@@ -415,6 +439,9 @@ public class PokerGame {
         try {
             System.in.read();
             scanner.nextLine();
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            e.printStackTrace(); //added debugging line
+            
+        }
     }
 }

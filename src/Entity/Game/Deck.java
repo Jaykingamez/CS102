@@ -2,7 +2,10 @@
  * last modified: 23 February 2004
  * Implementation of a deck of playing cards.  Uses the Card class.
  */
-package Entity;
+package Entity.Game;
+import Entity.Utility.*;
+import Entity.Data.*;
+import GameManager.GameManager;
 
 import java.util.*;
 
@@ -36,6 +39,9 @@ public class Deck {
       }
       index = 0;
     }
+   /* Creates a deck with no Jokers. 
+
+*/
       
 
   /**

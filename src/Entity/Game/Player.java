@@ -1,4 +1,7 @@
-package Entity;
+package Entity.Game;
+import Entity.Utility.*;
+import Entity.Data.*;
+import GameManager.GameManager;
 
 import javax.swing.ImageIcon;
 
@@ -18,7 +21,6 @@ public class Player {
         this.active = true;
         this.playedTurn = false; //player fold, call or check or all-in = true, raise = all non-folded, non-all-in players false
         this.folded = false; //player fold or not, reset at start of round
-        //this.winCondition = winCondition;
         this.pHand = pHand;
         this.pRole = pRole;
         this.money = 10000;
@@ -75,13 +77,7 @@ public class Player {
     public void setActive(boolean active){
         this.active = active;
     }
-    
 
-    // public Player(boolean newPlayer) {
-    //     Scanner sc = new Scanner(System.in);
-    //     System.out.println("Enter the username of the new player");
-
-    // }
 
 
 
