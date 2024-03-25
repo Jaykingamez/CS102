@@ -1,3 +1,6 @@
+/*
+Miya + Denxi
+*/
 package Entity.Data;
 import Entity.Game.*; 
 import Entity.Utility.*;
@@ -5,7 +8,6 @@ import java.io.*;
 import java.util.*;
 
 public class DataArchive {
-//kamiyachang.2023
 
 
     public int gamesPlayed;
