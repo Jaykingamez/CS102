@@ -2,6 +2,10 @@
  * last modified: 23 February 2004
  * Implementation of a deck of playing cards.  Uses the Card class.
  */
+/*
+Miya 
+
+*/
 package Entity.Game;
 
 import java.util.*;
