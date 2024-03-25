@@ -17,7 +17,7 @@ If got time, do for Other hands just to verify that the hand Combination class i
 
 */
 
-public TestCases {
+public class TestCases {
 
   private Role testRole; 
   private Hand testHand; 
