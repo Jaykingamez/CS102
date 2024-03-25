@@ -1,3 +1,8 @@
+/*
+Jialin
+Last edit: 25/3/2024
+*/
+
 package Entity.Game;
 
 public class BotPlayer extends Player {
