@@ -9,7 +9,6 @@ Last edit: 25/03/2024
 package GameManager;
 import java.util.*;
 
-import Controller.GameController;
 import Entity.Game.*;
 
 
@@ -32,9 +31,6 @@ public class PokerGame {
     Card[] flop;
     Card turn;
     Card riverPhase;
-    
-
-    GameController gameController = null;
 
     public Pot getPot(){
         return pot;
