@@ -3,26 +3,15 @@ Kong Khai
 Last updated: 22/03/2024
 Jia Lin
 Last updated: 24/03/2024
+Kamihya 
+Last edit: 25/03/2024
 */
 package GameManager;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Scanner;
-import java.util.Map;
-import java.util.Random;
-import java.util.Collections;
+import java.util.*;
 
 import Controller.GameController;
-import Entity.Game.Player;
-import Entity.Game.Deck;
-import Entity.Game.Pot;
-import Entity.Game.Card;
-//I didnt remove these yet because its to test whether the package factoring fcked things up
-// import Entity.Player;
-// import Entity.Deck;
-// import Entity.Pot;
-// import Entity.Card;
+import Entity.Game.*;
+
 
 public class PokerGame {
     Deck deck;
@@ -151,6 +140,18 @@ public class PokerGame {
         startRound();
     }
 
+    public void startTestRound() {
+    /*
+    For testing card hand mechanics 
+    */
+    }
+
+
+    public void startTestGame() {
+
+        /* method to start game completely in terminal purely for checking game mechanics from start to end*/ 
+        
+    }
     public void startRound() {
         pot = new Pot(Arrays.asList(players));
         deck = new Deck();
