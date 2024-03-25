@@ -494,11 +494,12 @@ public class PokerGame {
         }
 
         //handle win conditions
-        if (bankrupted == true) { //or win condition met
+        if (bankrupted) { //or win condition met
             postGame();
         } else if () {}
         /*for the win conditions is it referring to the individual player? If everyone's folded but one? or 
         the role specific win conditions? can we make a wonRound attribute?
+        3.25 Miya: changed if bankrupted == true to if bankrupted. no need to have an equality statement 
                    */
         
             else {
