@@ -4,13 +4,10 @@ Last edit: 25/3/2024
 */
 package Entity.Game;
 
-import javax.swing.ImageIcon;
-
 public class Player {
     private String name;
     private int money;
     private boolean active;
-    private ImageIcon image;
     private boolean playedTurn;
     private boolean folded;
     private Hand pHand;
