@@ -5,8 +5,6 @@ Last edit: 25/3/2024
 
 package Entity.Game;
 import java.util.Scanner;
-import Entity.Utility.*;
-import Entity.Data.*;
 import GameManager.GameManager;
 
 
