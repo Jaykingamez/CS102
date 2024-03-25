@@ -1,5 +1,8 @@
 // Jia lin Last edit 24/03/2024
 package Entity.Game;
+import Entity.Utility.*;
+import Entity.Data.*;
+import GameManager.GameManager; 
 import java.util.*;
 
 public class Pot {
