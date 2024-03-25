@@ -39,6 +39,7 @@ public class PokerGame {
     int currentPhase = 0;    //poker game phase index
     int numOfFolds = 0;     //number of players folded
     boolean bankrupted = false; //tracks if player has lost all chips n therefore cannot play anymore
+    // Note: 3.25 from miya: we arent using chips, please put comments in terms of cash only and not chips
     String displayCards = "";
     Card[] flop;
     Card turn;
