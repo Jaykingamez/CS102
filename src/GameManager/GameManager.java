@@ -5,8 +5,8 @@ Last updated: 22/03/2024
 package GameManager;
 
 import java.util.*;
-
 import Entity.Game.*;
+import Entity.Utility.MusicPlayer;
 
 public class GameManager {
     private PokerGame game;
@@ -25,6 +25,10 @@ public class GameManager {
         Player[] players = new Player[]{player, bot1, bot2, bot3};
         GameManager manager = new GameManager(players);
         manager.gameStarted();
+        
+        // Plays music 
+        MusicPlayer musicPlayer = new MusicPlayer("music/metal.mp3", false);
+        musicPlayer.run();
     }
 
 
