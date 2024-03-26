@@ -239,7 +239,7 @@ public class totalCombi implements Comparable<totalCombi> {
         for (int value : map.keySet()) {
             if (map.get(value) == 2) {
                 if (value > secondHighest && value != highest) {
-                    highest = value;
+                    secondHighest = value;
                 }
             }
         }
