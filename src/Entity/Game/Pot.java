@@ -8,11 +8,10 @@ public class Pot {
     private int betToContinue;
     private Map<Player,Integer> playerBets;
 
-    // to initiaze new pot at the start of the game
+    // to initialize new pot at the start of the game
     public Pot(List<Player> players){
-        // if we not doing big bind and small bind then everyone at the start of the game can place $10
-        //into the pot
-        // change start bet accordingly
+     //Place 10 at the beginning from all players into the pot
+    
         this.playerBets = new HashMap<>();
         for(int i = 0; i < players.size(); i++){
             playerBets.put(players.get(i), 10); // this start bet change accordingly
@@ -40,7 +39,7 @@ public class Pot {
 
         this.totalpot += total;
 
-        //code for going through the HashMap and deteucting the players
+        //code for going through the players and deducting the players
         // turnBets(Values in the HashMap) from their Bank
         for(Player p : playerBets.keySet()){
             p.setAmount(p.getAmount() - playerBets.get(p));
