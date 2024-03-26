@@ -296,8 +296,6 @@ public class totalCombi implements Comparable<totalCombi> {
         return pairs;
     }
 
-    // to check if there is 5 consequetive cards\
-    // idk if this is correct T_T
     public boolean hasConsecutive(Map<Integer, Integer> map) {
         List<Integer> handValues = new ArrayList<>();
         for (int value : map.keySet()) {
