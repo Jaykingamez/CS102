@@ -28,7 +28,7 @@ public class PokerGame {
     String[] phase = {"preFlop", "Flop", "Turn", "River", "Showdown"}; //poker game phases
     int currentPhase = 0;    //poker game phase index
     int numOfFolds = 0;     //number of players folded
-    boolean bankrupted = false; //if player has no more money in their balance- they can't continue playing.
+    //boolean bankrupted = false; //if player has no more money in their balance- they can't continue playing.
     String displayCards = "";
     Card[] flop;
     Card turn;
