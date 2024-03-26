@@ -338,6 +338,9 @@ public class totalCombi implements Comparable<totalCombi> {
 
         */
         int n = valueArr.length;
+        if(n < 5){
+            return false;
+        }
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
                 if (valueArr[j] > valueArr[j + 1]) {
