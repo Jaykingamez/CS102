@@ -12,7 +12,7 @@ public class Player {
     private boolean folded;
     private Hand pHand;
     private Role pRole;
-    
+    private boolean poverty; 
     
     public Player(String name, Hand pHand, Role pRole) {
         this.name = name;
@@ -76,7 +76,9 @@ public class Player {
         this.active = active;
     }
 
-
+    public boolean poverty(){
+        return this.money==0;
+    }
 
 
 }
