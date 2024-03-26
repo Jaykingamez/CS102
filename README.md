@@ -26,7 +26,8 @@ To run the application, you’ll need Java JDK 21. If you haven’t already, you
 Good luck and have fun! :)
 
 # References
-Images of all the cards: https://www.waste.org/~oxymoron/files/cards/
 
-A list of commonly used classes in Card games (Card, Deck, Hand, Rank, Suit).
-https://github.com/BigRedS/java/tree/master/CardGame/src
+A [list](https://github.com/BigRedS/java/tree/master/CardGame/src) of commonly used classes in Card games (Card, Deck, Hand, Rank, Suit).
+
+
+[Music: Simi and ChapChap Unwelcome School](https://www.youtube.com/watch?v=v-7kTXlsAD0&t=254s)
