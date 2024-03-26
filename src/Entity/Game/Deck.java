@@ -3,8 +3,8 @@
  * Implementation of a deck of playing cards.  Uses the Card class.
  */
 /*
-Miya 
-LAst edit 25/3/24
+Miya Last edit 3/26/24
+Idk how i missed this but i didnt implement "shuffle" properly. Hopefully it shuffles automatically upon creation as it was intended to be
 */
 package Entity.Game;
 
@@ -39,7 +39,7 @@ public class Deck {
          }
       }
       index = 0;
-      shuffle(); //Shuffles deck immediately after creation.
+      deck.shuffle(); //Shuffles deck immediately after creation.
     }
    /* Creates a deck with no Jokers. 
 
