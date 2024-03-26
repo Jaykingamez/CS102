@@ -1,0 +1,18 @@
+Test Cases will be carried out with three possible flows: 
+
+1. Simple tests 
+For testing specific classes. Returns true if passed and shows expected vs actual values: kinda like in lab tests!
+
+- Hand tests 
+- Bankrupt test 
+- Bot decisions test 
+- Basic game mechanics (like adding new player etc) 
+- Role test 
+- Turn functionality
+
+2. Bot games
+- Bot decisions 
+- Game with 1 or more bots. Hard code different roles 
+
+3. Full run tests
+- As the name suggests 
