@@ -189,9 +189,55 @@ public class PokerGame {
         // replace scanning and printing with actual UI
         //TODO: handle every player has played thru currentPlayer.playedTurn
         clearTerminal();
+        if (currentPlayer instanceof BotPlayer) {
 
+            BotPlayer botPlayer = (BotPlayer) currentPlayer; //casting current player to a botplayer objekct 
+            int action = botPlayerMoves(botPlayer, pot);
+
+            switch(action) {
+
+                case 0:
+                 //if bot folds
+                    currentPlayer.setPlayed(true);
+                    currentPlayer.setFolded(true); 
+                    numOfFolds++;
+                    break;
+                case 1:
+                    //Call OR check 
+                if (pot.getBetToContinue() == currentPlayer.getAmount()) {
+                     //bot check
+                    currentPlayer.setPlayed(true); 
+                } else {
+                    //bot calls
+                    pot.updateBetToContinue(currentPlayer);
+                    currentPlayer.setPlayed(true); 
+
+                }
+                    break;
+                case 2: 
+                    //bot raises
+                    int raiseAmount = botPlayerRaise(botPlayer, pot);
+                    pot.updateBetToContinue(raiseAmount, currentPlayer);
+                    currentPlayer.setPlayed(true);
+ 
+
+        }
+
+            boolean allPlayed = true;
+            //Checks if all players have played 
+            for (Player player : players) {
+                if (!player.getPlayed()) {
+                allPlayed = false;
+                break;
+                }
+            }
+            if (allPlayed) {
+                endRound(player); 
+                return;
+            }
         //JL added - 25/03/2024
         for(Player p : players){
+        
             if(ActivateRole.Result(deck, p)){
                 endRound(p);
                 return;
