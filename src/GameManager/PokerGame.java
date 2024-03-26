@@ -5,6 +5,8 @@ Jia Lin
 Last updated: 25/03/2024
 Kamiya: 26/03/2024
 Qns: Line 17 and 21: Please change the spelling or make it clearer i dont know what it's trying to say
+Added in method to Call botplayer's action. 
+Please check: PM me if you have questions.
 */
 package GameManager;
 import java.util.*;
