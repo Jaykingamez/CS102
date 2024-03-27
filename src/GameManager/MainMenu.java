@@ -26,9 +26,10 @@ public class MainMenu {
             int choice = Integer.parseInt(input);
             switch (choice) {
                 case 0:
-                    System.out.println("Starting the game...");
-                    GameManager gameManager = new GameManager();
-                    gameManager.gameStarted(playerName);
+                    System.out.println("Configuring the game...");
+                    gameConfig();
+                    
+                    
                     break;
                 case 1:
                     System.out.println("Creating a profile...");
@@ -39,6 +40,8 @@ public class MainMenu {
                     System.out.println("Exiting the game. Goodbye!");
                     exit = true;
                     break;
+                default:
+                    System.out.println("Incorrect input");
             }
         }
     }
@@ -56,6 +59,33 @@ public class MainMenu {
             playerName = input;
         }
         PlayerNameSaver.saveName(input);
+    }
+
+    public static void gameConfig(){
+        Scanner scanner = new Scanner(System.in);
+        int totalNumbers = 0;
+        int humanPlayers = 0;
+        int botPlayers = 0;
+        while (totalNumbers != 4){
+            try {
+                totalNumbers = 0;
+                System.out.println("Configure the number of players in the game, Max Players is 4");
+                System.out.println("How many human players are there?");
+                humanPlayers = scanner.nextInt();
+                System.out.println("How many AI players are there?");
+                botPlayers = scanner.nextInt();
+                totalNumbers = humanPlayers + botPlayers;
+                if (totalNumbers != 4){
+                    System.out.println("Insufficient players");
+                } else {
+                    System.out.println("There are " + humanPlayers + " humanPlayers and " + botPlayers + " botPlayers");
+                }
+            } catch (Exception e){
+                System.out.println("Incorrect input");
+            }
+        }
+        GameManager gameManager = new GameManager();
+        gameManager.gameStarted(playerName, humanPlayers, botPlayers);
     }
 }
 
