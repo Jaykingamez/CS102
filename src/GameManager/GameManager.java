@@ -6,7 +6,6 @@ Last Updated: 26/3/2024
 */
 package GameManager;
 import Entity.Game.*;
-import Entity.Utility.MusicPlayer;
 
 public class GameManager {
     private PokerGame game;
@@ -17,10 +16,6 @@ public class GameManager {
         Player bot2 = new Player("Player 3", new Hand(), null);
         Player bot3 = new Player("Player 4", new Hand(), null);
         Player[] players = new Player[]{player, bot1, bot2, bot3};
-        
-        // Plays music 
-        // MusicPlayer musicPlayer = new MusicPlayer("music/metal.mp3", false);
-        // musicPlayer.run();
 
         game = new PokerGame(players);
         game.startGame();
