@@ -7,11 +7,11 @@ package Entity.Game;
 
 import java.util.*;
 
-public class totalCombi implements Comparable<totalCombi> {
+public class TotalCombi implements Comparable<TotalCombi> {
     private ArrayList<Card> allCards;
     private Player player;
 
-    public totalCombi(Player p, River r) {
+    public TotalCombi(Player p, River r) {
         ArrayList<Card> totalCards = new ArrayList<>();
         Hand cards = p.getpHand();
         for (int i = 0; i < cards.getNumberOfCards(); i++) {
@@ -36,7 +36,7 @@ public class totalCombi implements Comparable<totalCombi> {
         return this.player;
     }
 
-    public int compareTo(totalCombi anotherPlayer) {
+    public int compareTo(TotalCombi anotherPlayer) {
         Map<Integer, Integer> ValuefrequencyMap1 = this.numSameValue();
         Map<Integer, Integer> ValuefrequencyMap2 = anotherPlayer.numSameValue();
 
