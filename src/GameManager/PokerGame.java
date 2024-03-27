@@ -112,7 +112,7 @@ public class PokerGame {
         if (currentPlayer instanceof BotPlayer) {
 
             BotPlayer botPlayer = (BotPlayer) currentPlayer; //casting current player to a botplayer objekct 
-            int action = botPlayerMoves(botPlayer, pot);
+            int action = BotMoves.botPlayerMoves(botPlayer, pot, this); //check botMoves class
 
             switch(action) {
 
@@ -136,7 +136,7 @@ public class PokerGame {
                     break;
                 case 2: 
                     //bot raises
-                    int raiseAmount = botPlayerRaise(botPlayer, pot);
+                    int raiseAmount = BotPlayerMoves.botPlayerRaise(botPlayer, pot);
                     pot.updateBetToContinue(raiseAmount, currentPlayer);
                     currentPlayer.setPlayed(true);
  
