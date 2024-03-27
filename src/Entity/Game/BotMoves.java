@@ -8,7 +8,7 @@ import GameManager.PokerGame;
 public class BotMoves {
     // JL added 24/03/2024
     // using the total combi class to gauge how much the AI will bet
-    public int botPlayerMoves(BotPlayer p, Pot pot, PokerGame game) {
+    public static int botPlayerMoves(BotPlayer p, Pot pot, PokerGame game) {
         totalCombi gauge = new totalCombi(p, game.river);
         Map<Integer, Integer> freqmap = gauge.numSameValue();
         int playerBets = pot.getBetToContinue();
@@ -87,7 +87,7 @@ public class BotMoves {
 
     // JL added 24/03/2024
     // only need to call this is bot raises
-    public int botPlayerRaise(BotPlayer p, Pot pot) {
+    public static int botPlayerRaise(BotPlayer p, Pot pot) {
         Random random = new Random();
         int randomBet = random.nextInt(301) + 50;
         return randomBet;
