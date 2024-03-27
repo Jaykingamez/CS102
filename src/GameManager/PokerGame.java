@@ -42,6 +42,9 @@ public class PokerGame {
     //JL added 24/03/2024
     //using the total combi class to gauge how much the AI will bet
     public int botPlayerMoves(BotPlayer p, Pot pot){
+        if (p == null || pot == null) {
+        throw new IllegalArgumentException("BotPlayer and Pot objects must not be null");
+    }
         totalCombi gauge = new totalCombi(p, this.river);
         Map<Integer ,Integer> freqmap = gauge.numSameValue();
         int playerBets = pot.getBetToContinue();
@@ -72,6 +75,9 @@ public class PokerGame {
             }
             
         }else if(gauge.getTier(freqmap) >= 1){
+            if (playerBets < 0) {
+        throw new IllegalArgumentException("Player bets cannot be negative");
+    }
             if(playerBets == 0){
                 // AI checks or raises
                 double bias = 0.4; // 40% chance of landing raise
@@ -93,6 +99,9 @@ public class PokerGame {
             }
         
         }else{
+            if (playerBets < 0) {
+        throw new IllegalArgumentException("Player bets cannot be negative");
+    }
             if(playerBets == 0){
                 // AI checks or raises
                 // AI raises or calls
@@ -160,7 +169,7 @@ public class PokerGame {
             player.getpHand().addCard(deck.dealCard());
             player.getpHand().addCard(deck.dealCard());
         
-
+            
             if (player.getAmount() < (pot.getBetToContinue() - pot.getPlayerBets().get(player))) {
                 pot.updateBetToContinuePoor(player.getAmount(), player);
                 //player.setAmount(player.getAmount() - player.getAmount());
@@ -196,6 +205,9 @@ public class PokerGame {
             BotPlayer botPlayer = (BotPlayer) currentPlayer; //casting current player to a botplayer objekct 
             int action = botPlayerMoves(botPlayer, pot);
 
+            if (action < 0 || action > 2) { //actions are represented as integers (e.g., 0 for fold, 1 for call, 2 for raise)
+            throw new IllegalArgumentException("Invalid action returned by botPlayerMoves");
+        }
             switch(action) {
 
                 case 0:
@@ -219,6 +231,9 @@ public class PokerGame {
                 case 2: 
                     //bot raises
                     int raiseAmount = botPlayerRaise(botPlayer, pot);
+                    if (raiseAmount < 0 || raiseAmount > currentPlayer.getAmount()) {
+            throw new IllegalArgumentException("Invalid raise amount");
+        }
                     pot.updateBetToContinue(raiseAmount, currentPlayer);
                     currentPlayer.setPlayed(true);
  
@@ -333,12 +348,13 @@ public class PokerGame {
                 oneAction = "call (" + (pot.getBetToContinue() - currentBet) + " chips)";
             }
 
-            System.out.println("1 to " + oneAction);
+            System.out.printlGn("1 to " + oneAction);
             if (!(oneAction.equals("all in"))) {
                 System.out.println("2 to raise");
             }
 
-            int input = scan.nextInt();
+             }
+                }int input = scan.nextInt();
             if (input == 0) {
                 currentPlayer.setPlayed(true);
                 currentPlayer.setFolded(true);
@@ -375,8 +391,7 @@ public class PokerGame {
                 for (Player player : players) {         //&& player not folded
                     if (player.getAmount() != currentBet && player.getFolded() == false) { //reset input for players that are still in the round
                         player.setPlayed(false); //miya: 25.3, could we use active instead to check if theyve folded
-                    }
-                }
+                   
             }
 
             boolean allPlayed = true;
