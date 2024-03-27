@@ -25,8 +25,8 @@ public class BotMoves {
                 // Generate a random number between 0 and 1
                 double randomNumber = random.nextDouble();
                 int result = (randomNumber < bias) ? 2 : 1;
-
                 return result;
+                
             } else {
                 // AI calls or raise
                 double bias = 0.8; // 80% chance of landing call
@@ -34,9 +34,25 @@ public class BotMoves {
                 // Generate a random number between 0 and 1
                 double randomNumber = random.nextDouble();
                 int result = (randomNumber < bias) ? 1 : 2;
-
                 return result;
             }
+
+            while (true) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter 1 to call or 2 to raise: ");
+        if (scanner.hasNextInt()) {
+            int choice = scanner.nextInt();
+            if (choice == 1 || choice == 2) {
+                return choice;
+            } else {
+                System.out.println("Invalid input. Please enter 1 to call or 2 to raise.");
+            }
+        } else {
+            System.out.println("Invalid input. Please enter 1 to call or 2 to raise.");
+            scanner.next(); // Clear the invalid input
+        }
+    }
+}
 
         } else if (gauge.getTier(freqmap) >= 1) {
             if (playerBets == 0) {
@@ -58,32 +74,54 @@ public class BotMoves {
 
                 return result;
             }
-
-        } else {
-            if (playerBets == 0) {
-                // AI checks or raises
-                // AI raises or calls
-                double bias = 0.5; // 50% chance of landing fold
-
-                // Generate a random number between 0 and 1
-                double randomNumber = random.nextDouble();
-
-                // Simulate coin flip based on bias
-                int result = (randomNumber < bias) ? 0 : 1;
-
-                return result;
+    while (true) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter 0 to fold or 1 to call: ");
+            if (scanner.hasNextInt()) {
+                int choice = scanner.nextInt();
+                if (choice == 0 || choice == 1) {
+                    return choice;
+                } else {
+                    System.out.println("Invalid input. Please enter 0 to fold or 1 to call.");
+                }
             } else {
-                // AI folds or call
-                double bias = 0.5; // 50% chance of landing call
+                System.out.println("Invalid input. Please enter 0 to fold or 1 to call.");
+                scanner.next(); // Clear the invalid input
+            }
+        }
 
-                // Generate a random number between 0 and 1
-                double randomNumber = random.nextDouble();
-                int result = (randomNumber < bias) ? 1 : 0;
+        }else {
+    if (playerBets == 0) {
+        // AI checks or raises
+        // AI raises or calls
+        double bias = 0.5; // 50% chance of landing fold
 
-                return result;
+        // Generate a random number between 0 and 1
+        double randomNumber = random.nextDouble();
+
+        // Simulate coin flip based on bias
+        int result = (randomNumber < bias) ? 0 : 1;
+
+        return result;
+    } else {
+        // Input validation loop
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter 0 to fold or 1 to call: ");
+            if (scanner.hasNextInt()) {
+                int choice = scanner.nextInt();
+                if (choice == 0 || choice == 1) {
+                    return choice;
+                } else {
+                    System.out.println("Invalid input. Please enter 0 to fold or 1 to call.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter 0 to fold or 1 to call.");
+                scanner.next(); // Clear the invalid input
             }
         }
     }
+}
 
     // JL added 24/03/2024
     // only need to call this is bot raises
