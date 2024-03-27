@@ -16,12 +16,12 @@ public class Round {
     int currentPhase = 0; // poker game phase index
     int numOfFolds = 0; // number of players folded
     String displayCards = "";
-    Player[] players;
+    ArrayList<Player> players;
     boolean bankrupted = false;
     PokerGame game;
-    Player[] roundResult;
+    ArrayList<Player> roundResult;
 
-    public Round(Player[] players, PokerGame game) {
+    public Round(ArrayList<Player> players, PokerGame game) {
         this.players = players;
         this.game = game;
     }
@@ -35,7 +35,7 @@ public class Round {
                 p.setRole(new Role());
             }
         }
-        pot = new Pot(Arrays.asList(players));
+        pot = new Pot(players);
         deck = new Deck();
         deck.shuffle();
 
@@ -60,8 +60,8 @@ public class Round {
         numOfFolds = 0;
         displayCards = "";
         currentIndex = firstPlayerIndex;
-        currentPlayer = players[currentIndex];
-        roundResult = new Player[] {};
+        currentPlayer = players.get(currentIndex);
+        roundResult = new ArrayList<Player>();
         river = new River(new ArrayList<Card>());
         System.out.println("DEBUG LINE: ROUND SUCCESSFULLY STARTED");
         beforeTurnStarts();
@@ -163,11 +163,11 @@ public class Round {
                 enterContinue(scan);
                 currentPlayer.setPlayed(true);
                 currentIndex++;
-                if (currentIndex == players.length) { // equals num of players
+                if (currentIndex == players.size()) { // equals num of players
                     currentIndex = 0;
                 }
 
-                currentPlayer = players[currentIndex];
+                currentPlayer = players.get(currentIndex);
                 //number of all ins and folds
                 int numOfAlls = 0;
                 for (Player player : players) {
@@ -175,7 +175,7 @@ public class Round {
                         numOfAlls++;
                     }
                 }
-                if (numOfAlls == players.length) {
+                if (numOfAlls == players.size()) {
                     while (river.getRiver().size() < 5) {
                         river.getRiver().add(deck.dealCard());
                     }
@@ -193,11 +193,11 @@ public class Round {
                 System.out.println("Folded, press enter to continue");
                 enterContinue(scan);
                 currentIndex++;
-                if (currentIndex == players.length) { // equals num of players
+                if (currentIndex == players.size()) { // equals num of players
                     currentIndex = 0;
                 }
 
-                currentPlayer = players[currentIndex];
+                currentPlayer = players.get(currentIndex);
                 startTurn();
             } else if (currentPlayer.getPlayed() == false) { // player has to take an action
                 enterContinue(scan);
@@ -240,10 +240,10 @@ public class Round {
 
                     System.out.println(currentPlayer.getName() + " folded");
 
-                    if (numOfFolds == players.length - 1) { // everyone but 1 person folded, end the round
+                    if (numOfFolds == players.size() - 1) { // everyone but 1 person folded, end the round
                         int index = 0;
-                        for (int i = 0; i < players.length; i++) {
-                            if (players[i].getFolded() == false) {
+                        for (int i = 0; i < players.size(); i++) {
+                            if (players.get(i).getFolded() == false) {
                                 index = i;
                                 break;
                             }
@@ -251,7 +251,7 @@ public class Round {
                         // deducts the bet amt from their money
                         pot.endTurnPot();
                         // then award the non folded player the whole pot
-                        endRound(players[index]);
+                        endRound(players.get(index));
                         return; // round has ended, dont handle for next turns;
                     }
                 } else if (input == 1) {
@@ -301,11 +301,11 @@ public class Round {
                 if (allPlayed == false) {
                     // handling for next turn
                     currentIndex++;
-                    if (currentIndex == players.length) { // equals num of players
+                    if (currentIndex == players.size()) { // equals num of players
                         currentIndex = 0;
                     }
 
-                    currentPlayer = players[currentIndex];
+                    currentPlayer = players.get(currentIndex);
                     startTurn();
                     return;
                 } else {
@@ -334,11 +334,11 @@ public class Round {
             showDown();
         } else {
             currentIndex++;
-            if (currentIndex == players.length) { // equals num of players
+            if (currentIndex == players.size()) { // equals num of players
                 currentIndex = 0;
             }
 
-            currentPlayer = players[currentIndex];
+            currentPlayer = players.get(currentIndex);
 
             for (Player player : players) {
                 // reset Played state for players who are not all in or folded

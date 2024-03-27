@@ -32,7 +32,7 @@ public class PokerGame {
     //boolean bankrupted = false; //if player has no more money in their balance- they can't continue playing.
     String displayCards = "";
 
-    public PokerGame(Player[] players) {
+    public PokerGame(ArrayList<Player> players) {
         this.players = players;
     }
 

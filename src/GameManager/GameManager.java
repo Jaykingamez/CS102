@@ -13,7 +13,7 @@ public class GameManager {
     private PokerGame game;
 
     public void gameStarted(String playerName, int humanPlayers, int botPlayers) {
-        List<Player> players = new ArrayList<>();
+        ArrayList<Player> players = new ArrayList<>();
         for (int i = 0; i < humanPlayers; i++){
             players.add(new Player(playerName + i, new Hand(), null));
         }
@@ -22,7 +22,7 @@ public class GameManager {
             players.add(new BotPlayer("Bot " + i, new Hand()));
         }
 
-        game = new PokerGame(players.toArray(new Player[0]));
+        game = new PokerGame(players);
         game.startGame();
     }
 
