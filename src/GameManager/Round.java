@@ -202,13 +202,6 @@ public class Round {
             } else if (currentPlayer.getPlayed() == false) { // player has to take an action
                 enterContinue(scan);
 
-                printHand(currentPlayer);
-                System.out.println();
-
-                // input handling, can replace with UI later
-                System.out.println("Input: ");
-                System.out.println("0 to Fold");
-
                 if (currentBet == pot.getBetToContinue()) { // no one has raised yet
                     oneAction = "check";
                 } else if (currentPlayer.getAmount() <= pot.getBetToContinue()) { // if cannot afford to call/raise
@@ -217,11 +210,20 @@ public class Round {
                     oneAction = "call (" + (pot.getBetToContinue() - currentBet) + " dollars)";
                 }
 
-                System.out.println("1 to " + oneAction);
-                if (!(oneAction.equals("all in"))) {
-                    System.out.println("2 to raise");
+                if (!(currentPlayer instanceof BotPlayer)) {
+                    printHand(currentPlayer);   
+                    System.out.println();
+
+                    // input handling, can replace with UI later
+                    System.out.println("Input: ");
+                    System.out.println("0 to Fold");
+
+                    System.out.println("1 to " + oneAction);
+                    if (!(oneAction.equals("all in"))) {
+                        System.out.println("2 to raise");
+                    }
+                    System.out.println("3 to exit");
                 }
-                System.out.println("3 to exit");
 
                 //JL added this part
                 int input;
@@ -263,7 +265,6 @@ public class Round {
 
                         if (currentPlayer instanceof BotPlayer) {
                             System.out.print(currentPlayer.getName() + " went All In! ");
-                            enterContinue(scan);
                         }
 
                     } else if (oneAction.substring(0, 4).equals("call")) {
@@ -271,14 +272,20 @@ public class Round {
 
                         if (currentPlayer instanceof BotPlayer) {
                             System.out.print(currentPlayer.getName() + " Called, ");
-                            enterContinue(scan);
                         }
+                    } else {
+                        if (currentPlayer instanceof BotPlayer) {
+                            System.out.print(currentPlayer.getName() + " Checked, ");
+                        }
+                    }
+
+                    if (currentPlayer instanceof BotPlayer) {
+                        enterContinue(scan);
                     }
 
                     currentPlayer.setPlayed(true);
 
                 } else if (input == 2) {
-                    System.out.println("input raise amount (excluding call amt)");
                     int raise = 0;
                     //JL added this part
                     if(currentPlayer instanceof BotPlayer){
@@ -286,6 +293,7 @@ public class Round {
                         System.out.println(currentPlayer.getName() + " Raised " + raise + " dollars, ");
                         enterContinue(scan);
                     }else{
+                        System.out.println("input raise amount (excluding call amt)");
                         raise = scan.nextInt();
                     }
                     pot.updateBetToContinue(raise, currentPlayer);
@@ -366,6 +374,7 @@ public class Round {
     // JL added 24/03/2024
     // overlap with end round pls change accordingly
     public void showDown() {
+        clearTerminal();
         // handle showdown here, compare hand values with flop river and turn
         ArrayList<totalCombi> combinations = new ArrayList<>();
         for (Player p : players) {
@@ -384,6 +393,27 @@ public class Round {
             }
         }
 
+        System.out.println("Community Cards: " + river.getRiver().get(0) + ", " 
+        +  river.getRiver().get(1) + ", " 
+        + river.getRiver().get(2) + ", " 
+        + river.getRiver().get(3) + ", " 
+        + river.getRiver().get(4));
+
+        for (totalCombi combi : combinations) {
+            Hand hand = combi.getPlayer().getpHand();
+            System.out.println(combi.getPlayer().getName() + "\'s Hand - " 
+            + hand.getCard(0) + ", "
+            + hand.getCard(1));
+
+            Map<Integer, Integer> ValuefrequencyMap = combi.numSameValue();
+            int tier = combi.getTier(ValuefrequencyMap);
+            String combination = getCombination(tier);
+            
+            System.out.println("Value: " + combination);
+            System.out.println();
+        }
+
+        enterContinue(scan);
         // possible to have error?
         /*
          * System.out.println();
@@ -405,6 +435,7 @@ public class Round {
         int winAmt = pot.getTotalPot() / winner.length;
         for (Player p : winner) {
             p.addAmount(winAmt);
+            System.out.println(p.getName() + " won " + winAmt + " dollars!");
         }
 
         HashMap<String, Integer> results = new HashMap<String, Integer>();
@@ -435,6 +466,47 @@ public class Round {
         System.out.println(player.getName() + "\'s cards: ");
         System.out.println(player.getpHand().getCard(0));
         System.out.println(player.getpHand().getCard(1));
+    }
+
+    public String getCombination(int tier) {
+        // 0 - normal hand, 1 - pair, 2 - doublePair, 3 - three of a kind
+        // 4 - straight, 5 - flush, 6 - full house, 7 - four of a kind
+        // 8 - straight flush, 9 - royal flush
+        String combination = "";
+        switch(tier) {
+            case 0:
+                combination = "0 - High Card";
+                break;
+            case 1:
+                combination = "1 - One Pair";
+                break;
+            case 2:
+                combination = "2 - Two Pair";
+                break;
+            case 3:
+                combination = "3 - Three of a Kind";
+                break;
+            case 4:
+                combination = "4 - Straight";
+                break;
+            case 5:
+                combination = "5 - Flush";
+                break;
+            case 6:
+                combination = "6 - Full House";
+                break;
+            case 7:
+                combination = "7 - Four of a Kind";
+                break;
+            case 8:
+                combination = "8 - Straight Flush";
+                break;
+            case 9:
+                combination = "9 - Royal Flush";
+                break;
+        }
+
+        return combination;
     }
 
     public void clearTerminal() {
