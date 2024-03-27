@@ -157,22 +157,15 @@ public class Round {
                 }
 
                 currentPlayer = players[currentIndex];
+                //number of all ins and folds
                 int numOfAlls = 0;
                 for (Player player : players) {
-                    if (player.getAmount() == currentBet) {
+                    if (player.getFolded() == true || player.getAmount() == currentBet) {
                         numOfAlls++;
                     }
                 }
-                if (numOfAlls == 4) {
-                    if (currentPhase < 1) {
-                        river.getRiver().add(deck.dealCard());
-                        river.getRiver().add(deck.dealCard());
-                        river.getRiver().add(deck.dealCard());
-                    }
-                    if (currentPhase < 2) {
-                        river.getRiver().add(deck.dealCard());
-                    }
-                    if (currentPhase < 3) {
+                if (numOfAlls == players.length) {
+                    while (river.getRiver().size() < 5) {
                         river.getRiver().add(deck.dealCard());
                     }
                     System.out.println("Community Cards: "
