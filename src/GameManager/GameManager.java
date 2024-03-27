@@ -12,9 +12,9 @@ public class GameManager {
 
     public void gameStarted(String playerName) {
         Player player = new Player(playerName, new Hand(), null);
-        Player bot1 = new Player("Player 2", new Hand(), null);
-        Player bot2 = new Player("Player 3", new Hand(), null);
-        Player bot3 = new Player("Player 4", new Hand(), null);
+        Player bot1 = new BotPlayer("Player 2", new Hand());
+        Player bot2 = new BotPlayer("Player 3", new Hand());
+        Player bot3 = new BotPlayer("Player 4", new Hand());
         Player[] players = new Player[]{player, bot1, bot2, bot3};
 
         game = new PokerGame(players);
