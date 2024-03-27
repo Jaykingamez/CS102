@@ -11,7 +11,7 @@ public class ActivateRole {
 
     public static boolean Result(Deck currentDeck, Player p){
         //rules of the King is that they draw a card at the begining of the turn and try to guess it if the guess it correctly they win the game
-        if((p.getPRole().getRoleName()) == "King"){
+        if((p.getPRole().getRoleName()).equals("King")){
 
             int suitGuess;
             //do while loop for repeated asking of player's input if they do not input 0/1/2/3
@@ -54,7 +54,7 @@ public class ActivateRole {
 
         //rules of jester: draw a card at the beginning of the turn and if all 3 cards add up to less than 10
         //they win the game
-        if((p.getPRole().getRoleName()) == "Jester"){
+        if((p.getPRole().getRoleName()).equals("Jester")){
             Card newCard = currentDeck.dealCard();
             int sum = 0;
             List<Card> currentHand = p.getpHand().getHand();
