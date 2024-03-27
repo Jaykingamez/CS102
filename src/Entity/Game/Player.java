@@ -80,5 +80,9 @@ public class Player {
         return this.money==0;
     }
 
+    public void setRole(Role pRole){
+        this.pRole = pRole;
+    }
+
 
 }
