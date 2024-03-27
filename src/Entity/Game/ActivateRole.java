@@ -4,7 +4,7 @@ Last updated: 21/03/2024
 */
 
 /*
-Comments from Miya 
+Miya 
 24/03/2024
 */
 package Entity.Game;
@@ -12,8 +12,6 @@ import java.util.*;;
 
 public class ActivateRole {
 
-//I thinkt he next int read might throw an exception if a non number is input so im adding an exception
-    // place this at the start of each turn after dealing the first card
     public static boolean Result(Deck currentDeck, Player p){
         //rules of the King is that they draw a card at the begining of the turn and try to guess it if the guess it correctly they win the game
         if((p.getPRole().getRoleName()) == "King"){
@@ -58,7 +56,6 @@ public class ActivateRole {
         }
 
         //rules of jester: draw a card at the beginning of the turn and if all 3 cards add up to less than 10
-        //Im thinking about implementing a cheat code soemhat for the jester to demonstrate each of the hands? Because if not itll be hard to test whether e verhything works for each hand
         //they win the game
         if((p.getPRole().getRoleName()) == "Jester"){
             Card newCard = currentDeck.dealCard();
@@ -76,17 +73,3 @@ public class ActivateRole {
     }
 }
 
-// converting the option to corresponding suit in string
-            // String suitGuess;
-            // switch(suitOption) {
-            //     case 1:
-            //         suitGuess = "diamond";
-            //       break;
-            //     case 2:
-            //         suitGuess = "club";
-            //       break;
-            //     case 3:
-            //         suitGuess = "clover";
-            //     default:
-            //         suitGuess = "heart";
-            //   }
