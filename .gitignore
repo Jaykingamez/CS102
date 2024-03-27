@@ -1,1 +1,5 @@
 classes/*
+classes/Entity/Data/*
+classes/Entity/Game/*
+classes/Entity/Utility/*
+classes/GameManager/*
