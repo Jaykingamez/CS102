@@ -179,30 +179,42 @@ public class Round {
                     oneAction = "call (" + (pot.getBetToContinue() - currentBet) + " dollars)";
                 }
 
+                boolean validInput = true;
                 if (!(currentPlayer instanceof BotPlayer)) {
+                    validInput = false;
                     printHand(currentPlayer);   
                     System.out.println();
 
-                    // input handling, can replace with UI later
-                    System.out.println("Input: ");
-                    System.out.println("0 to Fold");
-
-                    System.out.println("1 to " + oneAction);
-                    if (!(oneAction.equals("all in"))) {
-                        System.out.println("2 to raise");
-                    }
-                    System.out.println("3 to exit");
+                    printPrompt();
                 }
 
                 //JL added this part
-                int input;
+                int input = -1;
                 // instance here so botPlayer can call raise method later
                 BotPlayer botPlayer = null;
                 if(currentPlayer instanceof BotPlayer){
                     botPlayer = (BotPlayer) currentPlayer; // casting current player to a botplayer objekct
                     input = BotMoves.botPlayerMoves(botPlayer, pot, this); // check botMoves class
                 }else{
-                     input = scan.nextInt();
+                    while (!validInput) { //validate user option select
+                        try {
+                            input = scan.nextInt();
+                        } catch (InputMismatchException e) {
+                            System.out.println("Invalid Input! (Choose 0, 1, 2 or 3)");
+                            System.out.println();
+                            printPrompt();
+                            scan.nextLine();
+                        } 
+
+                        if (input == 0 || input == 1 || input == 2 || input == 3) {
+                            validInput = true;
+                        } else {
+                            System.out.println("Invalid Input! (Choose 0, 1, 2 or 3)");
+                            System.out.println();
+                            printPrompt();
+                            scan.nextLine();
+                        }
+                    }
                 }
                 if (input == 0) {
                     currentPlayer.setPlayed(true);
@@ -262,8 +274,29 @@ public class Round {
                         System.out.println(currentPlayer.getName() + " Raised " + raise + " dollars, ");
                         enterContinue(scan);
                     }else{
-                        System.out.println("input raise amount (excluding call amt)");
-                        raise = scan.nextInt();
+                        boolean validRaise = false;
+                        while(!validRaise) {
+                            try {
+                                System.out.println("input raise amount (excluding call amount)");
+                                raise = scan.nextInt();
+                            } catch (InputMismatchException e) {
+                                System.out.println("Invalid Raise! (Enter an Integer)");
+                                System.out.println();
+                                scan.nextLine();
+                                raise = 0;
+                                continue; //this prevents double "Invalid Raise!" posting
+                            }
+
+                            // raise more than 0 and less/equal to what player can afford to raise
+                            if (raise > 0 && raise <= currentPlayer.getAmount() - currentBet) {
+                                validRaise = true;
+                            } else {
+                                System.out.println("Invalid Raise! (Raise must be in valid range; Remember that raise amount excludes call amount)");
+                                System.out.println();
+                                scan.nextLine();
+                                raise = 0;
+                            }
+                        }
                     }
                     pot.updateBetToContinue(raise, currentPlayer);
                     currentPlayer.setPlayed(true); // in the case of raised all-in
@@ -425,6 +458,17 @@ public class Round {
         System.out.println(player.getName() + "\'s cards: ");
         System.out.println(player.getpHand().getCard(0));
         System.out.println(player.getpHand().getCard(1));
+    }
+
+    public void printPrompt() {
+        System.out.println("Input: ");
+        System.out.println("0 to Fold");
+
+        System.out.println("1 to " + oneAction);
+        if (!(oneAction.equals("all in"))) {
+            System.out.println("2 to raise");
+        }
+        System.out.println("3 to exit");
     }
 
     public String getCombination(int tier) {
