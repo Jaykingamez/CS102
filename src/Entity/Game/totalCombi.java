@@ -3,14 +3,6 @@
  * Last change: 24/03/2024
  */
 
-/*
-miya: maybe we can implement the test hands directly in here. 
-
-Test 1: Jester 
-Test 2: King + Dummy player
-Test 3: Winning hand for ROyal flush, Straight Flush, Straight, Full House.. etc
-
-*/
 package Entity.Game;
 
 import java.util.*;
@@ -308,35 +300,6 @@ public class totalCombi implements Comparable<totalCombi> {
             valueArr[i] = handValues.get(i);
         }
 
-        // bubble sort
-        /*
-    m- can consider using collections.sort instead?
-    Also it seems ace is generlaly considerred a HIGH and our current implementation only uses it as a low card...
-    Collections.sort(handValues);
-
-        int consecutiveCount = 0;
-        for (int i = 0; i < handValues.size() - 1; i++) {
-            if (handValues.get(i + 1) - handValues.get(i) == 1) {
-                consecutiveCount++;
-                if (consecutiveCount == 4) {
-                    return true; // Found a straight
-                }
-            } else if (handValues.get(i + 1) != handValues.get(i)) {
-                consecutiveCount = 0; // Reset count if not consecutive or a pair
-            }
-        }
-        // Special case: check Ace as 14 and 1
-        if (handValues.contains(1) && handValues.contains(13)) {
-            if (handValues.contains(2) || handValues.contains(12)) {
-                return true; // Ace can form a straight with 2 and 3, or with King and Queen
-            }
-        }
-        return false; // No straight found
-    }
-        
-
-
-        */
         int n = valueArr.length;
         if(n < 5){
             return false;
