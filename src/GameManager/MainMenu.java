@@ -78,7 +78,7 @@ public class MainMenu {
                 System.out.println("How many AI players are there?");
                 botPlayers = scanner.nextInt();
                 totalNumbers = humanPlayers + botPlayers;
-                if (totalNumbers != 4){
+                if (totalNumbers > 4 || totalNumbers < 2){
                     System.out.println("Insufficient players");
                 } else {
                     System.out.println("There are " + humanPlayers + " humanPlayers and " + botPlayers + " botPlayers");
