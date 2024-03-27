@@ -426,7 +426,7 @@ public class Round {
         clearTerminal();
         int winAmt = pot.getTotalPot() / winner.length;
         for (Player p : winner) {
-            System.out.println(p.getName() + " has won " + winAmt + "dollars!"); 
+            System.out.println(p.getName() + " has won " + winAmt + " dollars!"); 
             p.addAmount(winAmt);
         }
 
@@ -436,17 +436,22 @@ public class Round {
             player.getpHand().discardHand();
 
             results.put(player.getName(), player.getAmount());
-            if (player.getAmount() == 0) {
-                bankrupted = true;
+            if (player != players.get(0)) {
+                if (player.getAmount() == 0) {
+                    players.remove(player);
+                }
             }
         }
 
         enterContinue(scan);
 
-        if (bankrupted) {
+        if (players.get(0).getAmount() == 0 || players.size() == 1) {
             game.postGame(results);           
         } else {
             firstPlayerIndex++;
+            if (firstPlayerIndex == players.size()) {
+                firstPlayerIndex = 0;
+            }
             startRound();
         }
     }
