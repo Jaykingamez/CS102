@@ -8,6 +8,7 @@ public class MainMenu {
 
     public static String playerName = "Player";
     public static boolean exit = false;
+    public static boolean gameConfigured = false;
 
     
     public static void main(String[] args) {
@@ -68,7 +69,7 @@ public class MainMenu {
         int totalNumbers = 0;
         int humanPlayers = 0;
         int botPlayers = 0;
-        while (totalNumbers != 4){
+        while (!gameConfigured){
             try {
                 totalNumbers = 0;
                 System.out.println("Configure the number of players in the game, Max Players is 4");
@@ -81,6 +82,7 @@ public class MainMenu {
                     System.out.println("Too many or too little players!");
                 } else {
                     System.out.println("There are " + humanPlayers + " humanPlayers and " + botPlayers + " botPlayers");
+                    gameConfigured = true;
                 }
             } catch (Exception e){
                 System.out.println("Incorrect input, please try again.");
