@@ -17,7 +17,7 @@ import Entity.Game.*;
 
 public class PokerGame {
     Deck deck;
-    Player[] players; //reference to players to saMoneyta after game
+    ArrayList<Player> players; //reference to players to saMoneyta after game
     Scanner scan = new Scanner(System.in);
     Pot pot;
     River river; //JL added 24/03/2024
