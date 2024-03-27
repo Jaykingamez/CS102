@@ -232,7 +232,9 @@ public class Round {
                                 break;
                             }
                         }
-
+                        // deducts the bet amt from their money
+                        pot.endTurnPot();
+                        // then award the non folded player the whole pot
                         endRound(players[index]);
                         return; // round has ended, dont handle for next turns;
                     }
