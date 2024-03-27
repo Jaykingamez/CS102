@@ -97,10 +97,18 @@ public class Round {
     public void startTurn() {
         clearTerminal();
 
-        if (!(currentPlayer instanceof BotPlayer)) {
-            System.out.println(currentPlayer.getPRole().getRoleDescription() + ": "
-                    + currentPlayer.getPRole().getRoleDescription());
+        if(!(currentPlayer instanceof BotPlayer)){
+            System.out.println(currentPlayer.getPRole().getRoleName() + ": " + currentPlayer.getPRole().getRoleDescription());
+
+            conditionMet = Result(deck, currentPlayer);
+
+            if(conditionMet == true){
+                endRound(currentPlayer);
+            }
         }
+
+        
+       
 
         int currentBet = pot.getPlayerBets().get(currentPlayer);
 
