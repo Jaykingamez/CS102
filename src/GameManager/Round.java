@@ -103,6 +103,7 @@ public class Round {
             boolean conditionMet = ActivateRole.Result(deck, currentPlayer);
 
             if(conditionMet == true){
+                System.out.print("Success in meeting conditions!");
                 endRound(currentPlayer);
             }
         }
