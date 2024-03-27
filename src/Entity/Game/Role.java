@@ -1,11 +1,8 @@
 /* 
 Jia Lin
 Last edit: 21/03/2024
-*/
-/*
 Kamiya 
 Last edit: 25/3/2024
-Added roleforcer for debugging.
 */
 
 package Entity.Game;
@@ -63,6 +60,11 @@ public class Role {
     }
 
     public void forceRole(int roleNum){
+             
+        
+
+        //for implementing a role on testing a particular dummy hand.
+        //input 1 to force king, 2 for jester, 0 for citizen 
     
         if(roleNum == 1){
             roleName = "King";
@@ -84,11 +86,7 @@ public class Role {
             System.out.println("description:" + roleDescription);
         }
 
-     
-        
 
-        //for implementing a role ona  particular dummy hand.
-        //input 1 to force king, 2 for jester, 0 for citizen 
     }
 
 }
