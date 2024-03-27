@@ -154,12 +154,12 @@ public class Round {
                 System.out.println();
             }
 
-            System.out.println(currentPlayer.getName() + "\'s chips: " + currentPlayer.getAmount());
+            System.out.println(currentPlayer.getName() + "\'s money: " + currentPlayer.getAmount());
             System.out.println(currentPlayer.getName() + "\'s current bet: " + currentBet);
 
             if (currentBet == currentPlayer.getAmount()
                     || (currentPlayer.getAmount() == 0 && currentPlayer.getPlayed() == true)) {
-                System.out.println("All in, press enter to continue");
+                System.out.print(currentPlayer.getName() + " All in, ");
                 enterContinue(scan);
                 currentPlayer.setPlayed(true);
                 currentIndex++;
@@ -190,7 +190,7 @@ public class Round {
                     startTurn();
                 }
             } else if (currentPlayer.getFolded() == true) {
-                System.out.println("Folded, press enter to continue");
+                System.out.print(currentPlayer.getName() + " Folded, ");
                 enterContinue(scan);
                 currentIndex++;
                 if (currentIndex == players.size()) { // equals num of players
@@ -214,7 +214,7 @@ public class Round {
                 } else if (currentPlayer.getAmount() <= pot.getBetToContinue()) { // if cannot afford to call/raise
                     oneAction = "all in";
                 } else {
-                    oneAction = "call (" + (pot.getBetToContinue() - currentBet) + " chips)";
+                    oneAction = "call (" + (pot.getBetToContinue() - currentBet) + " dollars)";
                 }
 
                 System.out.println("1 to " + oneAction);
@@ -238,7 +238,10 @@ public class Round {
                     currentPlayer.setFolded(true);
                     numOfFolds++;
 
-                    System.out.println(currentPlayer.getName() + " folded");
+                    if (currentPlayer instanceof BotPlayer) {
+                        System.out.print(currentPlayer.getName() + " Folded, ");
+                        enterContinue(scan);
+                    }
 
                     if (numOfFolds == players.size() - 1) { // everyone but 1 person folded, end the round
                         int index = 0;
@@ -257,11 +260,19 @@ public class Round {
                 } else if (input == 1) {
                     if (oneAction.equals("all in")) {
                         pot.updateBetToContinuePoor(currentPlayer.getAmount(), currentPlayer);
-                        System.out.println(currentPlayer.getName() + " went all in!");
+
+                        if (currentPlayer instanceof BotPlayer) {
+                            System.out.print(currentPlayer.getName() + " went All In! ");
+                            enterContinue(scan);
+                        }
 
                     } else if (oneAction.substring(0, 4).equals("call")) {
                         pot.updateBetToContinue(currentPlayer);
-                        System.out.println(currentPlayer.getName() + " called");
+
+                        if (currentPlayer instanceof BotPlayer) {
+                            System.out.print(currentPlayer.getName() + " Called, ");
+                            enterContinue(scan);
+                        }
                     }
 
                     currentPlayer.setPlayed(true);
@@ -272,7 +283,8 @@ public class Round {
                     //JL added this part
                     if(currentPlayer instanceof BotPlayer){
                         raise = BotMoves.botPlayerRaise(botPlayer, pot);
-                        System.out.println(currentPlayer.getName() + " raised " + raise);
+                        System.out.println(currentPlayer.getName() + " Raised " + raise + " dollars, ");
+                        enterContinue(scan);
                     }else{
                         raise = scan.nextInt();
                     }
