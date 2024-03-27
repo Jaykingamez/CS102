@@ -1,6 +1,7 @@
 /*
 Jialin + Miya 
 Last edit: 25/3/2024
+denxi:27/3 736pm
 */
 
 package Entity.Game;
@@ -35,7 +36,20 @@ public class Action {
     public void raise(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Input amount to raise: ");
-        int raiseAmt = sc.nextInt();
+        // Validate input
+        int raiseAmt;
+        while (true) {
+            if (sc.hasNextInt()) {
+                raiseAmt = sc.nextInt();
+                break;
+            } else {
+                System.out.println("Your input is not a valid number. Please try again.");
+                sc.next(); // Clear the invalid input
+            }
+        }
+
+        thisPot.updateBetToContinue(raiseAmt, thisPlayer);
+    }
         
         thisPot.updateBetToContinue(raiseAmt, thisPlayer);
     }
