@@ -8,6 +8,7 @@ public class MainMenu {
 
     public static String playerName = "Player";
     public static boolean exit = false;
+    public static boolean gameConfigured = false;
 
     
     public static void main(String[] args) {
@@ -36,7 +37,6 @@ public class MainMenu {
                 case 1:
                     System.out.println("Creating a profile...");
                     createProfile();
-                    // Add profile creation logic here
                     break;
                 case 2:
                     System.out.println("Exiting the game. Goodbye!");
@@ -69,7 +69,7 @@ public class MainMenu {
         int totalNumbers = 0;
         int humanPlayers = 0;
         int botPlayers = 0;
-        while (totalNumbers != 4){
+        while (!gameConfigured){
             try {
                 totalNumbers = 0;
                 System.out.println("Configure the number of players in the game, Max Players is 4");
@@ -78,13 +78,15 @@ public class MainMenu {
                 System.out.println("How many AI players are there?");
                 botPlayers = scanner.nextInt();
                 totalNumbers = humanPlayers + botPlayers;
-                if (totalNumbers != 4){
-                    System.out.println("Insufficient players");
+                if (totalNumbers > 4 || totalNumbers < 2){
+                    System.out.println("Too many or too little players!");
                 } else {
                     System.out.println("There are " + humanPlayers + " humanPlayers and " + botPlayers + " botPlayers");
+                    gameConfigured = true;
                 }
             } catch (Exception e){
-                System.out.println("Incorrect input");
+                System.out.println("Incorrect input, please try again.");
+                gameConfig();
             }
         }
         GameManager gameManager = new GameManager();

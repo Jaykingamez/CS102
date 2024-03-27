@@ -14,10 +14,10 @@ public class PlayerNameSaver {
         if (!isPlayerNameExists(name, filePath)) {
             // If it doesn't exist, write the new player name to the text file
             writePlayerName(name, filePath);
-            System.out.println("New player name '" + name + "' added to " + filePath);
+            System.out.println("New player name '" + name + "' added to database!");
         } else {
             // If it exists, do nothing
-            System.out.println("Player name '" + name + "' already exists in " + filePath);
+            System.out.println("Player name '" + name + "' already exists!");
         }
     }
 
