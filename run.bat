@@ -1,1 +1,1 @@
-java -cp lib/*;classes Test
+java -cp lib/*;classes GameManager.MainMenu
