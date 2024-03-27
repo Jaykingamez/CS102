@@ -3,12 +3,12 @@ package Entity.Game;
 import java.util.Map;
 import java.util.Random;
 
-import GameManager.PokerGame;
+import GameManager.Round;
 
 public class BotMoves {
     // JL added 24/03/2024
     // using the total combi class to gauge how much the AI will bet
-    public static int botPlayerMoves(BotPlayer p, Pot pot, PokerGame game) {
+    public static int botPlayerMoves(BotPlayer p, Pot pot, Round game) {
         totalCombi gauge = new totalCombi(p, game.river);
         Map<Integer, Integer> freqmap = gauge.numSameValue();
         int playerBets = pot.getBetToContinue();
