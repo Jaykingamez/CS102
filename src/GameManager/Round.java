@@ -76,38 +76,38 @@ public class Round {
         // replace scanning and printing with actual UI
         // TODO: handle every player has played thru currentPlayer.playedTurn
         clearTerminal();
-        if (currentPlayer instanceof BotPlayer) {
+        // if (currentPlayer instanceof BotPlayer) {
 
-            BotPlayer botPlayer = (BotPlayer) currentPlayer; // casting current player to a botplayer objekct
-            int action = BotMoves.botPlayerMoves(botPlayer, pot, this); // check botMoves class
+        //     BotPlayer botPlayer = (BotPlayer) currentPlayer; // casting current player to a botplayer objekct
+        //     int action = BotMoves.botPlayerMoves(botPlayer, pot, this); // check botMoves class
 
-            switch (action) {
+        //     switch (action) {
 
-                case 0:
-                    // if bot folds
-                    currentPlayer.setPlayed(true);
-                    currentPlayer.setFolded(true);
-                    numOfFolds++;
-                    break;
-                case 1:
-                    // Call OR check
-                    if (pot.getBetToContinue() == currentPlayer.getAmount()) {
-                        // bot check
-                        currentPlayer.setPlayed(true);
-                    } else {
-                        // bot calls
-                        pot.updateBetToContinue(currentPlayer);
-                        currentPlayer.setPlayed(true);
+        //         case 0:
+        //             // if bot folds
+        //             currentPlayer.setPlayed(true);
+        //             currentPlayer.setFolded(true);
+        //             numOfFolds++;
+        //             break;
+        //         case 1:
+        //             // Call OR check
+        //             if (pot.getBetToContinue() == currentPlayer.getAmount()) {
+        //                 // bot check
+        //                 currentPlayer.setPlayed(true);
+        //             } else {
+        //                 // bot calls
+        //                 pot.updateBetToContinue(currentPlayer);
+        //                 currentPlayer.setPlayed(true);
 
-                    }
-                    break;
-                /*case 2:
-                    // bot raises
-                    int raiseAmount = botPlayerMoves.botPlayerRaise(botPlayer, pot);
-                    pot.updateBetToContinue(raiseAmount, currentPlayer);
-                    currentPlayer.setPlayed(true);*/
+        //             }
+        //             break;
+        //         /*case 2:
+        //             // bot raises
+        //             int raiseAmount = botPlayerMoves.botPlayerRaise(botPlayer, pot);
+        //             pot.updateBetToContinue(raiseAmount, currentPlayer);
+        //             currentPlayer.setPlayed(true);*/
 
-            }
+        //     }
 
             boolean allPlayed = true;
             // Checks if all players have played
@@ -211,7 +211,15 @@ public class Round {
                     System.out.println("2 to raise");
                 }
 
-                int input = scan.nextInt();
+                //JL added this part
+                int input;
+                if(currentPlayer instanceof BotPlayer){
+                    BotPlayer botPlayer = (BotPlayer) currentPlayer; // casting current player to a botplayer objekct
+                    input = BotMoves.botPlayerMoves(botPlayer, pot, this); // check botMoves class
+                    System.out.println(CurrentPlayer.getName() + /*insert action*/);
+                }else{
+                     input = scan.nextInt();
+                }
                 if (input == 0) {
                     currentPlayer.setPlayed(true);
                     currentPlayer.setFolded(true);
@@ -243,7 +251,14 @@ public class Round {
 
                 } else if (input == 2) {
                     System.out.println("input raise amount (excluding call amt)");
-                    int raise = scan.nextInt();
+                    int raise = 0;
+                    //JL added this part
+                    if(CurrentPlayer instanceof BotPlayer){
+                        raise = BotMoves.botPlayerRaise(botPlayer, pot);
+                        System.out.println(CurrentPlayer.getName() + "raised" + raise);
+                    }else{
+                        raise = scan.nextInt();
+                    }
                     pot.updateBetToContinue(raise, currentPlayer);
                     currentPlayer.setPlayed(true); // in the case of raised all-in
                     for (Player player : players) { // && player not folded
