@@ -100,7 +100,7 @@ public class Round {
         if(!(currentPlayer instanceof BotPlayer)){
             System.out.println(currentPlayer.getPRole().getRoleName() + ": " + currentPlayer.getPRole().getRoleDescription());
 
-            conditionMet = Result(deck, currentPlayer);
+            boolean conditionMet = ActivateRole.Result(deck, currentPlayer);
 
             if(conditionMet == true){
                 endRound(currentPlayer);
