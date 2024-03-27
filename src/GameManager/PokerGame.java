@@ -1,13 +1,12 @@
 /*
-3.27.24 PLEASE don't use the term chip anymore it's outdated from the current files ya
 Kong Khai
 Last updated: 22/03/2024
 Jia Lin
 Last updated: 25/03/2024
-Kamiya: 26/03/2024
-Qns: Line 17 and 21: Please change the spelling or make it clearer i dont know what it's trying to say
-Added in method to Call botplayer's action. 
-Please check: PM me if you have questions.
+Kamiya: 
+Last updated: 26/03/2024
+Si Jie:
+Last updated: 27/03/2024
 */
 package GameManager;
 import java.util.*;

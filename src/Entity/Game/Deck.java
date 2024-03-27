@@ -3,8 +3,8 @@
  * Implementation of a deck of playing cards.  Uses the Card class.
  */
 /*
-Miya Last edit 3/26/24
-Idk how i missed this but i didnt implement "shuffle" properly. Hopefully it shuffles automatically upon creation as it was intended to be
+Miya 
+Last edit: 26/03/24
 */
 package Entity.Game;
 
