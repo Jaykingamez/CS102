@@ -1,11 +1,8 @@
 /*
 Jia Lin
 Last updated: 21/03/2024
-*/
-
-/*
-Comments from Miya 
-24/03/2024
+Miya
+Last updated: 24/03/2024
 */
 package Entity.Game;
 import java.util.*;;
