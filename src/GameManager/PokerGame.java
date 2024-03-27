@@ -1,4 +1,5 @@
 /*
+3.27.24 PLEASE don't use the term chip anymore it's outdated from the current files ya
 Kong Khai
 Last updated: 22/03/2024
 Jia Lin
