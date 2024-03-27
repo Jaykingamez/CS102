@@ -28,27 +28,23 @@ public class Role {
             randomNumber = 0;
         }
 
-        if(randomNumber == 1){
+        if (randomNumber == 1){
             roleName = "King";
             roleDescription = "At the beginning of each turn flip over a card from the deck and if you guess correct you win the game!";
             System.out.println("ROLE: King");
             
             System.out.println("Description:" + roleDescription);
-        }
-        if(randomNumber == 2){
+        } else if (randomNumber == 2){
             roleName = "Jester";
             roleDescription = "At the beginning of each turn draw a card from the deck and if you all of your cards add upp to below 10 you win the game!!";
             System.out.println("ROLE: Jester");
             System.out.println("Description:" + roleDescription);
-        }
-        if(randomNumber == 0){
+        } else {
             roleName = "Citizen";
             roleDescription = "Survive";
             System.out.println("ROLE: Citizen");
             System.out.println("description:" + roleDescription);
         }
-
-        
     }
 
     public String getRoleName(){
