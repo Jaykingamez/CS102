@@ -29,7 +29,12 @@ public class Round {
     public void startRound() {
         //human gets role
         //if human is always 1st in array
-        Player[0].setRole(new Role());
+        
+        for(Player p : players){
+            if(!(p instanceof BotPlayer){
+                p.setRole(new Role());
+            }
+        }
         pot = new Pot(Arrays.asList(players));
         deck = new Deck();
         deck.shuffle();
@@ -65,10 +70,15 @@ public class Round {
     // to call at the start of the players turns after card is added into river
     public void beforeTurnStarts() {
             // passing in the human player
-            if (ActivateRole.Result(deck, players[0])) {
-                endRound(p);
-                return;
+        for(Player p : players){
+            if(!(p instanceof BotPlayer)){
+                if (ActivateRole.Result(deck, p)) {
+                        endRound(p);
+                        return;
+                }
             }
+        }
+                
 
         startTurn();
     }
