@@ -202,6 +202,8 @@ public class Round {
                 startTurn();
             } else if (currentPlayer.getPlayed() == false) { // player has to take an action
                  enterContinue(scan);
+                 if(!(currentPlayer instanceof BotPlayer))
+                 validNumber = false;
               while (!validNumber)  {
                 printHand(currentPlayer);
                 System.out.println();
