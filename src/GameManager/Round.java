@@ -221,6 +221,7 @@ public class Round {
                 if (!(oneAction.equals("all in"))) {
                     System.out.println("2 to raise");
                 }
+                System.out.println("3 to exit");
 
                 //JL added this part
                 int input;
@@ -285,6 +286,8 @@ public class Round {
                                                      // folded
                         }
                     }
+                } else if (input == 3){
+                    MainMenu.mainMenu();
                 }
 
                 boolean allPlayed = true;

@@ -11,6 +11,10 @@ public class MainMenu {
 
     
     public static void main(String[] args) {
+        mainMenu();
+    }
+    
+    public static void mainMenu(){
         while (!exit) {
             System.out.println("Poker Game Main Menu");
             System.out.println("Input: ");
@@ -28,8 +32,6 @@ public class MainMenu {
                 case 0:
                     System.out.println("Configuring the game...");
                     gameConfig();
-                    
-                    
                     break;
                 case 1:
                     System.out.println("Creating a profile...");
@@ -44,6 +46,7 @@ public class MainMenu {
                     System.out.println("Incorrect input");
             }
         }
+        System.exit(0);
     }
 
     public static void createProfile(){
