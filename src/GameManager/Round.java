@@ -201,9 +201,7 @@ public class Round {
                 currentPlayer = players.get(currentIndex);
                 startTurn();
             } else if (currentPlayer.getPlayed() == false) { // player has to take an action
-                 enterContinue(scan);
-                 if(!(currentPlayer instanceof BotPlayer))
-                 validNumber = false;
+                enterContinue(scan);
               while (!validNumber)  {
                 printHand(currentPlayer);
                 System.out.println();
@@ -328,7 +326,6 @@ public class Round {
                 }
             }
 
-                 
                 boolean allPlayed = true;
                 for (Player player : players) {
                     if (player.getPlayed() == false) {
@@ -393,7 +390,6 @@ public class Round {
     // JL added 24/03/2024
     // overlap with end round pls change accordingly
     public void showDown() {
-        clearTerminal();
         // handle showdown here, compare hand values with flop river and turn
         ArrayList<totalCombi> combinations = new ArrayList<>();
         for (Player p : players) {
@@ -412,35 +408,6 @@ public class Round {
             }
         }
 
-        System.out.println("Community Cards: " + river.getRiver().get(0) + ", " 
-        +  river.getRiver().get(1) + ", " 
-        + river.getRiver().get(2) + ", " 
-        + river.getRiver().get(3) + ", " 
-        + river.getRiver().get(4));
-
-        for (totalCombi combi : combinations) {
-            Hand hand = combi.getPlayer().getpHand();
-            System.out.println(combi.getPlayer().getName() + "\'s Hand - " 
-            + hand.getCard(0) + ", "
-            + hand.getCard(1));
-
-            Map<Integer, Integer> ValuefrequencyMap = combi.numSameValue();
-            int tier = combi.getTier(ValuefrequencyMap);
-            String combination = getCombination(tier);
-            
-            System.out.println("Value: " + combination);
-            System.out.println();
-        }
-
-        enterContinue(scan);
-        // possible to have error?
-        /*
-         * System.out.println();
-         * int winAmt = pot.getTotalPot() / winners.size();
-         * for(Player p : winners){
-         * p.addAmount(winAmt);
-         * }
-         */
 
         endRound(winners.toArray(new Player[winners.size()]));
 
@@ -449,13 +416,11 @@ public class Round {
     }
 
     public void endRound(Player... winner) {
-        
+
         System.out.println();
         int winAmt = pot.getTotalPot() / winner.length;
         for (Player p : winner) {
-            System.out.println(p.getName() + " has won " + winAmt + "dollars!"); 
             p.addAmount(winAmt);
-            System.out.println(p.getName() + " won " + winAmt + " dollars!");
         }
 
         HashMap<String, Integer> results = new HashMap<String, Integer>();
@@ -468,7 +433,6 @@ public class Round {
                 bankrupted = true;
             }
         }
-
         System.out.println("We finished a Round!");
         game.postGame(results, bankrupted);
     }
@@ -477,47 +441,6 @@ public class Round {
         System.out.println(player.getName() + "\'s cards: ");
         System.out.println(player.getpHand().getCard(0));
         System.out.println(player.getpHand().getCard(1));
-    }
-
-    public String getCombination(int tier) {
-        // 0 - normal hand, 1 - pair, 2 - doublePair, 3 - three of a kind
-        // 4 - straight, 5 - flush, 6 - full house, 7 - four of a kind
-        // 8 - straight flush, 9 - royal flush
-        String combination = "";
-        switch(tier) {
-            case 0:
-                combination = "0 - High Card";
-                break;
-            case 1:
-                combination = "1 - One Pair";
-                break;
-            case 2:
-                combination = "2 - Two Pair";
-                break;
-            case 3:
-                combination = "3 - Three of a Kind";
-                break;
-            case 4:
-                combination = "4 - Straight";
-                break;
-            case 5:
-                combination = "5 - Flush";
-                break;
-            case 6:
-                combination = "6 - Full House";
-                break;
-            case 7:
-                combination = "7 - Four of a Kind";
-                break;
-            case 8:
-                combination = "8 - Straight Flush";
-                break;
-            case 9:
-                combination = "9 - Royal Flush";
-                break;
-        }
-
-        return combination;
     }
 
     public void clearTerminal() {
