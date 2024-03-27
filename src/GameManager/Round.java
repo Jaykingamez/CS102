@@ -5,7 +5,6 @@ import Entity.Game.*;
 
 public class Round {
     public Deck deck;
-    boolean validNumber = false;
     Scanner scan = new Scanner(System.in);
     Pot pot;
     public River river; // JL added 24/03/2024
@@ -201,16 +200,7 @@ public class Round {
                 currentPlayer = players.get(currentIndex);
                 startTurn();
             } else if (currentPlayer.getPlayed() == false) { // player has to take an action
-                 enterContinue(scan);
-                 if(!(currentPlayer instanceof BotPlayer))
-                 validNumber = false;
-              while (!validNumber)  {
-                printHand(currentPlayer);
-                System.out.println();
-
-                // input handling, can replace with UI later
-                System.out.println("Input: ");
-                System.out.println("0 to Fold");
+                enterContinue(scan);
 
                 if (currentBet == pot.getBetToContinue()) { // no one has raised yet
                     oneAction = "check";
@@ -220,44 +210,39 @@ public class Round {
                     oneAction = "call (" + (pot.getBetToContinue() - currentBet) + " dollars)";
                 }
 
-                System.out.println("1 to " + oneAction);
-                if (!(oneAction.equals("all in"))) {
-                    System.out.println("2 to raise");
+                if (!(currentPlayer instanceof BotPlayer)) {
+                    printHand(currentPlayer);   
+                    System.out.println();
+
+                    // input handling, can replace with UI later
+                    System.out.println("Input: ");
+                    System.out.println("0 to Fold");
+
+                    System.out.println("1 to " + oneAction);
+                    if (!(oneAction.equals("all in"))) {
+                        System.out.println("2 to raise");
+                    }
+                    System.out.println("3 to exit");
                 }
-                System.out.println("3 to exit");
 
                 //JL added this part
-                int input = 10;
+                int input;
                 // instance here so botPlayer can call raise method later
                 BotPlayer botPlayer = null;
-                
                 if(currentPlayer instanceof BotPlayer){
                     botPlayer = (BotPlayer) currentPlayer; // casting current player to a botplayer objekct
-                    input = BotMoves.botPlayerMoves(botPlayer, pot, this); 
-                    validNumber = true;// check botMoves class
+                    input = BotMoves.botPlayerMoves(botPlayer, pot, this); // check botMoves class
                 }else{
-                    try {
                      input = scan.nextInt();
-                    } catch (InputMismatchException e) {
-                        System.out.println("Please enter your input properly!");
-                        System.out.print("ok... >");
-                        enterContinue(scan);
-                        validNumber = false;
-                        startTurn();
-                    }
                 }
                 if (input == 0) {
-                    validNumber = true;
                     currentPlayer.setPlayed(true);
                     currentPlayer.setFolded(true);
                     numOfFolds++;
 
-
                     if (currentPlayer instanceof BotPlayer) {
                         System.out.print(currentPlayer.getName() + " Folded, ");
-                        validNumber = true;
                         enterContinue(scan);
-
                     }
 
                     if (numOfFolds == players.size() - 1) { // everyone but 1 person folded, end the round
@@ -268,7 +253,6 @@ public class Round {
                                 break;
                             }
                         }
-
                         // deducts the bet amt from their money
                         pot.endTurnPot();
                         // then award the non folded player the whole pot
@@ -276,30 +260,32 @@ public class Round {
                         return; // round has ended, dont handle for next turns;
                     }
                 } else if (input == 1) {
-                    validNumber = true;
                     if (oneAction.equals("all in")) {
                         pot.updateBetToContinuePoor(currentPlayer.getAmount(), currentPlayer);
 
                         if (currentPlayer instanceof BotPlayer) {
                             System.out.print(currentPlayer.getName() + " went All In! ");
-                            enterContinue(scan);
                         }
-                
 
                     } else if (oneAction.substring(0, 4).equals("call")) {
                         pot.updateBetToContinue(currentPlayer);
 
                         if (currentPlayer instanceof BotPlayer) {
                             System.out.print(currentPlayer.getName() + " Called, ");
-                            enterContinue(scan);
                         }
+                    } else {
+                        if (currentPlayer instanceof BotPlayer) {
+                            System.out.print(currentPlayer.getName() + " Checked, ");
+                        }
+                    }
+
+                    if (currentPlayer instanceof BotPlayer) {
+                        enterContinue(scan);
                     }
 
                     currentPlayer.setPlayed(true);
 
                 } else if (input == 2) {
-                    validNumber = true;
-                    System.out.println("input raise amount (excluding call amt)");
                     int raise = 0;
                     //JL added this part
                     if(currentPlayer instanceof BotPlayer){
@@ -307,6 +293,7 @@ public class Round {
                         System.out.println(currentPlayer.getName() + " Raised " + raise + " dollars, ");
                         enterContinue(scan);
                     }else{
+                        System.out.println("input raise amount (excluding call amt)");
                         raise = scan.nextInt();
                     }
                     pot.updateBetToContinue(raise, currentPlayer);
@@ -315,20 +302,13 @@ public class Round {
                         if (player.getAmount() != currentBet && player.getFolded() == false) { // reset input for
                                                                                                // players that are still
                                                                                                // in the round
-                            player.setPlayed(false); // miya: 25.3, could we use active instead to check if theyve
-                                                     // folded
-                        }
+                            player.setPlayed(false); 
+                        }  
                     }
                 } else if (input == 3){
-                    validNumber = true;
                     MainMenu.mainMenu();
-                } else {
-
-                    System.out.println("Please input 0, 1, 2 or 3.");
                 }
-            }
 
-                 
                 boolean allPlayed = true;
                 for (Player player : players) {
                     if (player.getPlayed() == false) {
@@ -455,7 +435,6 @@ public class Round {
         for (Player p : winner) {
             System.out.println(p.getName() + " has won " + winAmt + "dollars!"); 
             p.addAmount(winAmt);
-            System.out.println(p.getName() + " won " + winAmt + " dollars!");
         }
 
         HashMap<String, Integer> results = new HashMap<String, Integer>();
