@@ -87,6 +87,10 @@ public class Round {
         // replace scanning and printing with actual UI
         // TODO: handle every player has played thru currentPlayer.playedTurn
         clearTerminal();
+
+        if(!(currentPlayer instanceof BotPlayer)){
+            System.out.println(currentPlayer.getPRole().getRoleDescription() + ": " + currentPlayer.getPRole().getRoleDescription());
+        }
         // if (currentPlayer instanceof BotPlayer) {
 
         //     BotPlayer botPlayer = (BotPlayer) currentPlayer; // casting current player to a botplayer objekct
