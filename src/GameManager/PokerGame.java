@@ -1,13 +1,10 @@
 /*
-3.27.24 PLEASE don't use the term chip anymore it's outdated from the current files ya
 Kong Khai
 Last updated: 22/03/2024
 Jia Lin
 Last updated: 25/03/2024
 Kamiya: 26/03/2024
-Qns: Line 17 and 21: Please change the spelling or make it clearer i dont know what it's trying to say
-Added in method to Call botplayer's action. 
-Please check: PM me if you have questions.
+
 */
 package GameManager;
 import java.util.*;
@@ -17,11 +14,11 @@ import Entity.Game.*;
 
 public class PokerGame {
     Deck deck;
-    ArrayList<Player> players; //reference to players to saMoneyta after game
+    ArrayList<Player> players; //reference to players to save data after game
     Scanner scan = new Scanner(System.in);
     Pot pot;
     River river; //JL added 24/03/2024
-    int initialBet = 10;             // game's initial bet eMoneyround
+    int initialBet = 10;             // game's initial bet 
     //private int firstPlayerIndex = 0; // first player at start of a new round
     int currentIndex = 0; //current player's index
     Player currentPlayer;
@@ -45,18 +42,6 @@ public class PokerGame {
         round.startRound();
     }
 
-    public void startTestRound() {
-    /*
-    For testing card hand mechanics 
-    */
-    }
-
-
-    public void startTestGame() {
-
-        /* method to start game completely in terminal purely for checking game mechanics from start to end*/ 
-        
-    }
     
     public void postGame(Map<String, Integer> results, boolean bankruptcy) {
         //handle post game stuff - new game with same ppl or leave, saving      
@@ -68,7 +53,7 @@ public class PokerGame {
         if (bankruptcy == true) {
             System.out.println("There is a bankrupt Player!");
         }
-        //new game system here
+
     }
 
 }
