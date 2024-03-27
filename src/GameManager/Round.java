@@ -61,13 +61,11 @@ public class Round {
 
     // to call at the start of the players turns after card is added into river
     public void beforeTurnStarts() {
-        for (Player p : players) {
-
-            /*if (ActivateRole.Result(deck, p)) {
+            // passing in the human player
+            if (ActivateRole.Result(deck, players[0])) {
                 endRound(p);
                 return;
-            }*/
-        }
+            }
 
         startTurn();
     }
