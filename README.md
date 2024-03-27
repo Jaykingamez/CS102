@@ -28,6 +28,3 @@ Good luck and have fun! :)
 # References
 
 A [list](https://github.com/BigRedS/java/tree/master/CardGame/src) of commonly used classes in Card games (Card, Deck, Hand, Rank, Suit).
-
-
-[Music: Simi and ChapChap Unwelcome School](https://www.youtube.com/watch?v=v-7kTXlsAD0&t=254s)
