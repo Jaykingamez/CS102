@@ -121,7 +121,6 @@ public class Round {
                 nextPhase();
                 return;
             }
-        }
 
             int currentBet = pot.getPlayerBets().get(currentPlayer);
 
