@@ -27,6 +27,9 @@ public class Round {
     }
 
     public void startRound() {
+        //human gets role
+        //if human is always 1st in array
+        Player[0].setRole(new Role());
         pot = new Pot(Arrays.asList(players));
         deck = new Deck();
         deck.shuffle();
