@@ -7,8 +7,8 @@ package Entity.Game;
 
 public class BotPlayer extends Player {
     
-    public BotPlayer(String name, Hand pHand, Role pRole){
-        super(name, pHand, pRole);
+    public BotPlayer(String name, Hand pHand){
+        super(name, pHand, null);
     }
 
     public Hand getpHand(){
