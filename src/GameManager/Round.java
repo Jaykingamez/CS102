@@ -344,10 +344,10 @@ public class Round {
     public void showDown() {
         clearTerminal();
         // handle showdown here, compare hand values with flop river and turn
-        ArrayList<totalCombi> combinations = new ArrayList<>();
+        ArrayList<TotalCombi> combinations = new ArrayList<>();
         for (Player p : players) {
             if (p.getFolded() == false) {
-                combinations.add(new totalCombi(p, river));
+                combinations.add(new TotalCombi(p, river));
             }
         }
         Collections.sort(combinations);
@@ -367,7 +367,7 @@ public class Round {
         + river.getRiver().get(3) + ", " 
         + river.getRiver().get(4));
 
-        for (totalCombi combi : combinations) {
+        for (TotalCombi combi : combinations) {
             Hand hand = combi.getPlayer().getpHand();
             System.out.println(combi.getPlayer().getName() + "\'s Hand - " 
             + hand.getCard(0) + ", "
