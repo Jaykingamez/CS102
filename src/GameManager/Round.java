@@ -109,19 +109,19 @@ public class Round {
 
         //     }
 
-            boolean allPlayed = true;
-            // Checks if all players have played
-            for (Player player : players) {
-                if (!player.getPlayed()) {
-                    allPlayed = false;
-                    break;
-                }
-            }
-            if (allPlayed) {
-                nextPhase();
-                return;
-            }
-        }
+            // boolean allPlayed = true;
+            // // Checks if all players have played
+            // for (Player player : players) {
+            //     if (!player.getPlayed()) {
+            //         allPlayed = false;
+            //         break;
+            //     }
+            // }
+            // if (allPlayed) {
+            //     nextPhase();
+            //     return;
+            // }
+        //}
 
             int currentBet = pot.getPlayerBets().get(currentPlayer);
 
@@ -213,10 +213,11 @@ public class Round {
 
                 //JL added this part
                 int input;
+                // instance here so botPlayer can call raise method later
+                BotPlayer botPlayer = null;
                 if(currentPlayer instanceof BotPlayer){
-                    BotPlayer botPlayer = (BotPlayer) currentPlayer; // casting current player to a botplayer objekct
+                    botPlayer = (BotPlayer) currentPlayer; // casting current player to a botplayer objekct
                     input = BotMoves.botPlayerMoves(botPlayer, pot, this); // check botMoves class
-                    System.out.println(CurrentPlayer.getName() + /*insert action*/);
                 }else{
                      input = scan.nextInt();
                 }
@@ -224,6 +225,8 @@ public class Round {
                     currentPlayer.setPlayed(true);
                     currentPlayer.setFolded(true);
                     numOfFolds++;
+
+                    System.out.println(currentPlayer.getName() + " folded");
 
                     if (numOfFolds == players.length - 1) { // everyone but 1 person folded, end the round
                         int index = 0;
@@ -242,9 +245,11 @@ public class Round {
                 } else if (input == 1) {
                     if (oneAction.equals("all in")) {
                         pot.updateBetToContinuePoor(currentPlayer.getAmount(), currentPlayer);
+                        System.out.println(currentPlayer.getName() + " went all in!");
 
                     } else if (oneAction.substring(0, 4).equals("call")) {
                         pot.updateBetToContinue(currentPlayer);
+                        System.out.println(currentPlayer.getName() + " called");
                     }
 
                     currentPlayer.setPlayed(true);
@@ -253,9 +258,9 @@ public class Round {
                     System.out.println("input raise amount (excluding call amt)");
                     int raise = 0;
                     //JL added this part
-                    if(CurrentPlayer instanceof BotPlayer){
+                    if(currentPlayer instanceof BotPlayer){
                         raise = BotMoves.botPlayerRaise(botPlayer, pot);
-                        System.out.println(CurrentPlayer.getName() + "raised" + raise);
+                        System.out.println(currentPlayer.getName() + " raised " + raise);
                     }else{
                         raise = scan.nextInt();
                     }
