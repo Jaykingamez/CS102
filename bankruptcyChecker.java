@@ -3,7 +3,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PotTest {
+public class bankruptcyChecker {
 
     @Test
     public void testBankruptcyWithOnePlayer() {
