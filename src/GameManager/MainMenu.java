@@ -36,7 +36,6 @@ public class MainMenu {
                 case 1:
                     System.out.println("Creating a profile...");
                     createProfile();
-                    // Add profile creation logic here
                     break;
                 case 2:
                     System.out.println("Exiting the game. Goodbye!");
@@ -79,12 +78,13 @@ public class MainMenu {
                 botPlayers = scanner.nextInt();
                 totalNumbers = humanPlayers + botPlayers;
                 if (totalNumbers > 4 || totalNumbers < 2){
-                    System.out.println("Insufficient players");
+                    System.out.println("Too many or too little players!");
                 } else {
                     System.out.println("There are " + humanPlayers + " humanPlayers and " + botPlayers + " botPlayers");
                 }
             } catch (Exception e){
-                System.out.println("Incorrect input");
+                System.out.println("Incorrect input, please try again.");
+                gameConfig();
             }
         }
         GameManager gameManager = new GameManager();
