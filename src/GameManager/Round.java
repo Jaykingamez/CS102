@@ -101,52 +101,7 @@ public class Round {
         if(!(currentPlayer instanceof BotPlayer)){
             System.out.println(currentPlayer.getPRole().getRoleDescription() + ": " + currentPlayer.getPRole().getRoleDescription());
         }
-        // if (currentPlayer instanceof BotPlayer) {
-
-        //     BotPlayer botPlayer = (BotPlayer) currentPlayer; // casting current player to a botplayer objekct
-        //     int action = BotMoves.botPlayerMoves(botPlayer, pot, this); // check botMoves class
-
-        //     switch (action) {
-
-        //         case 0:
-        //             // if bot folds
-        //             currentPlayer.setPlayed(true);
-        //             currentPlayer.setFolded(true);
-        //             numOfFolds++;
-        //             break;
-        //         case 1:
-        //             // Call OR check
-        //             if (pot.getBetToContinue() == currentPlayer.getAmount()) {
-        //                 // bot check
-        //                 currentPlayer.setPlayed(true);
-        //             } else {
-        //                 // bot calls
-        //                 pot.updateBetToContinue(currentPlayer);
-        //                 currentPlayer.setPlayed(true);
-
-        //             }
-        //             break;
-        //         /*case 2:
-        //             // bot raises
-        //             int raiseAmount = botPlayerMoves.botPlayerRaise(botPlayer, pot);
-        //             pot.updateBetToContinue(raiseAmount, currentPlayer);
-        //             currentPlayer.setPlayed(true);*/
-
-        //     }
-
-            // boolean allPlayed = true;
-            // // Checks if all players have played
-            // for (Player player : players) {
-            //     if (!player.getPlayed()) {
-            //         allPlayed = false;
-            //         break;
-            //     }
-            // }
-            // if (allPlayed) {
-            //     nextPhase();
-            //     return;
-            // }
-        //}
+       
 
             int currentBet = pot.getPlayerBets().get(currentPlayer);
 
@@ -515,7 +470,8 @@ public class Round {
 
     public void clearTerminal() {
         System.out.print("\033\143");
-        // System.out.print("\n\n\n\n\n");
+
+        
 
     }
 

@@ -16,11 +16,11 @@ import Entity.Game.*;
 
 public class PokerGame {
     Deck deck;
-    ArrayList<Player> players; //reference to players to saMoneyta after game
+    ArrayList<Player> players; //reference to players to save data after game
     Scanner scan = new Scanner(System.in);
     Pot pot;
     River river; //JL added 24/03/2024
-    int initialBet = 10;             // game's initial bet eMoneyround
+    int initialBet = 10;             // game's initial bet 
     //private int firstPlayerIndex = 0; // first player at start of a new round
     int currentIndex = 0; //current player's index
     Player currentPlayer;
@@ -44,18 +44,6 @@ public class PokerGame {
         round.startRound();
     }
 
-    public void startTestRound() {
-    /*
-    For testing card hand mechanics 
-    */
-    }
-
-
-    public void startTestGame() {
-
-        /* method to start game completely in terminal purely for checking game mechanics from start to end*/ 
-        
-    }
     
     public void postGame(Map<String, Integer> results, boolean bankruptcy) {
         //handle post game stuff - new game with same ppl or leave, saving      
@@ -67,7 +55,7 @@ public class PokerGame {
         if (bankruptcy == true) {
             System.out.println("There is a bankrupt Player!");
         }
-        //new game system here
+
     }
 
 }
