@@ -306,7 +306,7 @@ public class Round {
                         }  
                     }
                 } else if (input == 3){
-                    MainMenu.mainMenu();
+                    System.exit(0);
                 }
 
                 boolean allPlayed = true;
