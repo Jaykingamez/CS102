@@ -24,7 +24,6 @@ public class Round {
     public Round(Player[] players, PokerGame game) {
         this.players = players;
         this.game = game;
-        startRound();
     }
 
     public void startRound() {
@@ -57,18 +56,20 @@ public class Round {
         roundResult = new Player[] {};
         river = new River(new ArrayList<Card>());
         System.out.println("DEBUG LINE: ROUND SUCCESSFULLY STARTED");
-        startTurn();
+        beforeTurnStarts();
     }
 
     // to call at the start of the players turns after card is added into river
     public void beforeTurnStarts() {
         for (Player p : players) {
 
-            if (ActivateRole.Result(deck, p)) {
+            /*if (ActivateRole.Result(deck, p)) {
                 endRound(p);
                 return;
-            }
+            }*/
         }
+
+        startTurn();
     }
 
     public void startTurn() {
@@ -100,11 +101,11 @@ public class Round {
 
                     }
                     break;
-                case 2:
+                /*case 2:
                     // bot raises
                     int raiseAmount = botPlayerMoves.botPlayerRaise(botPlayer, pot);
                     pot.updateBetToContinue(raiseAmount, currentPlayer);
-                    currentPlayer.setPlayed(true);
+                    currentPlayer.setPlayed(true);*/
 
             }
 
@@ -120,6 +121,7 @@ public class Round {
                 nextPhase();
                 return;
             }
+        }
 
             int currentBet = pot.getPlayerBets().get(currentPlayer);
 
@@ -196,6 +198,9 @@ public class Round {
             } else if (currentPlayer.getPlayed() == false) { // player has to take an action
                 enterContinue(scan);
 
+                printHand(currentPlayer);
+                System.out.println();
+
                 // input handling, can replace with UI later
                 System.out.println("Input: ");
                 System.out.println("0 to Fold");
@@ -256,7 +261,7 @@ public class Round {
                     }
                 }
 
-                allPlayed = true;
+                boolean allPlayed = true;
                 for (Player player : players) {
                     if (player.getPlayed() == false) {
                         allPlayed = false;
@@ -281,7 +286,6 @@ public class Round {
             } else {
                 startTurn();
             }
-        }
     }
 
     public void nextPhase() {
