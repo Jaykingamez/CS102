@@ -30,6 +30,7 @@ public class Round {
     boolean bankrupted = false;
     PokerGame game;
     ArrayList<Player> roundResult;
+    int currentRound = 0;
 
     public Round(ArrayList<Player> players, PokerGame game) {
         this.players = players;
@@ -71,6 +72,7 @@ public class Round {
         displayCards = "";
         currentIndex = firstPlayerIndex;
         currentPlayer = players.get(currentIndex);
+        currentRound++;
         roundResult = new ArrayList<Player>();
         river = new River(new ArrayList<Card>());
         System.out.println("DEBUG LINE: ROUND SUCCESSFULLY STARTED");
@@ -105,6 +107,7 @@ public class Round {
 
             int currentBet = pot.getPlayerBets().get(currentPlayer);
 
+            System.out.println("Round " + currentRound);
             System.out.println("Pot: " + pot.getTotalPot());
             System.out.println("Current Phase: " + phase[currentPhase]);
             if (currentPhase != 0) {
@@ -415,27 +418,15 @@ public class Round {
         }
 
         enterContinue(scan);
-        // possible to have error?
-        /*
-         * System.out.println();
-         * int winAmt = pot.getTotalPot() / winners.size();
-         * for(Player p : winners){
-         * p.addAmount(winAmt);
-         * }
-         */
 
         endRound(winners.toArray(new Player[winners.size()]));
-
-        // clearTerminal();
-        // System.out.println("Showdown Time!");
     }
 
     public void endRound(Player... winner) {
-        
-        System.out.println();
+        clearTerminal();
         int winAmt = pot.getTotalPot() / winner.length;
         for (Player p : winner) {
-            System.out.println(p.getName() + " has won " + winAmt + "dollars!"); 
+            System.out.println(p.getName() + " has won " + winAmt + " dollars!"); 
             p.addAmount(winAmt);
         }
 
@@ -445,13 +436,24 @@ public class Round {
             player.getpHand().discardHand();
 
             results.put(player.getName(), player.getAmount());
-            if (player.getAmount() == 0) {
-                bankrupted = true;
+            if (player != players.get(0)) {
+                if (player.getAmount() == 0) {
+                    players.remove(player);
+                }
             }
         }
 
-        System.out.println("We finished a Round!");
-        game.postGame(results, bankrupted);
+        enterContinue(scan);
+
+        if (players.get(0).getAmount() == 0 || players.size() == 1) {
+            game.postGame(results);           
+        } else {
+            firstPlayerIndex++;
+            if (firstPlayerIndex == players.size()) {
+                firstPlayerIndex = 0;
+            }
+            startRound();
+        }
     }
 
     public void printHand(Player player) {

@@ -45,17 +45,12 @@ public class PokerGame {
     }
 
     
-    public void postGame(Map<String, Integer> results, boolean bankruptcy) {
+    public void postGame(Map<String, Integer> results) {
         //handle post game stuff - new game with same ppl or leave, saving      
         System.out.println("Game Over!");
         for (String player : results.keySet()) {
             System.out.println(player + "- " + results.get(player) + " dollars");
         }
-        //if 1 or more player has 0 money
-        if (bankruptcy == true) {
-            System.out.println("There is a bankrupt Player!");
-        }
-
     }
 
 }
