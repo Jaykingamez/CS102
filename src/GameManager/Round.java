@@ -294,9 +294,8 @@ public class Round {
                         if (player.getAmount() != currentBet && player.getFolded() == false) { // reset input for
                                                                                                // players that are still
                                                                                                // in the round
-                            player.setPlayed(false); // miya: 25.3, could we use active instead to check if theyve
-                                                     // folded
-                        }
+                            player.setPlayed(false); 
+                            
                     }
                 } else if (input == 3){
                     MainMenu.mainMenu();
@@ -384,14 +383,7 @@ public class Round {
             }
         }
 
-        // possible to have error?
-        /*
-         * System.out.println();
-         * int winAmt = pot.getTotalPot() / winners.size();
-         * for(Player p : winners){
-         * p.addAmount(winAmt);
-         * }
-         */
+
 
         endRound(winners.toArray(new Player[winners.size()]));
 
@@ -400,10 +392,11 @@ public class Round {
     }
 
     public void endRound(Player... winner) {
-        // Sry qn M, how will the winner hashmap be passed into this?
+        
         System.out.println();
         int winAmt = pot.getTotalPot() / winner.length;
         for (Player p : winner) {
+            System.out.println(p.getName() + " has won " + winAmt + "dollars!"); 
             p.addAmount(winAmt);
         }
 
@@ -417,15 +410,6 @@ public class Round {
                 bankrupted = true;
             }
         }
-
-        // handle win conditions
-        /*
-         * for the win conditions is it referring to the individual player? If
-         * everyone's folded but one? or
-         * the role specific win conditions? can we make a wonRound attribute?
-         * 3.25 Miya: changed if bankrupted == true to if bankrupted. no need to have an
-         * equality statement
-         */
 
         System.out.println("We finished a Round!");
         game.postGame(results, bankrupted);
