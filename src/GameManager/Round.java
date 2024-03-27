@@ -31,7 +31,7 @@ public class Round {
         //if human is always 1st in array
         
         for(Player p : players){
-            if(!(p instanceof BotPlayer){
+            if(!(p instanceof BotPlayer)){
                 p.setRole(new Role());
             }
         }
