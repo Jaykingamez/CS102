@@ -82,14 +82,14 @@ public class Round {
     // to call at the start of the players turns after card is added into river
     public void beforeTurnStarts() {
         // passing in the human player
-        for (Player p : players) {
-            if (!(p instanceof BotPlayer)) {
-                if (ActivateRole.Result(deck, p)) {
-                    endRound(p);
-                    return;
-                }
-            }
-        }
+        // for (Player p : players) {
+        //     if (!(p instanceof BotPlayer)) {
+        //         if (ActivateRole.Result(deck, p)) {
+        //             endRound(p);
+        //             return;
+        //         }
+        //     }
+        // }
 
         startTurn();
     }
