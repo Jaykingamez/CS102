@@ -1,7 +1,8 @@
 /*
 Jialin + Miya 
 Last edit: 25/3/2024
-denxi:27/3 736pm
+Denxi
+Last edit: 27/3/2024
 */
 
 package Entity.Game;
@@ -58,11 +59,5 @@ public class Action {
         //create setter in Player
         thisPlayer.setActive(false); 
     }
-
-    // public void playAgain(String input) {
-    // /*
-        
-    //     */
-    // }
 
 }

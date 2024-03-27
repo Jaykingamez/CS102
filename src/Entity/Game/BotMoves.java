@@ -1,3 +1,13 @@
+/*
+Kong Khai
+Last updated: 22/03/2024
+Jia Lin
+Last updated: 25/03/2024
+Kamiya: 
+Last updated: 26/03/2024
+Si Jie:
+Last updated: 27/03/2024
+*/
 package Entity.Game;
 
 import java.util.Map;

@@ -1,3 +1,13 @@
+/*
+Kong Khai
+Last updated: 22/03/2024
+Jia Lin
+Last updated: 25/03/2024
+Kamiya: 
+Last updated: 26/03/2024
+Si Jie:
+Last updated: 27/03/2024
+*/
 package GameManager;
 
 import java.util.*;
@@ -87,52 +97,11 @@ public class Round {
         // replace scanning and printing with actual UI
         // TODO: handle every player has played thru currentPlayer.playedTurn
         clearTerminal();
-        // if (currentPlayer instanceof BotPlayer) {
 
-        //     BotPlayer botPlayer = (BotPlayer) currentPlayer; // casting current player to a botplayer objekct
-        //     int action = BotMoves.botPlayerMoves(botPlayer, pot, this); // check botMoves class
-
-        //     switch (action) {
-
-        //         case 0:
-        //             // if bot folds
-        //             currentPlayer.setPlayed(true);
-        //             currentPlayer.setFolded(true);
-        //             numOfFolds++;
-        //             break;
-        //         case 1:
-        //             // Call OR check
-        //             if (pot.getBetToContinue() == currentPlayer.getAmount()) {
-        //                 // bot check
-        //                 currentPlayer.setPlayed(true);
-        //             } else {
-        //                 // bot calls
-        //                 pot.updateBetToContinue(currentPlayer);
-        //                 currentPlayer.setPlayed(true);
-
-        //             }
-        //             break;
-        //         /*case 2:
-        //             // bot raises
-        //             int raiseAmount = botPlayerMoves.botPlayerRaise(botPlayer, pot);
-        //             pot.updateBetToContinue(raiseAmount, currentPlayer);
-        //             currentPlayer.setPlayed(true);*/
-
-        //     }
-
-            // boolean allPlayed = true;
-            // // Checks if all players have played
-            // for (Player player : players) {
-            //     if (!player.getPlayed()) {
-            //         allPlayed = false;
-            //         break;
-            //     }
-            // }
-            // if (allPlayed) {
-            //     nextPhase();
-            //     return;
-            // }
-        //}
+        if(!(currentPlayer instanceof BotPlayer)){
+            System.out.println(currentPlayer.getPRole().getRoleDescription() + ": " + currentPlayer.getPRole().getRoleDescription());
+        }
+       
 
             int currentBet = pot.getPlayerBets().get(currentPlayer);
 
@@ -339,7 +308,7 @@ public class Round {
                         }  
                     }
                 } else if (input == 3){
-                    MainMenu.mainMenu();
+                    System.exit(0);
                 }
 
                 boolean allPlayed = true;
@@ -545,7 +514,8 @@ public class Round {
 
     public void clearTerminal() {
         System.out.print("\033\143");
-        // System.out.print("\n\n\n\n\n");
+
+        
 
     }
 

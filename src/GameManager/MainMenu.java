@@ -1,3 +1,7 @@
+/*
+Si Jie
+Last Updated: 27/3/2024
+*/
 package GameManager;
 
 import java.util.Scanner;
